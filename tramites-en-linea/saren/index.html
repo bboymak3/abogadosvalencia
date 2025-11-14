@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="es-VE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Trámites SAREN en línea: apostillas, legalizaciones, partidas de nacimiento, antecedentes penales y más. Gestión rápida de citas y documentos oficiales.">
+    <meta name="keywords" content="saren, trámites saren, apostilla de documentos, legalización de documentos, partida de nacimiento, antecedentes penales, citas saren, servicio autónomo de registros y notarías">
+    <title>Trámites SAREN en Línea – Apostillas, Legalizaciones y Citas | Abogados Valencia</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Nuestros estilos -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ========== MENÚ COMPLETO ========== -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <!-- Logo -->
+            <a href="/" class="logo">
+                <div class="logo-img">AV</div>
+                <div>
+                    <div class="logo-text">ABOGADOS VALENCIA</div>
+                    <div class="logo-subtext">BUFETE ESPECIALIZADO EN DERECHO CIVIL</div>
+                </div>
+            </a>
+            
+            <!-- Menú Desktop -->
+            <div class="desktop-menu">
+                <a href="/" class="nav-link">Inicio</a>
+                
+                <!-- CATEGORÍA: Servicios Legales -->
+                <div class="dropdown">
+                    <a href="#servicios" class="nav-link dropdown-toggle">
+                        Servicios Legales <span style="margin-left: 5px;">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/servicios/derecho-civil/" class="dropdown-item">Derecho Civil</a>
+                        <a href="/servicios/registros-notarias/" class="dropdown-item">Registros y Notarías</a>
+                        <a href="/servicios/tramites-saren/" class="dropdown-item">Trámites SAREN</a>
+                        <a href="/servicios/contratos/" class="dropdown-item">Contratos</a>
+                        <a href="/servicios/documentos-legales/" class="dropdown-item">Documentos Legales</a>
+                    </div>
+                </div>
+                
+                <!-- CATEGORÍA: Trámites en Línea -->
+                <div class="dropdown">
+                    <a href="/tramites-en-linea/" class="nav-link dropdown-toggle">
+                        Trámites en Línea <span style="margin-left: 5px;">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/tramites-en-linea/saren/" class="dropdown-item">Trámites SAREN</a>
+                        <a href="/tramites-en-linea/registro-civil/" class="dropdown-item">Registro Civil</a>
+                        <a href="/tramites-en-linea/notarias/" class="dropdown-item">Trámites Notariales</a>
+                        <a href="/tramites-en-linea/solicitudes/" class="dropdown-item">Solicitudes Legales</a>
+                    </div>
+                </div>
+                
+                <!-- CATEGORÍA: Estados de Venezuela -->
+                <div class="dropdown">
+                    <a href="/estados-venezuela/" class="nav-link dropdown-toggle">
+                        Estados de Venezuela <span style="margin-left: 5px;">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/estados/amazonas/" class="dropdown-item">Amazonas</a>
+                        <a href="/estados/anzoategui/" class="dropdown-item">Anzoátegui</a>
+                        <a href="/estados/apure/" class="dropdown-item">Apure</a>
+                        <a href="/estados/aragua/" class="dropdown-item">Aragua</a>
+                        <a href="/estados/barinas/" class="dropdown-item">Barinas</a>
+                        <a href="/estados/bolivar/" class="dropdown-item">Bolívar</a>
+                        <a href="/estados/carabobo/" class="dropdown-item">Carabobo</a>
+                        <a href="/estados/cojedes/" class="dropdown-item">Cojedes</a>
+                        <a href="/estados/delta-amacuro/" class="dropdown-item">Delta Amacuro</a>
+                        <a href="/estados/falcon/" class="dropdown-item">Falcón</a>
+                        <a href="/estados/guarico/" class="dropdown-item">Guárico</a>
+                        <a href="/estados/lara/" class="dropdown-item">Lara</a>
+                        <a href="/estados/merida/" class="dropdown-item">Mérida</a>
+                        <a href="/estados/miranda/" class="dropdown-item">Miranda</a>
+                        <a href="/estados/monagas/" class="dropdown-item">Monagas</a>
+                        <a href="/estados/nueva-esparta/" class="dropdown-item">Nueva Esparta</a>
+                        <a href="/estados/portuguesa/" class="dropdown-item">Portuguesa</a>
+                        <a href="/estados/sucre/" class="dropdown-item">Sucre</a>
+                        <a href="/estados/tachira/" class="dropdown-item">Táchira</a>
+                        <a href="/estados/trujillo/" class="dropdown-item">Trujillo</a>
+                        <a href="/estados/vargas/" class="dropdown-item">Vargas (La Guaira)</a>
+                        <a href="/estados/yaracuy/" class="dropdown-item">Yaracuy</a>
+                        <a href="/estados/zulia/" class="dropdown-item">Zulia</a>
+                        <a href="/estados/distrito-capital/" class="dropdown-item">Distrito Capital</a>
+                    </div>
+                </div>
+                
+                <!-- CATEGORÍA: Información Legal -->
+                <div class="dropdown">
+                    <a href="/informacion-legal/" class="nav-link dropdown-toggle">
+                        Información Legal <span style="margin-left: 5px;">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/informacion-legal/preguntas-frecuentes/" class="dropdown-item">Preguntas Frecuentes</a>
+                        <a href="/informacion-legal/guia-tramites/" class="dropdown-item">Guía de Trámites</a>
+                        <a href="/informacion-legal/documentacion/" class="dropdown-item">Documentación Necesaria</a>
+                        <a href="/informacion-legal/requisitos/" class="dropdown-item">Requisitos Legales</a>
+                    </div>
+                </div>
+                
+                <!-- CATEGORÍA: Soporte -->
+                <div class="dropdown">
+                    <a href="/soporte/" class="nav-link dropdown-toggle">
+                        Soporte <span style="margin-left: 5px;">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/soporte/contactanos/" class="dropdown-item">Contáctanos</a>
+                        <a href="/soporte/consultas/" class="dropdown-item">Consultas Legales</a>
+                        <a href="/soporte/seguimiento/" class="dropdown-item">Seguimiento de Casos</a>
+                        <a href="/soporte/asesoramiento/" class="dropdown-item">Asesoramiento Personalizado</a>
+                    </div>
+                </div>
+                
+                <!-- WhatsApp -->
+                <a href="https://wa.me/584245112587" class="whatsapp-btn">
+                    <span>📱</span> WhatsApp
+                </a>
+            </div>
+            
+            <!-- Botón Hamburguesa -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Menú Móvil -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="/" class="mobile-nav-link">Inicio</a>
+        
+        <!-- CATEGORÍA MÓVIL: Servicios Legales -->
+        <div class="mobile-dropdown">
+            <div class="mobile-dropdown-toggle" data-target="servicios-mobile">
+                Servicios Legales <span>▼</span>
+            </div>
+            <div class="mobile-dropdown-menu" id="servicios-mobile">
+                <a href="/servicios/derecho-civil/" class="mobile-dropdown-item">Derecho Civil</a>
+                <a href="/servicios/registros-notarias/" class="mobile-dropdown-item">Registros y Notarías</a>
+                <a href="/servicios/tramites-saren/" class="mobile-dropdown-item">Trámites SAREN</a>
+                <a href="/servicios/contratos/" class="mobile-dropdown-item">Contratos</a>
+                <a href="/servicios/documentos-legales/" class="mobile-dropdown-item">Documentos Legales</a>
+            </div>
+        </div>
+        
+        <!-- CATEGORÍA MÓVIL: Trámites en Línea -->
+        <div class="mobile-dropdown">
+            <div class="mobile-dropdown-toggle" data-target="tramites-mobile">
+                Trámites en Línea <span>▼</span>
+            </div>
+            <div class="mobile-dropdown-menu" id="tramites-mobile">
+                <a href="/tramites-en-linea/saren/" class="mobile-dropdown-item">Trámites SAREN</a>
+                <a href="/tramites-en-linea/registro-civil/" class="mobile-dropdown-item">Registro Civil</a>
+                <a href="/tramites-en-linea/notarias/" class="mobile-dropdown-item">Trámites Notariales</a>
+                <a href="/tramites-en-linea/solicitudes/" class="mobile-dropdown-item">Solicitudes Legales</a>
+            </div>
+        </div>
+        
+        <!-- CATEGORÍA MÓVIL: Estados de Venezuela -->
+        <div class="mobile-dropdown">
+            <div class="mobile-dropdown-toggle" data-target="estados-mobile">
+                Estados de Venezuela <span>▼</span>
+            </div>
+            <div class="mobile-dropdown-menu" id="estados-mobile">
+                <a href="/estados/amazonas/" class="mobile-dropdown-item">Amazonas</a>
+                <a href="/estados/anzoategui/" class="mobile-dropdown-item">Anzoátegui</a>
+                <a href="/estados/apure/" class="mobile-dropdown-item">Apure</a>
+                <a href="/estados/aragua/" class="mobile-dropdown-item">Aragua</a>
+                <a href="/estados/barinas/" class="mobile-dropdown-item">Barinas</a>
+                <a href="/estados/bolivar/" class="mobile-dropdown-item">Bolívar</a>
+                <a href="/estados/carabobo/" class="mobile-dropdown-item">Carabobo</a>
+                <a href="/estados/cojedes/" class="mobile-dropdown-item">Cojedes</a>
+                <a href="/estados/delta-amacuro/" class="mobile-dropdown-item">Delta Amacuro</a>
+                <a href="/estados/falcon/" class="mobile-dropdown-item">Falcón</a>
+                <a href="/estados/guarico/" class="mobile-dropdown-item">Guárico</a>
+                <a href="/estados/lara/" class="mobile-dropdown-item">Lara</a>
+                <a href="/estados/merida/" class="mobile-dropdown-item">Mérida</a>
+                <a href="/estados/miranda/" class="mobile-dropdown-item">Miranda</a>
+                <a href="/estados/monagas/" class="mobile-dropdown-item">Monagas</a>
+                <a href="/estados/nueva-esparta/" class="mobile-dropdown-item">Nueva Esparta</a>
+                <a href="/estados/portuguesa/" class="mobile-dropdown-item">Portuguesa</a>
+                <a href="/estados/sucre/" class="mobile-dropdown-item">Sucre</a>
+                <a href="/estados/tachira/" class="mobile-dropdown-item">Táchira</a>
+                <a href="/estados/trujillo/" class="mobile-dropdown-item">Trujillo</a>
+                <a href="/estados/vargas/" class="mobile-dropdown-item">Vargas (La Guaira)</a>
+                <a href="/estados/yaracuy/" class="mobile-dropdown-item">Yaracuy</a>
+                <a href="/estados/zulia/" class="mobile-dropdown-item">Zulia</a>
+                <a href="/estados/distrito-capital/" class="mobile-dropdown-item">Distrito Capital</a>
+            </div>
+        </div>
+        
+        <!-- CATEGORÍA MÓVIL: Información Legal -->
+        <div class="mobile-dropdown">
+            <div class="mobile-dropdown-toggle" data-target="informacion-mobile">
+                Información Legal <span>▼</span>
+            </div>
+            <div class="mobile-dropdown-menu" id="informacion-mobile">
+                <a href="/informacion-legal/preguntas-frecuentes/" class="mobile-dropdown-item">Preguntas Frecuentes</a>
+                <a href="/informacion-legal/guia-tramites/" class="mobile-dropdown-item">Guía de Trámites</a>
+                <a href="/informacion-legal/documentacion/" class="mobile-dropdown-item">Documentación Necesaria</a>
+                <a href="/informacion-legal/requisitos/" class="mobile-dropdown-item">Requisitos Legales</a>
+            </div>
+        </div>
+        
+        <!-- CATEGORÍA MÓVIL: Soporte -->
+        <div class="mobile-dropdown">
+            <div class="mobile-dropdown-toggle" data-target="soporte-mobile">
+                Soporte <span>▼</span>
+            </div>
+            <div class="mobile-dropdown-menu" id="soporte-mobile">
+                <a href="/soporte/contactanos/" class="mobile-dropdown-item">Contáctanos</a>
+                <a href="/soporte/consultas/" class="mobile-dropdown-item">Consultas Legales</a>
+                <a href="/soporte/seguimiento/" class="mobile-dropdown-item">Seguimiento de Casos</a>
+                <a href="/soporte/asesoramiento/" class="mobile-dropdown-item">Asesoramiento Personalizado</a>
+            </div>
+        </div>
+        
+        <!-- WhatsApp Móvil -->
+        <div class="mobile-whatsapp">
+            <a href="https://wa.me/584245112587" class="whatsapp-btn">
+                <span>📱</span> WhatsApp
+            </a>
+        </div>
+    </div>
+    
+    <!-- Overlay para cerrar menú -->
+    <div class="overlay" id="overlay"></div>
+    <!-- ========== FIN MENÚ ========== -->
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="inicio">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7" data-aos="fade-right">
+                    <span class="hero-badge">Especialistas en Trámites SAREN</span>
+                    <h1 class="hero-title">Trámites SAREN en Línea – <span class="text-accent">Apostillas, Legalizaciones y Citas</span></h1>
+                    <p class="hero-subtitle">El Servicio Autónomo de Registros y Notarías (SAREN) ofrece trámites esenciales como <strong>partidas de nacimiento</strong>, <strong>actas de matrimonio</strong>, <strong>antecedentes penales</strong> y <strong>apostillas</strong>. Te ayudamos con todos los trámites SAREN en línea: <strong>citas para apostillar</strong>, <strong>legalización de documentos</strong>, <strong>saren partida de nacimiento</strong>, <strong>saren acta de defunción</strong> y más. Gestión rápida y segura desde cualquier lugar de Venezuela.</p>
+                    
+                    <div class="btn-group mt-4" role="group" data-aos="fade-up" data-aos-delay="300">
+                        <a href="https://wa.me/584245112587?text=Hola,%20necesito%20realizar%20un%20trámite%20en%20SAREN" class="btn btn-primary me-2">
+                            <i class="fab fa-whatsapp me-2"></i> Solicitar Trámite SAREN
+                        </a>
+                        <a href="#tramites-populares" class="btn btn-outline-light">
+                            <i class="fas fa-file-alt me-2"></i> Ver Trámites Disponibles
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-5" data-aos="fade-left" data-aos-delay="400">
+                    <div class="text-center">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Trámites SAREN en Línea - Apostillas y Legalizaciones" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Access Section -->
+    <section class="categories-section" id="tramites-populares">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Trámites SAREN Más Solicitados</h2>
+            <p class="text-center mb-5" data-aos="fade-up">Haz clic en el trámite que necesitas para solicitar tu gestión inmediatamente</p>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <a href="https://wa.me/584245112587?text=Hola,%20quiero%20solicitar%20una%20APOSTILLA%20DE%20DOCUMENTOS%20en%20SAREN" class="category-card document-card">
+                        <div class="category-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="category-title">Apostilla de Documentos</h3>
+                        <p>Validación internacional</p>
+                        <span class="badge bg-primary mt-2">¡Solicitar Ahora!</span>
+                    </a>
+                </div>
+                
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <a href="https://wa.me/584245112587?text=Hola,%20quiero%20solicitar%20PARTIDA%20DE%20NACIMIENTO%20en%20SAREN" class="category-card document-card">
+                        <div class="category-icon">
+                            <i class="fas fa-baby"></i>
+                        </div>
+                        <h3 class="category-title">Partida de Nacimiento</h3>
+                        <p>Certificado oficial</p>
+                        <span class="badge bg-primary mt-2">¡Solicitar Ahora!</span>
+                    </a>
+                </div>
+                
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <a href="https://wa.me/584245112587?text=Hola,%20quiero%20solicitar%20ANTECEDENTES%20PENALES%20en%20SAREN" class="category-card document-card">
+                        <div class="category-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="category-title">Antecedentes Penales</h3>
+                        <p>Certificado oficial</p>
+                        <span class="badge bg-primary mt-2">¡Solicitar Ahora!</span>
+                    </a>
+                </div>
+                
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <a href="https://wa.me/584245112587?text=Hola,%20quiero%20solicitar%20CITA%20EN%20SAREN" class="category-card document-card">
+                        <div class="category-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3 class="category-title">Citas en SAREN</h3>
+                        <p>Agendamiento rápido</p>
+                        <span class="badge bg-primary mt-2">¡Solicitar Ahora!</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="servicios">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Nuestros Servicios en Trámites SAREN</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Actas y Partidas Oficiales</h3>
+                            <p>Solicita tus documentos civiles oficiales a través de SAREN con garantía y rapidez.</p>
+                            <ul class="service-features">
+                                <li><a href="#contacto">Partida de nacimiento</a></li>
+                                <li><a href="#contacto">Acta de matrimonio</a></li>
+                                <li><a href="#contacto">Acta de defunción</a></li>
+                                <li><a href="#contacto">Certificado de nacimiento</a></li>
+                                <li><a href="#contacto">Certificado de matrimonio</a></li>
+                                <li><a href="#contacto">Certificado de defunción</a></li>
+                            </ul>
+                            <a href="https://wa.me/584245112587?text=Hola,%20quiero%20solicitar%20ACTAS%20Y%20PARTIDAS%20en%20SAREN" class="btn btn-sm btn-outline-primary mt-3">Solicitar Ahora</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Apostillas y Legalizaciones</h3>
+                            <p>Valida tus documentos para uso internacional a través del sistema SAREN.</p>
+                            <ul class="service-features">
+                                <li><a href="#contacto">Apostilla de documentos</a></li>
+                                <li><a href="#contacto">Legalización de documentos</a></li>
+                                <li><a href="#contacto">Apostilla partida de nacimiento</a></li>
+                                <li><a href="#contacto">Apostilla antecedentes penales</a></li>
+                                <li><a href="#contacto">Legalización de títulos</a></li>
+                                <li><a href="#contacto">Trámites consulares</a></li>
+                            </ul>
+                            <a href="https://wa.me/584245112587?text=Hola,%20quiero%20solicitar%20APOSTILLA%20O%20LEGALIZACIÓN%20en%20SAREN" class="btn btn-sm btn-outline-primary mt-3">Solicitar Ahora</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Gestión de Citas SAREN</h3>
+                            <p>Te ayudamos con el agendamiento y gestión de citas en el sistema SAREN.</p>
+                            <ul class="service-features">
+                                <li><a href="#contacto">Citas para apostillar</a></li>
+                                <li><a href="#contacto">Citas para legalizaciones</a></li>
+                                <li><a href="#contacto">Citas para partidas</a></li>
+                                <li><a href="#contacto">Reagendamiento de citas</a></li>
+                                <li><a href="#contacto">Seguimiento de citas</a></li>
+                                <li><a href="#contacto">Asesoría para citas</a></li>
+                            </ul>
+                            <a href="https://wa.me/584245112587?text=Hola,%20quiero%20solicitar%20CITA%20EN%20SAREN" class="btn btn-sm btn-outline-primary mt-3">Solicitar Ahora</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-file-certificate"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Certificados Oficiales</h3>
+                            <p>Obtención de certificados y constancias a través del sistema SAREN.</p>
+                            <ul class="service-features">
+                                <li><a href="#contacto">Certificado de antecedentes penales</a></li>
+                                <li><a href="#contacto">Certificado de soltería</a></li>
+                                <li><a href="#contacto">Certificado de nacionalidad</a></li>
+                                <li><a href="#contacto">Constancias varias</a></li>
+                                <li><a href="#contacto">Certificados notariales</a></li>
+                                <li><a href="#contacto">Legalizaciones urgentes</a></li>
+                            </ul>
+                            <a href="https://wa.me/584245112587?text=Hola,%20quiero%20solicitar%20CERTIFICADOS%20OFICIALES%20en%20SAREN" class="btn btn-sm btn-outline-primary mt-3">Solicitar Ahora</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Asesoría Completa SAREN</h3>
+                            <p>Asesoramiento integral para todos los trámites del Servicio Autónomo.</p>
+                            <ul class="service-features">
+                                <li><a href="#contacto">Revisión de documentos</a></li>
+                                <li><a href="#contacto">Preparación de expedientes</a></li>
+                                <li><a href="#contacto">Asesoría en requisitos</a></li>
+                                <li><a href="#contacto">Seguimiento de trámites</a></li>
+                                <li><a href="#contacto">Resolución de problemas</a></li>
+                                <li><a href="#contacto">Representación legal</a></li>
+                            </ul>
+                            <a href="https://wa.me/584245112587?text=Hola,%20necesito%20ASESORÍA%20PARA%20TRÁMITES%20SAREN" class="btn btn-sm btn-outline-primary mt-3">Solicitar Ahora</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Complete List Section -->
+    <section class="categories-section bg-dark" id="lista-completa">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Lista Completa de Trámites SAREN Disponibles</h2>
+            <p class="text-center mb-5" data-aos="fade-up">Más de 20 tipos de trámites que puedes gestionar hoy mismo</p>
+            
+            <div class="row" data-aos="fade-up">
+                <div class="col-md-4">
+                    <div class="document-category">
+                        <h4 class="text-primary mb-3"><i class="fas fa-file-contract me-2"></i> Actas y Partidas</h4>
+                        <ul class="service-features">
+                            <li><a href="#contacto">Partida de nacimiento</a></li>
+                            <li><a href="#contacto">Acta de matrimonio</a></li>
+                            <li><a href="#contacto">Acta de defunción</a></li>
+                            <li><a href="#contacto">Certificado de nacimiento</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="document-category">
+                        <h4 class="text-primary mb-3"><i class="fas fa-globe me-2"></i> Apostillas</h4>
+                        <ul class="service-features">
+                            <li><a href="#contacto">Apostilla de documentos</a></li>
+                            <li><a href="#contacto">Apostilla partida de nacimiento</a></li>
+                            <li><a href="#contacto">Apostilla antecedentes penales</a></li>
+                            <li><a href="#contacto">Apostilla títulos académicos</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="document-category">
+                        <h4 class="text-primary mb-3"><i class="fas fa-stamp me-2"></i> Legalizaciones</h4>
+                        <ul class="service-features">
+                            <li><a href="#contacto">Legalización de documentos</a></li>
+                            <li><a href="#contacto">Legalización de firmas</a></li>
+                            <li><a href="#contacto">Legalización de títulos</a></li>
+                            <li><a href="#contacto">Legalizaciones urgentes</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-md-4">
+                    <div class="document-category">
+                        <h4 class="text-primary mb-3"><i class="fas fa-certificate me-2"></i> Certificados</h4>
+                        <ul class="service-features">
+                            <li><a href="#contacto">Certificado de antecedentes penales</a></li>
+                            <li><a href="#contacto">Certificado de soltería</a></li>
+                            <li><a href="#contacto">Certificado de nacionalidad</a></li>
+                            <li><a href="#contacto">Constancias oficiales</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="document-category">
+                        <h4 class="text-primary mb-3"><i class="fas fa-calendar me-2"></i> Citas SAREN</h4>
+                        <ul class="service-features">
+                            <li><a href="#contacto">Citas para apostillar</a></li>
+                            <li><a href="#contacto">Citas para legalizaciones</a></li>
+                            <li><a href="#contacto">Citas para partidas</a></li>
+                            <li><a href="#contacto">Reagendamiento de citas</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="document-category">
+                        <h4 class="text-primary mb-3"><i class="fas fa-file-alt me-2"></i> Varios</h4>
+                        <ul class="service-features">
+                            <li><a href="#contacto">Rectificación de actas</a></li>
+                            <li><a href="#contacto">Inscripciones tardías</a></li>
+                            <li><a href="#contacto">Trámites notariales</a></li>
+                            <li><a href="#contacto">Asesoría legal SAREN</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="200">
+                <a href="https://wa.me/584245112587?text=Hola,%20quiero%20solicitar%20un%20trámite%20SAREN%20de%20la%20lista%20completa" class="btn btn-primary btn-lg">
+                    <i class="fab fa-whatsapp me-2"></i> Solicitar Cualquier Trámite SAREN
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="about-section" id="beneficios">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="section-title text-start">¿Por qué elegirnos para <span class="text-primary">tus trámites SAREN</span>?</h2>
+                    <p>En <strong class="text-primary">Abogados Valencia</strong> simplificamos todos los trámites del Servicio Autónomo de Registros y Notarías, ofreciendo un servicio rápido, seguro y confiable.</p>
+                    
+                    <div class="location-card" data-aos="fade-up" data-aos-delay="200">
+                        <h4 class="text-primary mb-3"><i class="fas fa-check-circle me-2"></i> Nuestras Ventajas</h4>
+                        <ul class="service-features">
+                            <li><strong>Trámites SAREN rápidos y seguros en línea</strong> sin salir de tu casa</li>
+                            <li><strong>Apostillas y legalizaciones sin complicaciones</strong> para uso internacional</li>
+                            <li><strong>Gestión de citas SAREN eficiente</strong> sin largas esperas</li>
+                            <li><strong>Solicitudes de documentos desde cualquier lugar</strong> de Venezuela</li>
+                            <li><strong>Entrega garantizada</strong> de todos tus documentos oficiales</li>
+                            <li><strong>Asesoramiento personalizado</strong> para cada tipo de trámite</li>
+                            <li><strong>Seguimiento constante</strong> de tus trámites hasta su culminación</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1589391886645-d51941baf7fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Ventajas Trámites SAREN" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Preguntas Frecuentes sobre Trámites SAREN</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    ¿Cómo solicitar una partida de nacimiento en SAREN?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Puedes hacerlo en línea con nuestro servicio de <strong>saren partida de nacimiento</strong>. Solo necesitas proporcionarnos los datos básicos y nosotros nos encargamos de todo el proceso, desde la solicitud hasta la entrega del documento certificado por el Servicio Autónomo de Registros y Notarías.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    ¿Qué documentos se pueden apostillar en SAREN?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    En SAREN puedes apostillar diversos documentos como <strong>partidas de nacimiento</strong>, <strong>actas de matrimonio</strong>, <strong>antecedentes penales</strong>, <strong>títulos académicos</strong> y otros documentos públicos. Realizamos la <strong>apostilla de documentos</strong> completa para validación internacional.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    ¿Cómo obtener citas en SAREN para apostillar?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Gestionamos tus <strong>citas en SAREN para apostillar</strong> de manera eficiente. Nos encargamos de todo el proceso de agendamiento, preparación de documentos y seguimiento hasta la obtención de la apostilla o legalización requerida.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="400">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    ¿Puedo solicitar antecedentes penales en SAREN?
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Sí, ofrecemos <strong>solicitud de antecedentes penales en SAREN</strong> rápida y segura. Te ayudamos a obtener tu certificado de antecedentes penales de manera eficiente, ya sea para uso nacional o internacional, incluyendo la apostilla si es necesaria.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="cta">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <h2 class="cta-title">¡Solicita tus trámites SAREN hoy mismo!</h2>
+                    <p class="cta-subtitle">Apostillas, legalizaciones, partidas de nacimiento, antecedentes penales y más. Todo en línea y sin complicaciones. Más de 300 clientes satisfechos confían en nosotros para sus trámites SAREN.</p>
+                    <div class="mt-4">
+                        <a href="https://wa.me/584245112587?text=Hola,%20quiero%20solicitar%20trámites%20SAREN%20URGENTE" class="btn btn-primary btn-lg me-3">
+                            <i class="fab fa-whatsapp me-2"></i> Solicitar Urgente
+                        </a>
+                        <a href="tel:+584245112587" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-phone me-2"></i> Llamar para Asesoría
+                        </a>
+                    </div>
+                    <div class="mt-3">
+                        <small class="text-light">Respuesta en menos de 5 minutos • Precios competitivos • Garantía de servicio</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contacto">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Contáctenos para sus Trámites SAREN</h2>
+            <div class="row">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <p class="mb-4">¿Necesita realizar algún trámite en el Servicio Autónomo de Registros y Notarías? Contáctenos para consultas sobre apostillas, legalizaciones, partidas de nacimiento, antecedentes penales, citas SAREN o cualquier trámite oficial que requiera.</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h5>WhatsApp Venezuela</h5>
+                                <p>+58 424-5112587</p>
+                                <small class="text-muted">Respuesta inmediata para trámites SAREN</small>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Ubicación</h5>
+                                <p>Cobertura en todos los estados de Venezuela</p>
+                                <small class="text-muted">Servicio nacional con gestión SAREN garantizada</small>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h5>Horario Venezuela</h5>
+                                <p>Lunes a Viernes 8:00 AM - 6:00 PM</p>
+                                <p>Sábados 9:00 AM - 1:00 PM</p>
+                                <small class="text-muted">Atención urgente para trámites SAREN</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h5 class="text-primary">Trámites SAREN más solicitados esta semana:</h5>
+                        <div class="d-flex flex-wrap gap-2 mt-2">
+                            <span class="badge bg-primary">Apostilla de Documentos</span>
+                            <span class="badge bg-primary">Partida de Nacimiento</span>
+                            <span class="badge bg-primary">Antecedentes Penales</span>
+                            <span class="badge bg-primary">Citas SAREN</span>
+                            <span class="badge bg-primary">Legalización de Títulos</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-left" data-aos-delay="200">
+                    <div class="text-center">
+                        <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Contacto Trámites SAREN" class="img-fluid rounded shadow">
+                        <div class="mt-3">
+                            <a href="https://wa.me/584245112587?text=Hola,%20tengo%20dudas%20sobre%20trámites%20SAREN" class="btn btn-primary w-100">
+                                <i class="fab fa-whatsapp me-2"></i> Consultar por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="footer-logo">ABOGADOS <span>VALENCIA</span></div>
+                    <p class="mb-3">Especialistas en trámites SAREN: apostillas, legalizaciones, partidas de nacimiento, antecedentes penales y gestión de citas. Servicio rápido y confiable en toda Venezuela.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/584245112587" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <div class="footer-links">
+                        <h5>Trámites Populares</h5>
+                        <ul>
+                            <li><a href="#tramites-populares">Apostilla de Documentos</a></li>
+                            <li><a href="#tramites-populares">Partida de Nacimiento</a></li>
+                            <li><a href="#tramites-populares">Antecedentes Penales</a></li>
+                            <li><a href="#tramites-populares">Citas SAREN</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <div class="footer-links">
+                        <h5>Servicios SAREN</h5>
+                        <ul>
+                            <li><a href="#servicios">Actas y Partidas</a></li>
+                            <li><a href="#servicios">Apostillas</a></li>
+                            <li><a href="#servicios">Legalizaciones</a></li>
+                            <li><a href="#servicios">Gestión de Citas</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer-links">
+                        <h5>Contacto Venezuela</h5>
+                        <ul>
+                            <li><i class="fas fa-phone me-2"></i> +58 424-5112587</li>
+                            <li><i class="fas fa-map-marker-alt me-2"></i> Cobertura Nacional</li>
+                            <li><i class="fas fa-clock me-2"></i> Lunes a Viernes 8:00-18:00</li>
+                            <li><i class="fas fa-clock me-2"></i> Sábados 9:00-13:00</li>
+                        </ul>
+                        <div class="mt-3">
+                            <span class="badge bg-success">+300 Trámites SAREN Realizados</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="mb-0">&copy; 2024 Abogados Valencia - Especialistas en Trámites SAREN Venezuela. Servicio profesional en apostillas, legalizaciones, partidas de nacimiento, antecedentes penales, citas SAREN y todos los trámites del Servicio Autónomo de Registros y Notarías en todo el territorio nacional.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/584245112587?text=Hola,%20visité%20su%20página%20y%20quiero%20solicitar%20un%20trámite%20SAREN" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
