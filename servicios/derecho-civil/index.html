@@ -20,105 +20,124 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
-    
-    <!-- Menú Móvil -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#inicio" class="mobile-nav-link">Inicio</a>
-        
-        <!-- CATEGORÍA MÓVIL: Servicios Legales -->
-        <div class="mobile-dropdown">
-            <div class="mobile-dropdown-toggle" data-target="servicios-mobile">
-                Servicios Legales <span>▼</span>
-            </div>
-            <div class="mobile-dropdown-menu" id="servicios-mobile">
-                <a href="/servicios/derecho-civil/" class="mobile-dropdown-item">Derecho Civil</a>
-                <a href="/servicios/registros-notarias/" class="mobile-dropdown-item">Registros y Notarías</a>
-                <a href="/servicios/tramites-saren/" class="mobile-dropdown-item">Trámites SAREN</a>
-                <a href="/servicios/documentos-legales/" class="mobile-dropdown-item">Documentos Legales</a>
-                <a href="/servicios/contratos/" class="mobile-dropdown-item">Contratos</a>
-            </div>
-        </div>
-        
-        <!-- CATEGORÍA MÓVIL: Trámites en Línea -->
-        <div class="mobile-dropdown">
-            <div class="mobile-dropdown-toggle" data-target="tramites-mobile">
-                Trámites en Línea <span>▼</span>
-            </div>
-            <div class="mobile-dropdown-menu" id="tramites-mobile">
-                <a href="/tramites-en-linea/saren/" class="mobile-dropdown-item">Trámites SAREN</a>
-                <a href="/tramites-en-linea/registro-civil/" class="mobile-dropdown-item">Registro Civil</a>
-                <a href="/tramites-en-linea/notarias/" class="mobile-dropdown-item">Trámites Notariales</a>
-                <a href="/tramites-en-linea/solicitudes/" class="mobile-dropdown-item">Solicitudes Legales</a>
-            </div>
-        </div>
-        
-        <!-- CATEGORÍA MÓVIL: Estados de Venezuela -->
-        <div class="mobile-dropdown">
-            <div class="mobile-dropdown-toggle" data-target="estados-mobile">
-                Estados de Venezuela <span>▼</span>
-            </div>
-            <div class="mobile-dropdown-menu" id="estados-mobile">
-                <a href="/estados/amazonas/" class="mobile-dropdown-item">Amazonas</a>
-                <a href="/estados/anzoategui/" class="mobile-dropdown-item">Anzoátegui</a>
-                <a href="/estados/apure/" class="mobile-dropdown-item">Apure</a>
-                <a href="/estados/aragua/" class="mobile-dropdown-item">Aragua</a>
-                <a href="/estados/barinas/" class="mobile-dropdown-item">Barinas</a>
-                <a href="/estados/bolivar/" class="mobile-dropdown-item">Bolívar</a>
-                <a href="/estados/carabobo/" class="mobile-dropdown-item">Carabobo</a>
-                <a href="/estados/cojedes/" class="mobile-dropdown-item">Cojedes</a>
-                <a href="/estados/delta-amacuro/" class="mobile-dropdown-item">Delta Amacuro</a>
-                <a href="/estados/falcon/" class="mobile-dropdown-item">Falcón</a>
-                <a href="/estados/guarico/" class="mobile-dropdown-item">Guárico</a>
-                <a href="/estados/lara/" class="mobile-dropdown-item">Lara</a>
-                <a href="/estados/merida/" class="mobile-dropdown-item">Mérida</a>
-                <a href="/estados/miranda/" class="mobile-dropdown-item">Miranda</a>
-                <a href="/estados/monagas/" class="mobile-dropdown-item">Monagas</a>
-                <a href="/estados/nueva-esparta/" class="mobile-dropdown-item">Nueva Esparta</a>
-                <a href="/estados/portuguesa/" class="mobile-dropdown-item">Portuguesa</a>
-                <a href="/estados/sucre/" class="mobile-dropdown-item">Sucre</a>
-                <a href="/estados/tachira/" class="mobile-dropdown-item">Táchira</a>
-                <a href="/estados/trujillo/" class="mobile-dropdown-item">Trujillo</a>
-                <a href="/estados/vargas/" class="mobile-dropdown-item">Vargas (La Guaira)</a>
-                <a href="/estados/yaracuy/" class="mobile-dropdown-item">Yaracuy</a>
-                <a href="/estados/zulia/" class="mobile-dropdown-item">Zulia</a>
-                <a href="/estados/distrito-capital/" class="mobile-dropdown-item">Distrito Capital</a>
-            </div>
-        </div>
-        
-        <!-- CATEGORÍA MÓVIL: Información Legal -->
-        <div class="mobile-dropdown">
-            <div class="mobile-dropdown-toggle" data-target="informacion-mobile">
-                Información Legal <span>▼</span>
-            </div>
-            <div class="mobile-dropdown-menu" id="informacion-mobile">
-                <a href="/informacion-legal/preguntas-frecuentes/" class="mobile-dropdown-item">Preguntas Frecuentes</a>
-                <a href="/informacion-legal/guia-tramites/" class="mobile-dropdown-item">Guía de Trámites</a>
-                <a href="/informacion-legal/documentacion/" class="mobile-dropdown-item">Documentación Necesaria</a>
-                <a href="/informacion-legal/requisitos/" class="mobile-dropdown-item">Requisitos Legales</a>
-            </div>
-        </div>
-        
-        <!-- CATEGORÍA MÓVIL: Soporte -->
-        <div class="mobile-dropdown">
-            <div class="mobile-dropdown-toggle" data-target="soporte-mobile">
-                Soporte <span>▼</span>
-            </div>
-            <div class="mobile-dropdown-menu" id="soporte-mobile">
-                <a href="/soporte/contactanos/" class="mobile-dropdown-item">Contáctanos</a>
-                <a href="/soporte/consultas/" class="mobile-dropdown-item">Consultas Legales</a>
-                <a href="/soporte/seguimiento/" class="mobile-dropdown-item">Seguimiento de Casos</a>
-                <a href="/soporte/asesoramiento/" class="mobile-dropdown-item">Asesoramiento Personalizado</a>
-            </div>
-        </div>
-        
-        <!-- WhatsApp Móvil -->
-        <div class="mobile-whatsapp">
-            <a href="https://wa.me/584245112587" class="whatsapp-btn">
-                <span>📱</span> WhatsApp
+    <!-- ========== MENÚ COMPLETO ========== -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <!-- Logo -->
+            <a href="/" class="logo">
+                <div class="logo-img">AV</div>
+                <div>
+                    <div class="logo-text">ABOGADOS VALENCIA</div>
+                    <div class="logo-subtext">BUFETE ESPECIALIZADO EN DERECHO CIVIL</div>
+                </div>
             </a>
+            
+            <!-- Menú Desktop -->
+            <div class="desktop-menu">
+                <a href="#inicio" class="nav-link">Inicio</a>
+                
+                <!-- CATEGORÍA: Servicios Legales -->
+                <div class="dropdown">
+                    <a href="#servicios" class="nav-link dropdown-toggle">
+                        Servicios Legales <span style="margin-left: 5px;">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/servicios/derecho-civil/" class="dropdown-item">Derecho Civil</a>
+                        <a href="/servicios/registros-notarias/" class="dropdown-item">Registros y Notarías</a>
+                        <a href="/servicios/tramites-saren/" class="dropdown-item">Trámites SAREN</a>
+                        <a href="/servicios/documentos-legales/" class="dropdown-item">Documentos Legales</a>
+                        <a href="/servicios/contratos/" class="dropdown-item">Contratos</a>
+                    </div>
+                </div>
+                
+                <!-- CATEGORÍA: Trámites en Línea -->
+                <div class="dropdown">
+                    <a href="/tramites-en-linea/" class="nav-link dropdown-toggle">
+                        Trámites en Línea <span style="margin-left: 5px;">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/tramites-en-linea/saren/" class="dropdown-item">Trámites SAREN</a>
+                        <a href="/tramites-en-linea/registro-civil/" class="dropdown-item">Registro Civil</a>
+                        <a href="/tramites-en-linea/notarias/" class="dropdown-item">Trámites Notariales</a>
+                        <a href="/tramites-en-linea/solicitudes/" class="dropdown-item">Solicitudes Legales</a>
+                    </div>
+                </div>
+                
+                <!-- CATEGORÍA: Estados de Venezuela -->
+                <div class="dropdown">
+                    <a href="/estados-venezuela/" class="nav-link dropdown-toggle">
+                        Estados de Venezuela <span style="margin-left: 5px;">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/estados/amazonas/" class="dropdown-item">Amazonas</a>
+                        <a href="/estados/anzoategui/" class="dropdown-item">Anzoátegui</a>
+                        <a href="/estados/apure/" class="dropdown-item">Apure</a>
+                        <a href="/estados/aragua/" class="dropdown-item">Aragua</a>
+                        <a href="/estados/barinas/" class="dropdown-item">Barinas</a>
+                        <a href="/estados/bolivar/" class="dropdown-item">Bolívar</a>
+                        <a href="/estados/carabobo/" class="dropdown-item">Carabobo</a>
+                        <a href="/estados/cojedes/" class="dropdown-item">Cojedes</a>
+                        <a href="/estados/delta-amacuro/" class="dropdown-item">Delta Amacuro</a>
+                        <a href="/estados/falcon/" class="dropdown-item">Falcón</a>
+                        <a href="/estados/guarico/" class="dropdown-item">Guárico</a>
+                        <a href="/estados/lara/" class="dropdown-item">Lara</a>
+                        <a href="/estados/merida/" class="dropdown-item">Mérida</a>
+                        <a href="/estados/miranda/" class="dropdown-item">Miranda</a>
+                        <a href="/estados/monagas/" class="dropdown-item">Monagas</a>
+                        <a href="/estados/nueva-esparta/" class="dropdown-item">Nueva Esparta</a>
+                        <a href="/estados/portuguesa/" class="dropdown-item">Portuguesa</a>
+                        <a href="/estados/sucre/" class="dropdown-item">Sucre</a>
+                        <a href="/estados/tachira/" class="dropdown-item">Táchira</a>
+                        <a href="/estados/trujillo/" class="dropdown-item">Trujillo</a>
+                        <a href="/estados/vargas/" class="dropdown-item">Vargas (La Guaira)</a>
+                        <a href="/estados/yaracuy/" class="dropdown-item">Yaracuy</a>
+                        <a href="/estados/zulia/" class="dropdown-item">Zulia</a>
+                        <a href="/estados/distrito-capital/" class="dropdown-item">Distrito Capital</a>
+                    </div>
+                </div>
+                
+                <!-- CATEGORÍA: Información Legal -->
+                <div class="dropdown">
+                    <a href="/informacion-legal/" class="nav-link dropdown-toggle">
+                        Información Legal <span style="margin-left: 5px;">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/informacion-legal/preguntas-frecuentes/" class="dropdown-item">Preguntas Frecuentes</a>
+                        <a href="/informacion-legal/guia-tramites/" class="dropdown-item">Guía de Trámites</a>
+                        <a href="/informacion-legal/documentacion/" class="dropdown-item">Documentación Necesaria</a>
+                        <a href="/informacion-legal/requisitos/" class="dropdown-item">Requisitos Legales</a>
+                    </div>
+                </div>
+                
+                <!-- CATEGORÍA: Soporte -->
+                <div class="dropdown">
+                    <a href="/soporte/" class="nav-link dropdown-toggle">
+                        Soporte <span style="margin-left: 5px;">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/soporte/contactanos/" class="dropdown-item">Contáctanos</a>
+                        <a href="/soporte/consultas/" class="dropdown-item">Consultas Legales</a>
+                        <a href="/soporte/seguimiento/" class="dropdown-item">Seguimiento de Casos</a>
+                        <a href="/soporte/asesoramiento/" class="dropdown-item">Asesoramiento Personalizado</a>
+                    </div>
+                </div>
+                
+                <!-- WhatsApp -->
+                <a href="https://wa.me/584245112587" class="whatsapp-btn">
+                    <span>📱</span> WhatsApp
+                </a>
+            </div>
+            
+            <!-- Botón Hamburguesa -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-    </div>
+    </nav>
+    
+
     
     <!-- Overlay para cerrar menú -->
     <div class="overlay" id="overlay"></div>
