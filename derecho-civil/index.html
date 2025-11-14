@@ -1,36 +1,636 @@
-// Inicializar AOS
-AOS.init({
-    duration: 1000,
-    once: true
-});
-
-// Funcionalidad del menú móvil
-document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const overlay = document.getElementById('overlay');
+<!DOCTYPE html>
+<html lang="es-VE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Encuentra abogados expertos en derecho civil, familia, herencias, divorcio express, contratos, bienes raíces, accidentes y más. Consultas gratuitas y asesoría legal en todo el país.">
+    <meta name="keywords" content="abogados derecho civil, abogado civil, abogados de familia, abogados de divorcio, abogados especialistas en herencias, abogados de demandas civiles, divorcio express, abogados de accidentes, abogados de multas, derecho fiscal, propiedad intelectual, marcas y patentes">
+    <title>Abogados Especialistas en Derecho Civil – Soluciones Legales Rápidas y Confiables</title>
     
-    if (mobileMenuToggle && mobileMenu && overlay) {
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-            overlay.classList.toggle('active');
-        });
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Nuestros estilos -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ========== MENÚ COMPLETO ========== -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <!-- Logo -->
+            <a href="/" class="logo">
+                <div class="logo-img">AV</div>
+                <div>
+                    <div class="logo-text">ABOGADOS VALENCIA</div>
+                    <div class="logo-subtext">BUFETE ESPECIALIZADO EN DERECHO CIVIL</div>
+                </div>
+            </a>
+            
+            <!-- Menú Desktop -->
+            <div class="desktop-menu">
+                <a href="#inicio" class="nav-link">Inicio</a>
+                
+                <!-- CATEGORÍA: Servicios Legales -->
+                <div class="dropdown">
+                    <a href="#servicios" class="nav-link dropdown-toggle">
+                        Servicios Legales <span style="margin-left: 5px;">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/servicios/derecho-civil/" class="dropdown-item">Derecho Civil</a>
+                        <a href="/servicios/registros-notarias/" class="dropdown-item">Registros y Notarías</a>
+                        <a href="/servicios/tramites-saren/" class="dropdown-item">Trámites SAREN</a>
+                        <a href="/servicios/documentos-legales/" class="dropdown-item">Documentos Legales</a>
+                        <a href="/servicios/contratos/" class="dropdown-item">Contratos</a>
+                    </div>
+                </div>
+                
+                <!-- CATEGORÍA: Trámites en Línea -->
+                <div class="dropdown">
+                    <a href="/tramites-en-linea/" class="nav-link dropdown-toggle">
+                        Trámites en Línea <span style="margin-left: 5px;">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/tramites-en-linea/saren/" class="dropdown-item">Trámites SAREN</a>
+                        <a href="/tramites-en-linea/registro-civil/" class="dropdown-item">Registro Civil</a>
+                        <a href="/tramites-en-linea/notarias/" class="dropdown-item">Trámites Notariales</a>
+                        <a href="/tramites-en-linea/solicitudes/" class="dropdown-item">Solicitudes Legales</a>
+                    </div>
+                </div>
+                
+                <!-- CATEGORÍA: Estados de Venezuela -->
+                <div class="dropdown">
+                    <a href="/estados-venezuela/" class="nav-link dropdown-toggle">
+                        Estados de Venezuela <span style="margin-left: 5px;">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/estados/amazonas/" class="dropdown-item">Amazonas</a>
+                        <a href="/estados/anzoategui/" class="dropdown-item">Anzoátegui</a>
+                        <a href="/estados/apure/" class="dropdown-item">Apure</a>
+                        <a href="/estados/aragua/" class="dropdown-item">Aragua</a>
+                        <a href="/estados/barinas/" class="dropdown-item">Barinas</a>
+                        <a href="/estados/bolivar/" class="dropdown-item">Bolívar</a>
+                        <a href="/estados/carabobo/" class="dropdown-item">Carabobo</a>
+                        <a href="/estados/cojedes/" class="dropdown-item">Cojedes</a>
+                        <a href="/estados/delta-amacuro/" class="dropdown-item">Delta Amacuro</a>
+                        <a href="/estados/falcon/" class="dropdown-item">Falcón</a>
+                        <a href="/estados/guarico/" class="dropdown-item">Guárico</a>
+                        <a href="/estados/lara/" class="dropdown-item">Lara</a>
+                        <a href="/estados/merida/" class="dropdown-item">Mérida</a>
+                        <a href="/estados/miranda/" class="dropdown-item">Miranda</a>
+                        <a href="/estados/monagas/" class="dropdown-item">Monagas</a>
+                        <a href="/estados/nueva-esparta/" class="dropdown-item">Nueva Esparta</a>
+                        <a href="/estados/portuguesa/" class="dropdown-item">Portuguesa</a>
+                        <a href="/estados/sucre/" class="dropdown-item">Sucre</a>
+                        <a href="/estados/tachira/" class="dropdown-item">Táchira</a>
+                        <a href="/estados/trujillo/" class="dropdown-item">Trujillo</a>
+                        <a href="/estados/vargas/" class="dropdown-item">Vargas (La Guaira)</a>
+                        <a href="/estados/yaracuy/" class="dropdown-item">Yaracuy</a>
+                        <a href="/estados/zulia/" class="dropdown-item">Zulia</a>
+                        <a href="/estados/distrito-capital/" class="dropdown-item">Distrito Capital</a>
+                    </div>
+                </div>
+                
+                <!-- CATEGORÍA: Información Legal -->
+                <div class="dropdown">
+                    <a href="/informacion-legal/" class="nav-link dropdown-toggle">
+                        Información Legal <span style="margin-left: 5px;">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/informacion-legal/preguntas-frecuentes/" class="dropdown-item">Preguntas Frecuentes</a>
+                        <a href="/informacion-legal/guia-tramites/" class="dropdown-item">Guía de Trámites</a>
+                        <a href="/informacion-legal/documentacion/" class="dropdown-item">Documentación Necesaria</a>
+                        <a href="/informacion-legal/requisitos/" class="dropdown-item">Requisitos Legales</a>
+                    </div>
+                </div>
+                
+                <!-- CATEGORÍA: Soporte -->
+                <div class="dropdown">
+                    <a href="/soporte/" class="nav-link dropdown-toggle">
+                        Soporte <span style="margin-left: 5px;">▼</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/soporte/contactanos/" class="dropdown-item">Contáctanos</a>
+                        <a href="/soporte/consultas/" class="dropdown-item">Consultas Legales</a>
+                        <a href="/soporte/seguimiento/" class="dropdown-item">Seguimiento de Casos</a>
+                        <a href="/soporte/asesoramiento/" class="dropdown-item">Asesoramiento Personalizado</a>
+                    </div>
+                </div>
+                
+                <!-- WhatsApp -->
+                <a href="https://wa.me/584245112587" class="whatsapp-btn">
+                    <span>📱</span> WhatsApp
+                </a>
+            </div>
+            
+            <!-- Botón Hamburguesa -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Menú Móvil -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#inicio" class="mobile-nav-link">Inicio</a>
         
-        overlay.addEventListener('click', function() {
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
-        });
-    }
+        <!-- CATEGORÍA MÓVIL: Servicios Legales -->
+        <div class="mobile-dropdown">
+            <div class="mobile-dropdown-toggle" data-target="servicios-mobile">
+                Servicios Legales <span>▼</span>
+            </div>
+            <div class="mobile-dropdown-menu" id="servicios-mobile">
+                <a href="/servicios/derecho-civil/" class="mobile-dropdown-item">Derecho Civil</a>
+                <a href="/servicios/registros-notarias/" class="mobile-dropdown-item">Registros y Notarías</a>
+                <a href="/servicios/tramites-saren/" class="mobile-dropdown-item">Trámites SAREN</a>
+                <a href="/servicios/documentos-legales/" class="mobile-dropdown-item">Documentos Legales</a>
+                <a href="/servicios/contratos/" class="mobile-dropdown-item">Contratos</a>
+            </div>
+        </div>
+        
+        <!-- CATEGORÍA MÓVIL: Trámites en Línea -->
+        <div class="mobile-dropdown">
+            <div class="mobile-dropdown-toggle" data-target="tramites-mobile">
+                Trámites en Línea <span>▼</span>
+            </div>
+            <div class="mobile-dropdown-menu" id="tramites-mobile">
+                <a href="/tramites-en-linea/saren/" class="mobile-dropdown-item">Trámites SAREN</a>
+                <a href="/tramites-en-linea/registro-civil/" class="mobile-dropdown-item">Registro Civil</a>
+                <a href="/tramites-en-linea/notarias/" class="mobile-dropdown-item">Trámites Notariales</a>
+                <a href="/tramites-en-linea/solicitudes/" class="mobile-dropdown-item">Solicitudes Legales</a>
+            </div>
+        </div>
+        
+        <!-- CATEGORÍA MÓVIL: Estados de Venezuela -->
+        <div class="mobile-dropdown">
+            <div class="mobile-dropdown-toggle" data-target="estados-mobile">
+                Estados de Venezuela <span>▼</span>
+            </div>
+            <div class="mobile-dropdown-menu" id="estados-mobile">
+                <a href="/estados/amazonas/" class="mobile-dropdown-item">Amazonas</a>
+                <a href="/estados/anzoategui/" class="mobile-dropdown-item">Anzoátegui</a>
+                <a href="/estados/apure/" class="mobile-dropdown-item">Apure</a>
+                <a href="/estados/aragua/" class="mobile-dropdown-item">Aragua</a>
+                <a href="/estados/barinas/" class="mobile-dropdown-item">Barinas</a>
+                <a href="/estados/bolivar/" class="mobile-dropdown-item">Bolívar</a>
+                <a href="/estados/carabobo/" class="mobile-dropdown-item">Carabobo</a>
+                <a href="/estados/cojedes/" class="mobile-dropdown-item">Cojedes</a>
+                <a href="/estados/delta-amacuro/" class="mobile-dropdown-item">Delta Amacuro</a>
+                <a href="/estados/falcon/" class="mobile-dropdown-item">Falcón</a>
+                <a href="/estados/guarico/" class="mobile-dropdown-item">Guárico</a>
+                <a href="/estados/lara/" class="mobile-dropdown-item">Lara</a>
+                <a href="/estados/merida/" class="mobile-dropdown-item">Mérida</a>
+                <a href="/estados/miranda/" class="mobile-dropdown-item">Miranda</a>
+                <a href="/estados/monagas/" class="mobile-dropdown-item">Monagas</a>
+                <a href="/estados/nueva-esparta/" class="mobile-dropdown-item">Nueva Esparta</a>
+                <a href="/estados/portuguesa/" class="mobile-dropdown-item">Portuguesa</a>
+                <a href="/estados/sucre/" class="mobile-dropdown-item">Sucre</a>
+                <a href="/estados/tachira/" class="mobile-dropdown-item">Táchira</a>
+                <a href="/estados/trujillo/" class="mobile-dropdown-item">Trujillo</a>
+                <a href="/estados/vargas/" class="mobile-dropdown-item">Vargas (La Guaira)</a>
+                <a href="/estados/yaracuy/" class="mobile-dropdown-item">Yaracuy</a>
+                <a href="/estados/zulia/" class="mobile-dropdown-item">Zulia</a>
+                <a href="/estados/distrito-capital/" class="mobile-dropdown-item">Distrito Capital</a>
+            </div>
+        </div>
+        
+        <!-- CATEGORÍA MÓVIL: Información Legal -->
+        <div class="mobile-dropdown">
+            <div class="mobile-dropdown-toggle" data-target="informacion-mobile">
+                Información Legal <span>▼</span>
+            </div>
+            <div class="mobile-dropdown-menu" id="informacion-mobile">
+                <a href="/informacion-legal/preguntas-frecuentes/" class="mobile-dropdown-item">Preguntas Frecuentes</a>
+                <a href="/informacion-legal/guia-tramites/" class="mobile-dropdown-item">Guía de Trámites</a>
+                <a href="/informacion-legal/documentacion/" class="mobile-dropdown-item">Documentación Necesaria</a>
+                <a href="/informacion-legal/requisitos/" class="mobile-dropdown-item">Requisitos Legales</a>
+            </div>
+        </div>
+        
+        <!-- CATEGORÍA MÓVIL: Soporte -->
+        <div class="mobile-dropdown">
+            <div class="mobile-dropdown-toggle" data-target="soporte-mobile">
+                Soporte <span>▼</span>
+            </div>
+            <div class="mobile-dropdown-menu" id="soporte-mobile">
+                <a href="/soporte/contactanos/" class="mobile-dropdown-item">Contáctanos</a>
+                <a href="/soporte/consultas/" class="mobile-dropdown-item">Consultas Legales</a>
+                <a href="/soporte/seguimiento/" class="mobile-dropdown-item">Seguimiento de Casos</a>
+                <a href="/soporte/asesoramiento/" class="mobile-dropdown-item">Asesoramiento Personalizado</a>
+            </div>
+        </div>
+        
+        <!-- WhatsApp Móvil -->
+        <div class="mobile-whatsapp">
+            <a href="https://wa.me/584245112587" class="whatsapp-btn">
+                <span>📱</span> WhatsApp
+            </a>
+        </div>
+    </div>
     
-    // Funcionalidad dropdown móvil
-    const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
-    mobileDropdownToggles.forEach(toggle => {
-        toggle.addEventListener('click', function() {
-            const targetId = this.getAttribute('data-target');
-            const targetMenu = document.getElementById(targetId);
-            if (targetMenu) {
-                targetMenu.classList.toggle('active');
-            }
-        });
-    });
-});
+    <!-- Overlay para cerrar menú -->
+    <div class="overlay" id="overlay"></div>
+    <!-- ========== FIN MENÚ ========== -->
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="inicio">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7" data-aos="fade-right">
+                    <span class="hero-badge">Especialistas en Derecho Civil</span>
+                    <h1 class="hero-title">Abogados Especialistas en Derecho Civil – <span class="text-accent">Soluciones Legales Rápidas y Confiables</span></h1>
+                    <p class="hero-subtitle">¿Necesitas abogados derecho civil o un abogado civil que resuelva tu caso con rapidez y profesionalismo? Nuestro equipo de abogados de familia, abogados de divorcio, abogados especialistas en herencias y abogados de demandas civiles está listo para ayudarte. Ofrecemos atención personalizada en casos civiles, lesiones personales, accidentes de carro, desalojos, fraudes, multas de tránsito y mucho más.</p>
+                    
+                    <div class="btn-group mt-4" role="group" data-aos="fade-up" data-aos-delay="300">
+                        <a href="https://wa.me/584245112587" class="btn btn-primary me-2">
+                            <i class="fab fa-whatsapp me-2"></i> Consulta Gratis por WhatsApp
+                        </a>
+                        <a href="#servicios" class="btn btn-outline-light">
+                            <i class="fas fa-gavel me-2"></i> Ver Servicios
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-5" data-aos="fade-left" data-aos-delay="400">
+                    <div class="text-center">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Abogados Valencia - Bufete Especializado" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="servicios">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Nuestros Servicios Legales</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Derecho Civil</h3>
+                            <p>Ofrecemos asesoría especializada en todas las áreas del derecho civil venezolano, incluyendo sucesiones, contratos, propiedad y obligaciones.</p>
+                            <ul class="service-features">
+                                <li>Demandas civiles y daños a la propiedad</li>
+                                <li>Contratos civiles y comerciales</li>
+                                <li>Sucesiones y testamentos</li>
+                                <li>Propiedad horizontal y derechos reales</li>
+                                <li>Procesos judiciales civiles</li>
+                            </ul>
+                            <a href="#contacto" class="btn btn-sm btn-outline-primary mt-3">Solicitar Información</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Derecho de Familia</h3>
+                            <p>Gestionamos todos los trámites relacionados con derecho de familia de manera eficiente y con seguimiento personalizado.</p>
+                            <ul class="service-features">
+                                <li>Divorcio express y child support</li>
+                                <li>Herencias y sucesiones</li>
+                                <li>Custodia y régimen de visitas</li>
+                                <li>Alimentos y pensiones</li>
+                                <li>Patria potestad y tutelas</li>
+                            </ul>
+                            <a href="#contacto" class="btn btn-sm btn-outline-primary mt-3">Solicitar Información</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Derecho Laboral</h3>
+                            <p>Defendemos los derechos de los trabajadores en casos de acoso laboral, accidentes laborales y reclamaciones por incapacidad.</p>
+                            <ul class="service-features">
+                                <li>Acoso laboral y mobbing</li>
+                                <li>Accidentes laborales</li>
+                                <li>Incapacidad permanente</li>
+                                <li>Despidos injustificados</li>
+                                <li>Reclamaciones salariales</li>
+                            </ul>
+                            <a href="#contacto" class="btn btn-sm btn-outline-primary mt-3">Solicitar Información</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section" id="categorias">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Áreas de Especialización Legal</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3 class="category-title">Derecho Inmobiliario</h3>
+                        <p>Compra, venta, arrendamiento y propiedad de bienes raíces, vivienda y desahucios.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3 class="category-title">Derecho Mercantil y Administrativo</h3>
+                        <p>Contratos, empresas, derecho concursal y asesoría corporativa integral.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="category-title">Derecho Fiscal y Bancario</h3>
+                        <p>Asesoría en impuestos, derecho bancario y defensa en procedimientos fiscales.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-copyright"></i>
+                        </div>
+                        <h3 class="category-title">Propiedad Intelectual</h3>
+                        <p>Registro y protección de marcas y patentes, derechos de autor y propiedad industrial.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-passport"></i>
+                        </div>
+                        <h3 class="category-title">Derecho Migratorio</h3>
+                        <p>Abogados de extranjería, nacionalidad, asilo político, visas y permisos de trabajo.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <i class="fas fa-car-crash"></i>
+                        </div>
+                        <h3 class="category-title">Accidentes y Lesiones</h3>
+                        <p>Representación en casos de accidentes de tránsito, lesiones personales y multas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="about-section" id="beneficios">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="section-title text-start">¿Por qué <span class="text-primary">elegirnos</span>?</h2>
+                    <p>En <strong class="text-primary">Abogados Valencia</strong> nos destacamos por ofrecer servicios legales de alta calidad con un enfoque centrado en el cliente.</p>
+                    
+                    <div class="location-card" data-aos="fade-up" data-aos-delay="200">
+                        <h4 class="text-primary mb-3"><i class="fas fa-check-circle me-2"></i> Nuestras Ventajas</h4>
+                        <ul class="service-features">
+                            <li><strong>Abogados civiles gratuitos</strong> para consultas iniciales</li>
+                            <li><strong>Atención rápida</strong> en divorcio express y casos urgentes</li>
+                            <li><strong>Experiencia comprobada</strong> en abogados de accidentes, multas de tránsito y derecho fiscal</li>
+                            <li><strong>Asesoría integral</strong> en propiedad intelectual, marcas y patentes</li>
+                            <li><strong>Equipo especializado</strong> en todas las áreas del derecho civil</li>
+                            <li><strong>Seguimiento personalizado</strong> de cada caso</li>
+                            <li><strong>Honorarios competitivos</strong> y planes flexibles de pago</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1589391886645-d51941baf7fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Abogados Valencia - Equipo Legal" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Preguntas Frecuentes</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    ¿Cuánto cuesta contratar un abogado civil?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Depende del tipo de caso. Ofrecemos consultas gratuitas y planes flexibles adaptados a las necesidades de cada cliente. Trabajamos con honorarios fijos, por hora o contingentes según la naturaleza del caso.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    ¿Qué es el divorcio express?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Es un procedimiento rápido y económico para disolver el matrimonio sin complicaciones. Requiere que ambas partes estén de acuerdo en todos los aspectos del divorcio, incluyendo la división de bienes, custodia de hijos y pensiones alimenticias.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    ¿Atienden casos de herencias y sucesiones?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Sí, contamos con abogados especialistas en herencias y testamentos. Gestionamos todo tipo de procedimientos sucesorios, incluyendo declaratorias de herederos, testamentarías, particiones de herencia y conflictos entre herederos.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" data-aos="fade-up" data-aos-delay="400">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    ¿Puedo consultar por accidentes de tránsito?
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Claro, nuestros abogados de accidentes y abogados de multas están listos para ayudarte. Representamos a víctimas de accidentes de tránsito para obtener la compensación que merecen por daños personales y materiales.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="cta">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <h2 class="cta-title">¡Consulta Gratis Hoy!</h2>
+                    <p class="cta-subtitle">Contáctanos para resolver tu caso con los mejores abogados de derecho civil, especialistas en herencias, familia, contratos, bienes raíces y más.</p>
+                    <div class="mt-4">
+                        <a href="https://wa.me/584245112587" class="btn btn-primary btn-lg me-3">
+                            <i class="fab fa-whatsapp me-2"></i> Consulta por WhatsApp
+                        </a>
+                        <a href="tel:+584245112587" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-phone me-2"></i> Llamar Ahora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contacto">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Contáctenos</h2>
+            <div class="row">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <p class="mb-4">¿Necesita asesoría legal en Venezuela? Contáctenos para consultas sobre derecho civil, trámites SAREN, registros, notarías o cualquier procedimiento legal.</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h5>WhatsApp Venezuela</h5>
+                                <p>+58 424-5112587</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5>Ubicación</h5>
+                                <p>Cobertura en todos los estados de Venezuela</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h5>Horario Venezuela</h5>
+                                <p>Lunes a Viernes 8:00 AM - 6:00 PM</p>
+                                <p>Sábados 9:00 AM - 1:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-left" data-aos-delay="200">
+                    <div class="text-center">
+                        <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Contacto Abogados Valencia" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="footer-logo">ABOGADOS <span>VALENCIA</span></div>
+                    <p class="mb-3">Bufete especializado en derecho civil y trámites legales en Venezuela. Asesoría profesional en todos los estados del país con enfoque en resultados y satisfacción del cliente.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/584245112587" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <div class="footer-links">
+                        <h5>Servicios Legales</h5>
+                        <ul>
+                            <li><a href="#servicios">Derecho Civil</a></li>
+                            <li><a href="#servicios">Derecho de Familia</a></li>
+                            <li><a href="#servicios">Derecho Laboral</a></li>
+                            <li><a href="#servicios">Derecho Inmobiliario</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <div class="footer-links">
+                        <h5>Áreas de Práctica</h5>
+                        <ul>
+                            <li><a href="#categorias">Derecho Mercantil</a></li>
+                            <li><a href="#categorias">Derecho Fiscal</a></li>
+                            <li><a href="#categorias">Propiedad Intelectual</a></li>
+                            <li><a href="#categorias">Derecho Migratorio</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer-links">
+                        <h5>Contacto Venezuela</h5>
+                        <ul>
+                            <li><i class="fas fa-phone me-2"></i> +58 424-5112587</li>
+                            <li><i class="fas fa-map-marker-alt me-2"></i> Cobertura Nacional</li>
+                            <li><i class="fas fa-clock me-2"></i> Lunes a Viernes 8:00-18:00</li>
+                            <li><i class="fas fa-clock me-2"></i> Sábados 9:00-13:00</li>
+                        </ul>
+                        <div class="mt-3">
+                            <span class="badge bg-success">Servicio en 24 estados</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="mb-0">&copy; 2024 Abogados Valencia - Bufete Especializado en Derecho Civil Venezuela. Asesoría legal profesional en trámites SAREN, registros y notarías en todo el territorio nacional.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/584245112587" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
