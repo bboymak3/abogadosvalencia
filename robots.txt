@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-login.php
+Disallow: /private/
+Disallow: /cgi-bin/
+Disallow: /search/
+
+# Crawlers específicos
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+
+User-agent: Yandex
+Allow: /
+Disallow: /admin/
+
+# Sitemap
+Sitemap: https://abogadosvalencia.pages.dev/sitemap.xml
+
+# Cloudflare Pages optimization
+Crawl-delay: 2
