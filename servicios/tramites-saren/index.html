@@ -715,5 +715,23 @@
         </div>
     </section>
 
+<!-- WA_PAGE_ID_SNIPPET -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var pageTitle = document.title || "Pagina Web";
+  var cleanTitle = pageTitle.replace(/[\|\-]/g, " ").trim();
+  var baseMsg = "estoy escribiendo desde la pagina web (" + cleanTitle + ") estoy interesado en uno de tus servicios";
+  var encoded = encodeURIComponent(baseMsg);
+  var links = document.querySelectorAll('a[href*="wa.me/584245112587"]');
+  links.forEach(function(link) {
+    var href = link.getAttribute("href");
+    if (!href) return;
+    var genericId = "estoy%20escribiendo%20desde%20la%20pagina%20web%20estoy%20interesado%20en%20uno%20de%20tus%20servicios";
+    if (href.indexOf(genericId) !== -1) {
+      link.setAttribute("href", "https://wa.me/584245112587?text=" + encoded);
+    }
+  });
+});
+</script>
 </body>
 </html>
