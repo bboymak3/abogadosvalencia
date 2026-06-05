@@ -1,336 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-    
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
     <!-- Página Principal -->
     <url>
         <loc>https://abogadosvalencia.pages.dev/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.00</priority>
     </url>
-    
+
     <!-- Servicios -->
     <url>
         <loc>https://abogadosvalencia.pages.dev/servicios/derecho-civil/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/servicios/registros-notarias/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/servicios/tramites-saren/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/servicios/documentos-legales/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/servicios/contratos/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
-    
+
     <!-- Trámites en Línea -->
     <url>
-        <loc>https://abogadosvalencia.pages.dev/tramites-en-linea/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.85</priority>
-    </url>
-    
-    <url>
         <loc>https://abogadosvalencia.pages.dev/tramites-en-linea/saren/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.80</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/tramites-en-linea/registro-civil/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.80</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/tramites-en-linea/notarias/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.80</priority>
     </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/tramites-en-linea/solicitudes/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.80</priority>
-    </url>
-    
-    <!-- Estados Venezuela -->
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/estados-venezuela/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.75</priority>
-    </url>
-    
-    <!-- Todos los estados de Venezuela -->
+
+    <!-- Estados de Venezuela -->
     <url>
         <loc>https://abogadosvalencia.pages.dev/estados/amazonas/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/estados/anzoategui/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/estados/apure/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/estados/aragua/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.75</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/estados/barinas/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/estados/bolivar/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/estados/carabobo/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.80</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/estados/cojedes/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/estados/delta-amacuro/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/estados/falcon/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/estados/guarico/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/estados/lara/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/estados/merida/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
     </url>
-    
     <url>
         <loc>https://abogadosvalencia.pages.dev/estados/miranda/</loc>
-        <lastmod>2026-01-08</lastmod>
+        <lastmod>2026-06-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/estados/monagas/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.70</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/estados/nueva-esparta/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.70</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/estados/portuguesa/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.70</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/estados/sucre/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.70</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/estados/tachira/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.70</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/estados/trujillo/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.70</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/estados/vargas/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.70</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/estados/yaracuy/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.70</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/estados/zulia/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.70</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/estados/distrito-capital/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.75</priority>
-    </url>
-    
-    <!-- Información Legal -->
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/informacion-legal/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.85</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/informacion-legal/preguntas-frecuentes/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.80</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/informacion-legal/guia-tramites/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.75</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/informacion-legal/documentacion/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.75</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/informacion-legal/requisitos/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.75</priority>
-    </url>
-    
-    <!-- Soporte -->
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/soporte/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.70</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/soporte/contactanos/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.65</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/soporte/consultas/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.65</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/soporte/seguimiento/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.65</priority>
-    </url>
-    
-    <url>
-        <loc>https://abogadosvalencia.pages.dev/soporte/asesoramiento/</loc>
-        <lastmod>2026-01-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.65</priority>
     </url>
 
 </urlset>

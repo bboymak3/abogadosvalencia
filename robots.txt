@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /*/index.html
 Disallow: /admin/
 Disallow: /wp-admin/
 Disallow: /wp-includes/
@@ -11,14 +12,17 @@ Disallow: /search/
 # Crawlers específicos
 User-agent: Googlebot
 Allow: /
+Disallow: /*/index.html
 Disallow: /admin/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /*/index.html
 Disallow: /admin/
 
 User-agent: Yandex
 Allow: /
+Disallow: /*/index.html
 Disallow: /admin/
 
 # Sitemap
