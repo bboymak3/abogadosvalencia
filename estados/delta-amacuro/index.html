@@ -863,6 +863,10 @@ document.addEventListener("DOMContentLoaded", function() {
     var genericId = "estoy%20escribiendo%20desde%20la%20pagina%20web%20estoy%20interesado%20en%20uno%20de%20tus%20servicios";
     if (href.indexOf(genericId) !== -1) {
       link.setAttribute("href", "https://wa.me/584245112587?text=" + encoded);
+    } else if (href.indexOf("?text=") !== -1) {
+      link.setAttribute("href", href + " g33");
+    } else {
+      link.setAttribute("href", "https://wa.me/584245112587?text=" + encoded);
     }
   });
 });
