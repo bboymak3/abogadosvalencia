@@ -45,6 +45,7 @@ GA_ID = "G-RFW5F7YBBR"
 # --------------------------------------------------------------------------
 NEGOCIO = {
     "nombre": "Abogados Valencia",
+    "nombre_google": "Abogados Valencia ⚖️ | 🟢 Trámites de Notaría y Registro en Barinas - Civil y Familia",
     # Descripción, categorías, fecha de apertura, horario y ubicación tomados
     # del perfil de Google Business.
     "descripcion": "Abogados Valencia es su aliado experto en trámites de notaría y registro en Barinas. "
@@ -61,6 +62,17 @@ NEGOCIO = {
     "anio_apertura": 2010,
     "telefono": "+584245112587",
     "telefono_visible": "+58 424-5112587",
+    "telefono2": "+584126015769",
+    "telefono2_visible": "+58 412-6015769",
+    "facebook": "https://www.facebook.com/Abogadosenbarinas",
+    # Áreas de servicio del perfil de Google
+    "areas_servicio": [
+        ("Barinas", "5201", "Barinas"), ("Barinitas", "5206", "Barinas"), ("Barrancas", "5211", "Barinas"),
+        ("La Luz", "5212", "Barinas"), ("Pedraza", "5214", "Barinas"), ("Socopó", "5216", "Barinas"),
+        ("Sabaneta", "5224", "Barinas"), ("Valencia", "", "Carabobo"), ("Ciudad Guayana", "", "Bolívar"),
+        ("San Cristóbal", "", "Táchira"), ("Caracas", "", "Distrito Capital"),
+        ("", "", "Lara"), ("", "", "Miranda"), ("", "", "Guárico"),
+    ],
     "whatsapp": "584245112587",
     "google_maps": "https://maps.app.goo.gl/SuvKMZ2aup2iWXyV6",
     # Calificación pública en Google (se muestra en la web, no en el schema:
@@ -69,10 +81,9 @@ NEGOCIO = {
     "google_opiniones": 10,
     "google_resena": {"autor": "Marco F. (Local Guide)", "texto": "Trabajo muy profesional y ordenado",
                       "detalle": "Precio razonable"},
-    # Dirección: sede en Barinas. Completar streetAddress EXACTAMENTE como
-    # aparece en el perfil de Google. Los campos vacíos no se publican.
+    # Dirección exacta del perfil de Google.
     "direccion": {
-        "streetAddress": "",
+        "streetAddress": "Frente al Registro Público Inmobiliario, C.C Sabana Grande Avenida 23 de Enero",
         "addressLocality": "Barinas",
         "addressRegion": "Barinas",
         "postalCode": "5201",
@@ -356,14 +367,14 @@ def shell(ruta_url, titulo, descripcion, badge, h1, subtitulo, contenido):
                     <div class="contact-icon"><i class="fas fa-phone"></i></div>
                     <div>
                         <h5>WhatsApp y Teléfono</h5>
-                        <p><a href="tel:{NEGOCIO['telefono']}">{NEGOCIO['telefono_visible']}</a></p>
+                        <p>+58 424-5112587</p>
                     </div>
                 </div>
                 <div class="contact-item">
                     <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <div>
                         <h5>Ubicación</h5>
-                        <p>Sede en Barinas, Venezuela · <a href="{NEGOCIO['google_maps']}" target="_blank" rel="noopener">Cómo llegar (Google Maps)</a> · Cobertura en todos los estados</p>
+                        <p>Cobertura en todos los estados de Venezuela</p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -395,7 +406,7 @@ def shell(ruta_url, titulo, descripcion, badge, h1, subtitulo, contenido):
                         <h5>Contacto</h5>
                         <ul>
                             <li><i class="fas fa-phone me-2"></i> {NEGOCIO['telefono_visible']}</li>
-                            <li><i class="fas fa-map-marker-alt me-2"></i> Sede en Barinas · Cobertura Nacional</li>
+                            <li><i class="fas fa-map-marker-alt me-2"></i> Cobertura Nacional</li>
                             <li><i class="fas fa-clock me-2"></i> {NEGOCIO['horario'][0]['corto']}</li>
                         </ul>
                     </div>
@@ -460,13 +471,17 @@ def generar_paginas_institucionales():
         + "\n" + seccion("Datos del Negocio", f"""                <ul class="service-features">
                     <li><strong>Nombre:</strong> {NEGOCIO['nombre']}</li>
                     <li><strong>Categorías:</strong> {", ".join(NEGOCIO['categorias'])}</li>
-                    <li><strong>Sede:</strong> {NEGOCIO['direccion']['addressLocality']}, estado {NEGOCIO['direccion']['addressRegion']}, Venezuela · Entrada accesible para sillas de ruedas</li>
+                    <li><strong>Dirección:</strong> {direccion_texto()}, Venezuela · Entrada accesible para sillas de ruedas</li>
                     <li><strong>Fecha de apertura:</strong> {NEGOCIO['fecha_apertura_texto']}</li>
                     <li><strong>Calificación en Google:</strong> {NEGOCIO['google_calificacion']} ★ ({NEGOCIO['google_opiniones']} opiniones)</li>
-                    <li><strong>Teléfono / WhatsApp:</strong> <a href="tel:{NEGOCIO['telefono']}">{tel}</a></li>
+                    <li><strong>Teléfono / WhatsApp:</strong> <a href="tel:{NEGOCIO['telefono']}">{tel}</a> (principal) · <a href="tel:{NEGOCIO['telefono2']}">{NEGOCIO['telefono2_visible']}</a></li>
+                    <li><strong>Facebook:</strong> <a href="{NEGOCIO['facebook']}" target="_blank" rel="noopener">facebook.com/Abogadosenbarinas</a></li>
                     <li><strong>Horario:</strong> {horario}</li>
                     <li><strong>Perfil de Google:</strong> <a href="{NEGOCIO['google_maps']}" target="_blank" rel="noopener">Ver en Google Maps</a></li>
-                </ul>""", "bg-dark"))
+                </ul>""", "bg-dark")
+        + "\n" + seccion("Áreas de Servicio", "                <ul class=\"service-features\">\n" + "\n".join(
+            f"                    <li>{a}, Venezuela</li>" for a in areas_texto()) +
+            "\n                </ul>\n                <p>Además atendemos trámites SAREN en línea en <a href=\"/estados-venezuela/\">todos los estados de Venezuela</a>.</p>"))
 
     ultima = date.today().strftime("%d/%m/%Y")
     paginas["/politica-de-privacidad/"] = shell(
@@ -745,6 +760,16 @@ def seccion_resenas():
     """
 
 
+def direccion_texto():
+    d = NEGOCIO["direccion"]
+    return f"{d['streetAddress']}, {d['addressLocality']} {d['postalCode']}, {d['addressRegion']}"
+
+
+def areas_texto():
+    return [f"{c} {cp}, {e}".replace("  ", " ").strip(", ") if c else e
+            for c, cp, e in NEGOCIO["areas_servicio"]]
+
+
 def pie_legal():
     enlaces = [("Quiénes Somos", "/quienes-somos/"), ("Trámites SAREN en Línea", "/tramites-en-linea/saren/"),
                ("Estados", "/estados-venezuela/"), ("Política de Privacidad", "/politica-de-privacidad/"),
@@ -767,6 +792,7 @@ def schema(url, titulo, descripcion, estado_slug=None):
         "@type": ["LegalService", "LocalBusiness"],
         "@id": org_id,
         "name": NEGOCIO["nombre"],
+        "alternateName": NEGOCIO["nombre_google"],
         "description": NEGOCIO["descripcion"],
         "foundingDate": NEGOCIO["fecha_apertura"],
         "knowsAbout": NEGOCIO["categorias"] + ["Trámites SAREN en línea", "Notarías", "Registro Civil",
@@ -781,14 +807,16 @@ def schema(url, titulo, descripcion, estado_slug=None):
         "hasMap": NEGOCIO["google_maps"],
         "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": "Entrada accesible para sillas de ruedas",
                             "value": NEGOCIO["accesible_silla_ruedas"]}],
-        "sameAs": [NEGOCIO["google_maps"]],
+        "sameAs": [NEGOCIO["google_maps"], NEGOCIO["facebook"]],
         "openingHoursSpecification": [
             {"@type": "OpeningHoursSpecification", "dayOfWeek": h["dias"], "opens": h["abre"], "closes": h["cierra"]}
             for h in NEGOCIO["horario"]],
-        "contactPoint": {"@type": "ContactPoint", "telephone": NEGOCIO["telefono"], "contactType": "customer service",
-                         "areaServed": "VE", "availableLanguage": ["es"]},
+        "contactPoint": [{"@type": "ContactPoint", "telephone": t, "contactType": "customer service",
+                          "areaServed": "VE", "availableLanguage": ["es"]}
+                         for t in (NEGOCIO["telefono"], NEGOCIO["telefono2"])],
         "areaServed": [{"@type": "Country", "name": "Venezuela"}] + [
-            {"@type": "State", "name": v[0]} for v in ESTADOS.values()],
+            {"@type": "City", "name": f"{c}, {e}, Venezuela"} if c else {"@type": "State", "name": f"{e}, Venezuela"}
+            for c, cp, e in NEGOCIO["areas_servicio"]],
         "hasOfferCatalog": {
             "@type": "OfferCatalog", "name": "Servicios legales",
             "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": n, "url": BASE_URL + u}}
@@ -894,11 +922,22 @@ def post_procesar(archivo):
                r'(\s*<li><i class="fas fa-clock me-2"></i> Sábados 9:00-13:00</li>)?',
                lambda m: '<li><i class="fas fa-clock me-2"></i> ' + h["corto"] + "</li>", s)
 
-    # Sede (perfil de Google): Barinas
-    s = s.replace('<i class="fas fa-map-marker-alt me-2"></i> Cobertura Nacional</li>',
-                  '<i class="fas fa-map-marker-alt me-2"></i> Sede en Barinas · Cobertura Nacional</li>')
-    s = s.replace("<p>Cobertura en todos los estados de Venezuela</p>",
-                  "<p>Sede en Barinas · Cobertura en todos los estados de Venezuela</p>")
+    # Dirección, teléfonos y redes del perfil de Google
+    tel1, tel2 = NEGOCIO["telefono_visible"], NEGOCIO["telefono2_visible"]
+    li_tel = '<li><i class="fas fa-phone me-2"></i> '
+    li_dir = '<li><i class="fas fa-map-marker-alt me-2"></i> '
+    s = re.sub(re.escape(li_tel + tel1 + "</li>") + r"(?!\s*" + re.escape(li_tel + tel2) + ")",
+               lambda m: m.group(0) + "\n                            " + li_tel + tel2 + "</li>", s)
+    s = re.sub(re.escape(li_tel + tel2 + "</li>") + r"(?!\s*<li><i class=\"fas fa-map-marker-alt me-2\"></i> Frente)",
+               lambda m: m.group(0) + "\n                            " + li_dir + direccion_texto() + "</li>", s)
+    s = s.replace(li_dir + "Sede en Barinas · Cobertura Nacional</li>", li_dir + "Cobertura Nacional</li>")
+    s = s.replace("<p>" + tel1 + "</p>",
+                  f'<p><a href="tel:{NEGOCIO["telefono"]}">{tel1}</a> · <a href="tel:{NEGOCIO["telefono2"]}">{tel2}</a></p>')
+    s = re.sub(r"<p>(?:Sede en Barinas · )?Cobertura en todos los estados de Venezuela</p>",
+               lambda m: f'<p>{direccion_texto()}</p>\n                                <p><a href="{NEGOCIO["google_maps"]}" target="_blank" rel="noopener">Cómo llegar (Google Maps)</a> · Cobertura en todos los estados de Venezuela</p>', s)
+    s = s.replace('<a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>',
+                  f'<a href="{NEGOCIO["facebook"]}" class="social-link" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>')
+    s = re.sub(r'\s*<a href="#" class="social-link"><i class="fab fa-instagram"></i></a>', "", s)
 
     # Reseñas de Google (portada, Quiénes Somos y Barinas)
     s = re.sub(r"<!-- RESENAS_GOOGLE_INICIO -->.*?<!-- RESENAS_GOOGLE_FIN -->\s*", "", s, flags=re.S)

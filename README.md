@@ -59,16 +59,18 @@ Se puede ejecutar varias veces sin duplicar nada. Hace lo siguiente:
 Los datos del negocio están en un solo lugar: el diccionario `NEGOCIO` al inicio de
 `tools/build_site.py`. Deben coincidir **exactamente** con el perfil de Google Business:
 
-- Nombre: Abogados Valencia
+- Nombre: Abogados Valencia. El nombre completo del perfil va en `alternateName`: "Abogados Valencia ⚖️ | 🟢 Trámites de Notaría y Registro en Barinas - Civil y Familia"
 - Categoría principal: Abogado (también: Servicios legales, Abogado civil, Abogado de derecho de familia, Abogado general)
-- Sede: Barinas, estado Barinas, Venezuela (5201). Entrada accesible para sillas de ruedas
-- Teléfono / WhatsApp: +58 424-5112587
+- Dirección: Frente al Registro Público Inmobiliario, C.C Sabana Grande Avenida 23 de Enero, Barinas 5201, Barinas. Entrada accesible para sillas de ruedas
+- Teléfonos: 0424-5112587 (principal y WhatsApp) y 0412-6015769
+- Facebook: https://www.facebook.com/Abogadosenbarinas
 - Horario: abierto las 24 horas, todos los días
 - Fecha de apertura: 16 de marzo de 2010 (el copyright usa `© 2010–<año actual>`)
+- Áreas de servicio: Barinas, Barinitas, Barrancas, La Luz, Pedraza, Socopó, Sabaneta, Valencia,
+  Ciudad Guayana, San Cristóbal, Caracas, Lara, Miranda y Guárico
 - Calificación en Google: 5.0 (10 opiniones). Se muestra en la portada, en Quiénes Somos y en
   Barinas, pero no va en el schema, porque Google no acepta como rich result las reseñas que el
   propio negocio publica sobre sí mismo.
-- Calle: **pendiente**. Hay que copiar la dirección exacta del perfil en `NEGOCIO["direccion"]["streetAddress"]`.
 
 Si algo cambia en el perfil de Google (horario, dirección, teléfono), edítalo en `NEGOCIO` y
 ejecuta `python3 tools/build_site.py`.
