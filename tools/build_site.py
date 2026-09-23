@@ -62,8 +62,6 @@ NEGOCIO = {
     "anio_apertura": 2010,
     "telefono": "+584245112587",
     "telefono_visible": "+58 424-5112587",
-    "telefono2": "+584126015769",
-    "telefono2_visible": "+58 412-6015769",
     "facebook": "https://www.facebook.com/Abogadosenbarinas",
     # Áreas de servicio del perfil de Google
     "areas_servicio": [
@@ -474,7 +472,7 @@ def generar_paginas_institucionales():
                     <li><strong>Dirección:</strong> {direccion_texto()}, Venezuela · Entrada accesible para sillas de ruedas</li>
                     <li><strong>Fecha de apertura:</strong> {NEGOCIO['fecha_apertura_texto']}</li>
                     <li><strong>Calificación en Google:</strong> {NEGOCIO['google_calificacion']} ★ ({NEGOCIO['google_opiniones']} opiniones)</li>
-                    <li><strong>Teléfono / WhatsApp:</strong> <a href="tel:{NEGOCIO['telefono']}">{tel}</a> (principal) · <a href="tel:{NEGOCIO['telefono2']}">{NEGOCIO['telefono2_visible']}</a></li>
+                    <li><strong>Teléfono / WhatsApp:</strong> <a href="tel:{NEGOCIO['telefono']}">{tel}</a></li>
                     <li><strong>Facebook:</strong> <a href="{NEGOCIO['facebook']}" target="_blank" rel="noopener">facebook.com/Abogadosenbarinas</a></li>
                     <li><strong>Horario:</strong> {horario}</li>
                     <li><strong>Perfil de Google:</strong> <a href="{NEGOCIO['google_maps']}" target="_blank" rel="noopener">Ver en Google Maps</a></li>
@@ -813,7 +811,7 @@ def schema(url, titulo, descripcion, estado_slug=None):
             for h in NEGOCIO["horario"]],
         "contactPoint": [{"@type": "ContactPoint", "telephone": t, "contactType": "customer service",
                           "areaServed": "VE", "availableLanguage": ["es"]}
-                         for t in (NEGOCIO["telefono"], NEGOCIO["telefono2"])],
+                         for t in (NEGOCIO["telefono"],)],
         "areaServed": [{"@type": "Country", "name": "Venezuela"}] + [
             {"@type": "City", "name": f"{c}, {e}, Venezuela"} if c else {"@type": "State", "name": f"{e}, Venezuela"}
             for c, cp, e in NEGOCIO["areas_servicio"]],
@@ -923,16 +921,16 @@ def post_procesar(archivo):
                lambda m: '<li><i class="fas fa-clock me-2"></i> ' + h["corto"] + "</li>", s)
 
     # Dirección, teléfonos y redes del perfil de Google
-    tel1, tel2 = NEGOCIO["telefono_visible"], NEGOCIO["telefono2_visible"]
+    tel1 = NEGOCIO["telefono_visible"]
     li_tel = '<li><i class="fas fa-phone me-2"></i> '
     li_dir = '<li><i class="fas fa-map-marker-alt me-2"></i> '
-    s = re.sub(re.escape(li_tel + tel1 + "</li>") + r"(?!\s*" + re.escape(li_tel + tel2) + ")",
-               lambda m: m.group(0) + "\n                            " + li_tel + tel2 + "</li>", s)
-    s = re.sub(re.escape(li_tel + tel2 + "</li>") + r"(?!\s*<li><i class=\"fas fa-map-marker-alt me-2\"></i> Frente)",
+    # Solo el teléfono principal: se elimina el 0412-6015769 que se agregó antes
+    s = re.sub(r'\s*<li><i class="fas fa-phone me-2"></i> \+58 412-6015769</li>', "", s)
+    s = re.sub(r' · <a href="tel:\+584126015769">\+58 412-6015769</a>', "", s)
+    s = re.sub(re.escape(li_tel + tel1 + "</li>") + r"(?!\s*<li><i class=\"fas fa-map-marker-alt me-2\"></i> Frente)",
                lambda m: m.group(0) + "\n                            " + li_dir + direccion_texto() + "</li>", s)
     s = s.replace(li_dir + "Sede en Barinas · Cobertura Nacional</li>", li_dir + "Cobertura Nacional</li>")
-    s = s.replace("<p>" + tel1 + "</p>",
-                  f'<p><a href="tel:{NEGOCIO["telefono"]}">{tel1}</a> · <a href="tel:{NEGOCIO["telefono2"]}">{tel2}</a></p>')
+    s = s.replace("<p>" + tel1 + "</p>", f'<p><a href="tel:{NEGOCIO["telefono"]}">{tel1}</a></p>')
     s = re.sub(r"<p>(?:Sede en Barinas · )?Cobertura en todos los estados de Venezuela</p>",
                lambda m: f'<p>{direccion_texto()}</p>\n                                <p><a href="{NEGOCIO["google_maps"]}" target="_blank" rel="noopener">Cómo llegar (Google Maps)</a> · Cobertura en todos los estados de Venezuela</p>', s)
     s = s.replace('<a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>',
@@ -1041,6 +1039,8 @@ def validar():
                 errores.append(f"{rel}: contiene texto de otro estado (Cojedes)")
         if f"&copy; {NEGOCIO['anio_apertura']}–{YEAR}" not in s:
             errores.append(f"{rel}: copyright distinto de {NEGOCIO['anio_apertura']}–{YEAR}")
+        if re.search(r"412-?6015769|4126015769", s):
+            errores.append(f"{rel}: contiene el teléfono 0412-6015769")
         if re.search(r"Lunes a Viernes|Sábados 9:00", s):
             errores.append(f"{rel}: horario distinto del perfil de Google (24 horas)")
         if "tramites-en-linea/saren/" not in s:

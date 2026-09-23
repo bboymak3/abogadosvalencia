@@ -62,7 +62,7 @@ Los datos del negocio están en un solo lugar: el diccionario `NEGOCIO` al inici
 - Nombre: Abogados Valencia. El nombre completo del perfil va en `alternateName`: "Abogados Valencia ⚖️ | 🟢 Trámites de Notaría y Registro en Barinas - Civil y Familia"
 - Categoría principal: Abogado (también: Servicios legales, Abogado civil, Abogado de derecho de familia, Abogado general)
 - Dirección: Frente al Registro Público Inmobiliario, C.C Sabana Grande Avenida 23 de Enero, Barinas 5201, Barinas. Entrada accesible para sillas de ruedas
-- Teléfonos: 0424-5112587 (principal y WhatsApp) y 0412-6015769
+- Teléfono / WhatsApp: 0424-5112587 (único número publicado en la web)
 - Facebook: https://www.facebook.com/Abogadosenbarinas
 - Horario: abierto las 24 horas, todos los días
 - Fecha de apertura: 16 de marzo de 2010 (el copyright usa `© 2010–<año actual>`)
