@@ -82,6 +82,18 @@
         "@type": "PostalAddress"
       },
       "hasMap": "https://maps.app.goo.gl/SuvKMZ2aup2iWXyV6",
+      "potentialAction": {
+        "@type": "ReserveAction",
+        "name": "Reservar cita",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://wa.me/584245112587?text=Hola,%20quiero%20reservar%20una%20cita%20g33",
+          "actionPlatform": [
+            "https://schema.org/DesktopWebPlatform",
+            "https://schema.org/MobileWebPlatform"
+          ]
+        }
+      },
       "amenityFeature": [
         {
           "@type": "LocationFeatureSpecification",
@@ -928,6 +940,13 @@
     <section class="contact-section" id="contacto">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">Contáctenos para sus Documentos Legales</h2>
+            <!-- RESERVAR_INICIO -->
+            <div class="text-center mb-4" id="reservar">
+                <a href="https://wa.me/584245112587?text=Hola,%20quiero%20reservar%20una%20cita%20g33" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                    <i class="far fa-calendar-check me-2"></i> Reservar cita por WhatsApp
+                </a>
+            </div>
+            <!-- RESERVAR_FIN -->
             <div class="row">
                 <div class="col-lg-8" data-aos="fade-right">
                     <p class="mb-4">¿Necesita solicitar algún documento legal? Contáctenos para consultas sobre actas, certificados, poderes notariales, apostillas, legalizaciones o cualquier tipo de documento oficial que requiera.</p>

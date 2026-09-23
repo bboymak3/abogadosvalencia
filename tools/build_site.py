@@ -63,6 +63,8 @@ NEGOCIO = {
     "telefono": "+584245112587",
     "telefono_visible": "+58 424-5112587",
     "facebook": "https://www.facebook.com/Abogadosenbarinas",
+    # El botón "Reservar" del perfil de Google lleva a WhatsApp
+    "reservar_texto": "Hola, quiero reservar una cita",
     # Áreas de servicio del perfil de Google
     "areas_servicio": [
         ("Barinas", "5201", "Barinas"), ("Barinitas", "5206", "Barinas"), ("Barrancas", "5211", "Barinas"),
@@ -768,6 +770,17 @@ def areas_texto():
             for c, cp, e in NEGOCIO["areas_servicio"]]
 
 
+def boton_reservar():
+    return f"""
+            <!-- RESERVAR_INICIO -->
+            <div class="text-center mb-4" id="reservar">
+                <a href="{wa_link(NEGOCIO['reservar_texto'])}" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                    <i class="far fa-calendar-check me-2"></i> Reservar cita por WhatsApp
+                </a>
+            </div>
+            <!-- RESERVAR_FIN -->"""
+
+
 def pie_legal():
     enlaces = [("Quiénes Somos", "/quienes-somos/"), ("Trámites SAREN en Línea", "/tramites-en-linea/saren/"),
                ("Estados", "/estados-venezuela/"), ("Política de Privacidad", "/politica-de-privacidad/"),
@@ -803,6 +816,10 @@ def schema(url, titulo, descripcion, estado_slug=None):
         "priceRange": "$$",
         "address": direccion,
         "hasMap": NEGOCIO["google_maps"],
+        "potentialAction": {"@type": "ReserveAction", "name": "Reservar cita",
+                            "target": {"@type": "EntryPoint", "urlTemplate": wa_link(NEGOCIO["reservar_texto"]),
+                                       "actionPlatform": ["https://schema.org/DesktopWebPlatform",
+                                                          "https://schema.org/MobileWebPlatform"]}},
         "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": "Entrada accesible para sillas de ruedas",
                             "value": NEGOCIO["accesible_silla_ruedas"]}],
         "sameAs": [NEGOCIO["google_maps"], NEGOCIO["facebook"]],
@@ -937,6 +954,11 @@ def post_procesar(archivo):
                   f'<a href="{NEGOCIO["facebook"]}" class="social-link" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>')
     s = re.sub(r'\s*<a href="#" class="social-link"><i class="fab fa-instagram"></i></a>', "", s)
 
+    # Botón "Reservar cita" (igual que el perfil de Google: abre WhatsApp)
+    s = re.sub(r"\s*<!-- RESERVAR_INICIO -->.*?<!-- RESERVAR_FIN -->", "", s, flags=re.S)
+    s = re.sub(r'(<section class="contact-section" id="contacto">\s*<div class="container">\s*<h2[^>]*>.*?</h2>)',
+               lambda m: m.group(1) + boton_reservar(), s, count=1, flags=re.S)
+
     # Reseñas de Google (portada, Quiénes Somos y Barinas)
     s = re.sub(r"<!-- RESENAS_GOOGLE_INICIO -->.*?<!-- RESENAS_GOOGLE_FIN -->\s*", "", s, flags=re.S)
     if url in ("/", "/quienes-somos/", "/estados/barinas/"):
@@ -1039,6 +1061,8 @@ def validar():
                 errores.append(f"{rel}: contiene texto de otro estado (Cojedes)")
         if f"&copy; {NEGOCIO['anio_apertura']}–{YEAR}" not in s:
             errores.append(f"{rel}: copyright distinto de {NEGOCIO['anio_apertura']}–{YEAR}")
+        if s.count('id="reservar"') != 1:
+            errores.append(f"{rel}: falta el botón Reservar cita")
         if re.search(r"412-?6015769|4126015769", s):
             errores.append(f"{rel}: contiene el teléfono 0412-6015769")
         if re.search(r"Lunes a Viernes|Sábados 9:00", s):

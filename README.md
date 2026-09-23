@@ -65,6 +65,7 @@ Los datos del negocio están en un solo lugar: el diccionario `NEGOCIO` al inici
 - Teléfono / WhatsApp: 0424-5112587 (único número publicado en la web)
 - Facebook: https://www.facebook.com/Abogadosenbarinas
 - Horario: abierto las 24 horas, todos los días
+- Reservar: igual que el botón "Reservar" del perfil, abre WhatsApp ("Hola, quiero reservar una cita g33"). Aparece en la sección de contacto de todas las páginas y en el schema como `ReserveAction`
 - Fecha de apertura: 16 de marzo de 2010 (el copyright usa `© 2010–<año actual>`)
 - Áreas de servicio: Barinas, Barinitas, Barrancas, La Luz, Pedraza, Socopó, Sabaneta, Valencia,
   Ciudad Guayana, San Cristóbal, Caracas, Lara, Miranda y Guárico
