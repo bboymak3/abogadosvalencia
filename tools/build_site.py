@@ -45,28 +45,46 @@ GA_ID = "G-RFW5F7YBBR"
 # --------------------------------------------------------------------------
 NEGOCIO = {
     "nombre": "Abogados Valencia",
-    "descripcion": "Bufete de abogados en Venezuela especializado en derecho civil, familia, "
-                   "trámites SAREN en línea, registros, notarías y documentos legales.",
+    # Descripción, categorías, fecha de apertura, horario y ubicación tomados
+    # del perfil de Google Business.
+    "descripcion": "Abogados Valencia es su aliado experto en trámites de notaría y registro en Barinas. "
+                   "Nos especializamos en Derecho Civil y Familia, ofreciendo soluciones ágiles en procesos "
+                   "de divorcio y protección ante el Tribunal Tercero de Menores de Barinas. Gestionamos la "
+                   "redacción de documentos, poderes, ventas de vehículos y gestiones ante el Registro Civil, "
+                   "mercantil e inmobiliario, y brindamos asesoría en actas, sucesiones y herencias.",
+    "descripcion_corta": "Bufete de abogados en Barinas, Venezuela: trámites de notaría y registro, derecho civil "
+                         "y familia, y trámites SAREN en línea en todo el país.",
+    "categorias": ["Abogado", "Servicios legales", "Abogado civil", "Abogado de derecho de familia",
+                   "Abogado general"],
+    "fecha_apertura": "2010-03-16",
+    "fecha_apertura_texto": "16 de marzo de 2010",
+    "anio_apertura": 2010,
     "telefono": "+584245112587",
     "telefono_visible": "+58 424-5112587",
     "whatsapp": "584245112587",
     "google_maps": "https://maps.app.goo.gl/SuvKMZ2aup2iWXyV6",
-    # Dirección: completar EXACTAMENTE como aparece en el perfil de Google.
-    # Los campos vacíos no se publican en el schema.
+    # Calificación pública en Google (se muestra en la web, no en el schema:
+    # Google no admite reseñas propias del negocio como rich result).
+    "google_calificacion": "5.0",
+    "google_opiniones": 10,
+    "google_resena": {"autor": "Marco F. (Local Guide)", "texto": "Trabajo muy profesional y ordenado",
+                      "detalle": "Precio razonable"},
+    # Dirección: sede en Barinas. Completar streetAddress EXACTAMENTE como
+    # aparece en el perfil de Google. Los campos vacíos no se publican.
     "direccion": {
         "streetAddress": "",
-        "addressLocality": "",
-        "addressRegion": "",
-        "postalCode": "",
+        "addressLocality": "Barinas",
+        "addressRegion": "Barinas",
+        "postalCode": "5201",
         "addressCountry": "VE",
     },
+    # Perfil de Google: "Abierto las 24 horas"
     "horario": [
-        {"dias": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-         "abre": "08:00", "cierra": "18:00", "texto": "Lunes a Viernes 8:00 AM - 6:00 PM",
-         "corto": "Lunes a Viernes 8:00-18:00"},
-        {"dias": ["Saturday"], "abre": "09:00", "cierra": "13:00",
-         "texto": "Sábados 9:00 AM - 1:00 PM", "corto": "Sábados 9:00-13:00"},
+        {"dias": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+         "abre": "00:00", "cierra": "23:59", "texto": "Abierto las 24 horas, todos los días",
+         "corto": "Abierto las 24 horas"},
     ],
+    "accesible_silla_ruedas": True,
     "logo": BASE_URL + "/images/logo-abogados-en-venezuela-apure-barinas-valencia-caracas-zulia-lara-servicios-saren-en-linea.jpg",
     "imagen": BASE_URL + "/images/abogados-en-barinas-tramines-legales-abogado-notaria-registro-tribunales.jpg",
 }
@@ -345,7 +363,7 @@ def shell(ruta_url, titulo, descripcion, badge, h1, subtitulo, contenido):
                     <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <div>
                         <h5>Ubicación</h5>
-                        <p><a href="{NEGOCIO['google_maps']}" target="_blank" rel="noopener">Ver perfil en Google Maps</a> · Cobertura en todos los estados de Venezuela</p>
+                        <p>Sede en Barinas, Venezuela · <a href="{NEGOCIO['google_maps']}" target="_blank" rel="noopener">Cómo llegar (Google Maps)</a> · Cobertura en todos los estados</p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -370,14 +388,14 @@ def shell(ruta_url, titulo, descripcion, badge, h1, subtitulo, contenido):
             <div class="row">
                 <div class="col-lg-6 mb-4 mb-lg-0">
                     <div class="footer-logo">ABOGADOS <span>VALENCIA</span></div>
-                    <p class="mb-3">{NEGOCIO['descripcion']}</p>
+                    <p class="mb-3">{NEGOCIO['descripcion_corta']}</p>
                 </div>
                 <div class="col-lg-6">
                     <div class="footer-links">
                         <h5>Contacto</h5>
                         <ul>
                             <li><i class="fas fa-phone me-2"></i> {NEGOCIO['telefono_visible']}</li>
-                            <li><i class="fas fa-map-marker-alt me-2"></i> Cobertura Nacional</li>
+                            <li><i class="fas fa-map-marker-alt me-2"></i> Sede en Barinas · Cobertura Nacional</li>
                             <li><i class="fas fa-clock me-2"></i> {NEGOCIO['horario'][0]['corto']}</li>
                         </ul>
                     </div>
@@ -422,12 +440,14 @@ def generar_paginas_institucionales():
 
     paginas["/quienes-somos/"] = shell(
         "/quienes-somos/", "Quiénes Somos | Abogados Valencia – Bufete de Abogados en Venezuela",
-        "Conozca a Abogados Valencia: bufete de abogados en Venezuela especializado en derecho civil, "
-        "familia, trámites SAREN en línea, registros y notarías en los 24 estados.",
+        "Conozca a Abogados Valencia: bufete de abogados en Barinas desde 2010, especializado en derecho civil, "
+        "familia, trámites de notaría y registro y trámites SAREN en línea en toda Venezuela.",
         "Nuestro Bufete", 'Quiénes Somos: <span class="text-accent">Abogados Valencia</span>',
-        "Bufete de abogados venezolano dedicado a la asesoría legal y a la gestión de trámites SAREN en línea, "
+        "Bufete de abogados con sede en Barinas desde 2010, dedicado a la asesoría legal y a la gestión de trámites SAREN en línea, "
         "registros, notarías y documentos legales en todo el país y para venezolanos en el exterior.",
-        seccion("Nuestra Misión", """                <p>En <strong>Abogados Valencia</strong> acompañamos a personas, familias y empresas en sus asuntos legales con un servicio cercano, claro y con seguimiento de principio a fin. Combinamos la atención presencial con la gestión de <strong>trámites SAREN en línea</strong> para que nuestros clientes resuelvan sus documentos sin importar en qué estado de Venezuela o en qué país se encuentren.</p>
+        seccion("Nuestra Historia", f"""                <p><strong>Abogados Valencia</strong> abrió sus puertas el <strong>{NEGOCIO['fecha_apertura_texto']}</strong> en <strong>Barinas</strong>. Desde entonces somos aliados de nuestros clientes en trámites de notaría y registro, derecho civil y derecho de familia en la región llanera y, hoy, en toda Venezuela gracias a los trámites SAREN en línea.</p>
+                <p>{NEGOCIO['descripcion']}</p>""")
+        + "\n" + seccion("Nuestra Misión", """                <p>En <strong>Abogados Valencia</strong> acompañamos a personas, familias y empresas en sus asuntos legales con un servicio cercano, claro y con seguimiento de principio a fin. Combinamos la atención presencial con la gestión de <strong>trámites SAREN en línea</strong> para que nuestros clientes resuelvan sus documentos sin importar en qué estado de Venezuela o en qué país se encuentren.</p>
                 <p>Nuestro equipo de abogados trabaja en derecho civil, derecho de familia, sucesiones, contratos, registros y notarías, además de la gestión de apostillas, legalizaciones, poderes y documentos para el exterior.</p>""")
         + "\n" + seccion("Qué Hacemos", "                <ul class=\"service-features\">\n" + "\n".join(
             f'                    <li><a href="{u}">{n}</a></li>' for n, u in SERVICIOS) + "\n                </ul>", "bg-dark")
@@ -439,6 +459,10 @@ def generar_paginas_institucionales():
                 </ul>""")
         + "\n" + seccion("Datos del Negocio", f"""                <ul class="service-features">
                     <li><strong>Nombre:</strong> {NEGOCIO['nombre']}</li>
+                    <li><strong>Categorías:</strong> {", ".join(NEGOCIO['categorias'])}</li>
+                    <li><strong>Sede:</strong> {NEGOCIO['direccion']['addressLocality']}, estado {NEGOCIO['direccion']['addressRegion']}, Venezuela · Entrada accesible para sillas de ruedas</li>
+                    <li><strong>Fecha de apertura:</strong> {NEGOCIO['fecha_apertura_texto']}</li>
+                    <li><strong>Calificación en Google:</strong> {NEGOCIO['google_calificacion']} ★ ({NEGOCIO['google_opiniones']} opiniones)</li>
                     <li><strong>Teléfono / WhatsApp:</strong> <a href="tel:{NEGOCIO['telefono']}">{tel}</a></li>
                     <li><strong>Horario:</strong> {horario}</li>
                     <li><strong>Perfil de Google:</strong> <a href="{NEGOCIO['google_maps']}" target="_blank" rel="noopener">Ver en Google Maps</a></li>
@@ -701,6 +725,26 @@ def seccion_saren(estado=None):
     """
 
 
+def seccion_resenas():
+    r = NEGOCIO["google_resena"]
+    return f"""<!-- RESENAS_GOOGLE_INICIO -->
+    <section class="py-5 bg-dark pagina-institucional" id="opiniones-google">
+        <div class="container text-center">
+            <h2 class="section-title" data-aos="fade-up">Opiniones en Google</h2>
+            <p class="fs-4 mb-1"><strong>{NEGOCIO['google_calificacion']}</strong> <span style="color:#D4AF37">★★★★★</span></p>
+            <p class="mb-4">{NEGOCIO['google_opiniones']} opiniones en nuestro perfil de Google · Abogados en Barinas desde {NEGOCIO['anio_apertura']}</p>
+            <blockquote class="mb-4">
+                <p class="fs-5">“{r['texto']}”</p>
+                <footer class="small">— {r['autor']} · {r['detalle']}</footer>
+            </blockquote>
+            <a href="{NEGOCIO['google_maps']}" class="btn btn-outline-primary" target="_blank" rel="noopener">Ver opiniones en Google Maps</a>
+        </div>
+    </section>
+    <!-- RESENAS_GOOGLE_FIN -->
+
+    """
+
+
 def pie_legal():
     enlaces = [("Quiénes Somos", "/quienes-somos/"), ("Trámites SAREN en Línea", "/tramites-en-linea/saren/"),
                ("Estados", "/estados-venezuela/"), ("Política de Privacidad", "/politica-de-privacidad/"),
@@ -724,6 +768,10 @@ def schema(url, titulo, descripcion, estado_slug=None):
         "@id": org_id,
         "name": NEGOCIO["nombre"],
         "description": NEGOCIO["descripcion"],
+        "foundingDate": NEGOCIO["fecha_apertura"],
+        "knowsAbout": NEGOCIO["categorias"] + ["Trámites SAREN en línea", "Notarías", "Registro Civil",
+                                               "Registro mercantil", "Registro inmobiliario", "Divorcios",
+                                               "Sucesiones y herencias", "Poderes", "Venta de vehículos"],
         "url": BASE_URL + "/",
         "telephone": NEGOCIO["telefono"],
         "image": NEGOCIO["imagen"],
@@ -731,6 +779,8 @@ def schema(url, titulo, descripcion, estado_slug=None):
         "priceRange": "$$",
         "address": direccion,
         "hasMap": NEGOCIO["google_maps"],
+        "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": "Entrada accesible para sillas de ruedas",
+                            "value": NEGOCIO["accesible_silla_ruedas"]}],
         "sameAs": [NEGOCIO["google_maps"]],
         "openingHoursSpecification": [
             {"@type": "OpeningHoursSpecification", "dayOfWeek": h["dias"], "opens": h["abre"], "closes": h["cierra"]}
@@ -836,13 +886,25 @@ def post_procesar(archivo):
     s = re.sub(r"<!-- PIE_LEGAL -->.*?\n\s*", "", s)
     s = s.replace('<div class="footer-bottom">\n                <p class="mb-0">',
                   '<div class="footer-bottom">\n                ' + pie_legal() + '<p class="mb-0">', 1)
-    s = re.sub(r"&copy; 20\d\d ", f"&copy; {YEAR} ", s)
-    h0, h1 = NEGOCIO["horario"]
-    sab_li = '\n                            <li><i class="fas fa-clock me-2"></i> ' + h1["corto"] + "</li>"
-    s = re.sub(r'(<li><i class="fas fa-clock me-2"></i> ' + re.escape(h0["corto"]) + r'</li>)(?!\s*<li><i class="fas fa-clock me-2"></i> Sábados)',
-               lambda m: m.group(1) + sab_li, s)
-    sab_p = "\n                                <p>" + h1["texto"] + "</p>"
-    s = re.sub(r"(<p>" + re.escape(h0["texto"]) + r"</p>)(?!\s*<p>Sábados)", lambda m: m.group(1) + sab_p, s)
+    s = re.sub(r"&copy; (?:20\d\d[–-])?20\d\d ", f"&copy; {NEGOCIO['anio_apertura']}–{YEAR} ", s)
+    h = NEGOCIO["horario"][0]
+    s = re.sub(r'<p>Lunes a Viernes 8:00 AM - 6:00 PM</p>(\s*<p>Sábados 9:00 AM - 1:00 PM</p>)?',
+               lambda m: "<p>" + h["texto"] + "</p>", s)
+    s = re.sub(r'<li><i class="fas fa-clock me-2"></i> Lunes a Viernes 8:00-18:00</li>'
+               r'(\s*<li><i class="fas fa-clock me-2"></i> Sábados 9:00-13:00</li>)?',
+               lambda m: '<li><i class="fas fa-clock me-2"></i> ' + h["corto"] + "</li>", s)
+
+    # Sede (perfil de Google): Barinas
+    s = s.replace('<i class="fas fa-map-marker-alt me-2"></i> Cobertura Nacional</li>',
+                  '<i class="fas fa-map-marker-alt me-2"></i> Sede en Barinas · Cobertura Nacional</li>')
+    s = s.replace("<p>Cobertura en todos los estados de Venezuela</p>",
+                  "<p>Sede en Barinas · Cobertura en todos los estados de Venezuela</p>")
+
+    # Reseñas de Google (portada, Quiénes Somos y Barinas)
+    s = re.sub(r"<!-- RESENAS_GOOGLE_INICIO -->.*?<!-- RESENAS_GOOGLE_FIN -->\s*", "", s, flags=re.S)
+    if url in ("/", "/quienes-somos/", "/estados/barinas/"):
+        s = s.replace('<section class="contact-section" id="contacto">',
+                      seccion_resenas() + '<section class="contact-section" id="contacto">', 1)
 
     # Estilos de los bloques añadidos por este script
     s = re.sub(r"[ \t]*<!-- ESTILOS_BUILD -->\s*<style>.*?</style>\n?", "", s, flags=re.S)
@@ -938,8 +1000,10 @@ def validar():
             cuerpo = re.sub(r"<!-- SCHEMA_JSONLD -->.*?</script>", "", cuerpo, flags=re.S)
             if slug != "cojedes" and "Cojedes" in cuerpo:
                 errores.append(f"{rel}: contiene texto de otro estado (Cojedes)")
-        if f"&copy; {YEAR}" not in s:
-            errores.append(f"{rel}: año de copyright distinto de {YEAR}")
+        if f"&copy; {NEGOCIO['anio_apertura']}–{YEAR}" not in s:
+            errores.append(f"{rel}: copyright distinto de {NEGOCIO['anio_apertura']}–{YEAR}")
+        if re.search(r"Lunes a Viernes|Sábados 9:00", s):
+            errores.append(f"{rel}: horario distinto del perfil de Google (24 horas)")
         if "tramites-en-linea/saren/" not in s:
             errores.append(f"{rel}: falta enlace a Trámites SAREN en Línea")
     for slug in ESTADOS:
