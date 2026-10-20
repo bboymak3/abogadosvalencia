@@ -1,0 +1,26 @@
+# Generado por tools/generar_landings.py
+# Enlaces del menú existente que aún no tienen página: se envían a la portada
+# (comportamiento equivalente al que tenían antes de añadir 404.html).
+/estados-venezuela/ / 302
+/estados/distrito-capital/ / 302
+/estados/monagas/ / 302
+/estados/nueva-esparta/ / 302
+/estados/portuguesa/ / 302
+/estados/sucre/ / 302
+/estados/tachira/ / 302
+/estados/trujillo/ / 302
+/estados/vargas/ / 302
+/estados/yaracuy/ / 302
+/estados/zulia/ / 302
+/informacion-legal/ / 302
+/informacion-legal/documentacion/ / 302
+/informacion-legal/guia-tramites/ / 302
+/informacion-legal/preguntas-frecuentes/ / 302
+/informacion-legal/requisitos/ / 302
+/soporte/ / 302
+/soporte/asesoramiento/ / 302
+/soporte/consultas/ / 302
+/soporte/contactanos/ / 302
+/soporte/seguimiento/ / 302
+/tramites-en-linea/ / 302
+/tramites-en-linea/solicitudes/ / 302
