@@ -106,18 +106,6 @@ MUNICIPIOS = [
      "vecinos": ["naguanagua", "san-diego", "los-guayos", "libertador", "carlos-arvelo"]},
 ]
 
-# Zonas clave que se muestran como tarjetas en la portada: (slug municipio, slug parroquia o None)
-ZONAS_CLAVE = [
-    ("valencia", None),
-    ("naguanagua", None),
-    ("san-diego", None),
-    ("puerto-cabello", None),
-    ("guacara", None),
-    ("los-guayos", None),
-    ("libertador", None),
-    ("carlos-arvelo", None),
-]
-
 # ---------------------------------------------------------------------------
 # Servicios (los mismos que ya ofrece la web). "url" enlaza a la página existente.
 # ---------------------------------------------------------------------------

@@ -31,7 +31,7 @@ from datetime import date
 from urllib.parse import quote
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from datos import (SITIO, MUNICIPIOS, ZONAS_CLAVE, SERVICIOS, SAREN_TRAMITES,  # noqa: E402
+from datos import (SITIO, MUNICIPIOS, SERVICIOS, SAREN_TRAMITES,  # noqa: E402
                    SAREN_RECAUDOS, SAREN_PASOS, SAREN_FAQ, INTROS_A, INTROS_B,
                    INTROS_C, FAQ_LOCAL, PASOS_LANDING)
 
@@ -328,48 +328,19 @@ def faq_portada(doc):
 
 
 def secciones_portada():
-    tarjetas = []
-    for slug_m, par in ZONAS_CLAVE:
-        m = municipio_por_slug(slug_m)
-        if par:
-            nombre, url, sub = par, url_par(m, par), "Municipio %s" % m["nombre"]
-        else:
-            nombre, url, sub = m["capital"], url_mun(m), "Municipio %s" % m["nombre"]
-        tarjetas.append(
-            '                <div class="col-6 col-md-4 col-lg-3">\n'
-            '                    <a class="zona-card" href="%s">\n'
-            '                        <i class="fas fa-map-marker-alt"></i>\n'
-            '                        <span class="zona-nombre">%s</span>\n'
-            '                        <span class="zona-sub">%s</span>\n'
-            '                    </a>\n'
-            '                </div>' % (url, e(nombre), e(sub)))
-    zonas = (
-        '    <section class="py-5 home-zonas" id="zonas-carabobo">\n'
-        '        <div class="container">\n'
-        '            <h2 class="section-title">Zonas de %s donde trabajamos</h2>\n'
-        '            <p class="text-center mb-4">Atendemos por WhatsApp y teléfono en todo el estado %s. Elige tu zona:</p>\n'
-        '            <div class="row g-3">\n%s\n            </div>\n'
-        '        </div>\n'
-        '    </section>' % (e(ESTADO), e(ESTADO), "\n".join(tarjetas)))
-
-    grupos = []
-    for m in MUNICIPIOS:
-        items = ['                        <a class="ios-row" href="%s"><strong>Municipio %s</strong></a>' % (url_mun(m), e(m["nombre"]))]
-        for p in m["parroquias"]:
-            items.append('                        <a class="ios-row" href="%s">Parroquia %s</a>' % (url_par(m, p), e(p)))
-        grupos.append(
-            '                <div class="col-md-6 col-lg-4">\n'
-            '                    <p class="ios-group-title">%s</p>\n'
-            '                    <div class="ios-group">\n%s\n                    </div>\n'
-            '                </div>' % (e(m["nombre"]), "\n".join(items)))
+    items = "\n".join(
+        '                    <li><a href="%s">%s<small>%s</small></a></li>' % (url_mun(m), e(m["nombre"]), e(m["capital"]))
+        for m in MUNICIPIOS)
     municipios = (
-        '    <section class="py-5 home-municipios" id="municipios">\n'
+        '    <section class="py-4 home-municipios" id="municipios">\n'
         '        <div class="container">\n'
-        '            <h2 class="section-title">Abogados en todos los municipios y parroquias de %s</h2>\n'
-        '            <p class="text-center mb-4"><a href="/abogados/">Ver el índice completo de municipios</a></p>\n'
-        '            <div class="row g-3">\n%s\n            </div>\n'
+        '            <details class="mun-plegable">\n'
+        '                <summary><span><i class="fas fa-map-marker-alt me-2"></i>Atendemos en los siguientes municipios de %s</span><span class="mun-contador">%d</span></summary>\n'
+        '                <ul class="mun-lista">\n%s\n                </ul>\n'
+        '                <p class="mun-pie"><a href="/abogados/">Ver todos los municipios y parroquias</a></p>\n'
+        '            </details>\n'
         '        </div>\n'
-        '    </section>' % (e(ESTADO), "\n".join(grupos)))
+        '    </section>' % (e(ESTADO), len(MUNICIPIOS), items))
 
     items_saren = "\n".join(
         '                        <li><i class="fas fa-check-circle"></i> %s</li>' % e(t) for t, _ in SAREN_TRAMITES[:6])
@@ -389,7 +360,7 @@ def secciones_portada():
         '            </div>\n'
         '        </div>\n'
         '    </section>' % (items_saren, e(wa("Hola, vengo de la página web y necesito ayuda con un trámite de SAREN en línea"))))
-    return saren, zonas, municipios
+    return saren, municipios
 
 
 def jsonld_portada(doc):
@@ -428,9 +399,9 @@ def aplicar_capa_global():
         doc = poner_bloque(doc, "menu-escritorio", MENU_DESKTOP, r"[ \t]*<!-- WhatsApp -->", sangria="                ")
         doc = poner_bloque(doc, "menu-movil", MENU_MOVIL, r"[ \t]*(<!-- WhatsApp Móvil -->\s*)?<div class=\"mobile-whatsapp\">", sangria="        ")
         if es_portada:
-            saren, zonas, municipios = secciones_portada()
+            saren, municipios = secciones_portada()
             doc = poner_bloque(doc, "portada-saren", saren, r"[ \t]*<!-- SECCIÓN INTEGRADA 1: GUÍA LEGAL", sangria="    ")
-            doc = poner_bloque(doc, "portada-zonas", zonas + "\n\n" + municipios, r"[ \t]*<!-- About Section -->", sangria="    ")
+            doc = poner_bloque(doc, "portada-zonas", municipios, r"[ \t]*<!-- About Section -->", sangria="    ")
         pie = cta_bar(mensaje_pagina(original)) + "\n" + credito()
         ancla = r"[ \t]*<!-- WA_PAGE_ID_SNIPPET -->" if "<!-- WA_PAGE_ID_SNIPPET -->" in doc else r"[ \t]*</body>"
         doc = poner_bloque(doc, "barra-inferior", pie, ancla, sangria="    ")
@@ -607,12 +578,16 @@ def html_enlaces(m, actual_parroquia=None):
     return ('        <section class="lp-seccion">\n            <div class="container">\n'
             '                <div class="row g-4">\n'
             '                    <div class="col-lg-6">\n'
-            '                    <h2 class="lp-h2 text-start">Parroquias y zonas cercanas</h2>\n'
+            '                    <details class="mun-plegable">\n'
+            '                    <summary><h2>Parroquias y zonas cercanas</h2></summary>\n'
             '                    <div class="ios-group">\n%s\n                    </div>\n'
+            '                    </details>\n'
             '                    </div>\n'
             '                    <div class="col-lg-6">\n'
-            '                    <h2 class="lp-h2 text-start">Otros municipios de %s</h2>\n'
+            '                    <details class="mun-plegable">\n'
+            '                    <summary><h2>Otros municipios de %s</h2></summary>\n'
             '                    <div class="ios-group">\n%s\n                    </div>\n'
+            '                    </details>\n'
             '                    </div>\n'
             '                </div>\n%s'
             '            </div>\n        </section>' % (filas_c, e(ESTADO), filas_m, volver))
