@@ -171,8 +171,12 @@ def cta_bar(msg):
 
 def credito():
     return (
-        '    <div class="site-credit">%s · <a href="%s" target="_blank" rel="noopener">%s</a></div>'
-        % (e(SITIO["credito_texto"]), SITIO["credito_enlace_url"], e(SITIO["credito_enlace_texto"]))
+        '    <div class="site-credit">\n'
+        '        <div>%s</div>\n'
+        '        <div>%s <a href="%s" target="_blank" rel="noopener">%s</a></div>\n'
+        '    </div>'
+        % (e(SITIO["credito_texto"]), e(SITIO["credito_prefijo_enlace"]), SITIO["credito_enlace_url"],
+           e(SITIO["credito_enlace_texto"]))
     )
 
 

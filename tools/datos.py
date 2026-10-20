@@ -36,7 +36,8 @@ SITIO = {
     "horario_texto": "Lunes a viernes de 8:00 a. m. a 6:00 p. m. y sábados de 9:00 a. m. a 1:00 p. m.",
     "servicio_destacado": "SAREN en línea",
     "credito_texto": "Página web desarrollada por Grupo 360 Soluciones",
-    "credito_enlace_texto": "Diseño de páginas webs - SEO Local",
+    "credito_prefijo_enlace": "Diseño por",
+    "credito_enlace_texto": "makeseo.app",
     "credito_enlace_url": "https://makeseo.app",
 }
 
