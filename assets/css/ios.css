@@ -1,0 +1,391 @@
+/* ==========================================================================
+   Capa de estilo iOS
+   Se carga DESPUÉS de los estilos existentes y solo refina: no reemplaza
+   ninguna regla de styles.css ni de Bootstrap.
+   ========================================================================== */
+
+:root {
+    --ios-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --ios-radius-sm: 10px;
+    --ios-radius: 14px;
+    --ios-radius-lg: 20px;
+    --ios-group-bg: #ffffff;
+    --ios-separator: rgba(60, 60, 67, 0.18);
+    --ios-label-2: rgba(60, 60, 67, 0.6);
+    --ios-blue: #007aff;
+    --ios-red: #d32f2f;
+    --ios-green: #25D366;
+    --ios-safe-top: env(safe-area-inset-top, 0px);
+    --ios-safe-right: env(safe-area-inset-right, 0px);
+    --ios-safe-bottom: env(safe-area-inset-bottom, 0px);
+    --ios-safe-left: env(safe-area-inset-left, 0px);
+    --cta-bar-h: 68px;
+}
+
+/* ---------- Tipografía del sistema ---------- */
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--ios-font);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.01em;
+}
+
+/* ---------- Sin scroll horizontal ---------- */
+/* styles.css ya tiene body{overflow-x:hidden}; "clip" evita además que
+   iOS permita desplazar la página hacia los lados y no rompe position:sticky. */
+html,
+body {
+    max-width: 100%;
+}
+
+@supports (overflow: clip) {
+    html,
+    body {
+        overflow-x: clip;
+    }
+}
+
+img,
+video,
+iframe,
+table {
+    max-width: 100%;
+}
+
+/* Animaciones laterales de AOS: en pantallas pequeñas se desplazan en
+   vertical en lugar de 100px hacia los lados (que ensanchaban la página). */
+@media (max-width: 991.98px) {
+    html body [data-aos="fade-left"]:not(.aos-animate),
+    html body [data-aos="fade-right"]:not(.aos-animate),
+    html body [data-aos="fade-up-left"]:not(.aos-animate),
+    html body [data-aos="fade-up-right"]:not(.aos-animate),
+    html body [data-aos="fade-down-left"]:not(.aos-animate),
+    html body [data-aos="fade-down-right"]:not(.aos-animate),
+    html body [data-aos^="slide-left"]:not(.aos-animate),
+    html body [data-aos^="slide-right"]:not(.aos-animate) {
+        transform: translate3d(0, 24px, 0);
+    }
+}
+
+/* ---------- Menú superior con vidrio esmerilado ---------- */
+.main-nav {
+    background: rgba(0, 0, 0, 0.82);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.12);
+    padding-top: calc(15px + var(--ios-safe-top));
+}
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .main-nav {
+        background: #000;
+    }
+}
+
+.nav-container {
+    padding-left: calc(20px + var(--ios-safe-left));
+    padding-right: calc(20px + var(--ios-safe-right));
+}
+
+.logo-img {
+    border-radius: 12px;
+}
+
+.dropdown-menu {
+    border-radius: var(--ios-radius);
+    overflow: hidden;
+    background: rgba(40, 40, 40, 0.92);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+}
+
+.whatsapp-btn {
+    border-radius: 999px;
+}
+
+/* Menú lateral móvil: respeta la zona segura */
+.mobile-menu {
+    padding-top: calc(80px + var(--ios-safe-top));
+    padding-right: calc(20px + var(--ios-safe-right));
+    padding-bottom: calc(20px + var(--cta-bar-h) + var(--ios-safe-bottom));
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ---------- Esquinas redondeadas tipo iOS ---------- */
+.btn {
+    border-radius: 12px;
+}
+
+.btn-sm {
+    border-radius: 10px;
+}
+
+.card,
+.service-card,
+.category-card,
+.location-card,
+.about-image,
+.stats-container,
+.alert {
+    border-radius: var(--ios-radius-lg);
+}
+
+.accordion-item:first-of-type,
+.accordion-item:last-of-type,
+.accordion-item {
+    border-radius: var(--ios-radius);
+    overflow: hidden;
+}
+
+.accordion-button {
+    border-radius: var(--ios-radius) !important;
+}
+
+.img-fluid.rounded {
+    border-radius: var(--ios-radius-lg) !important;
+}
+
+details {
+    border-radius: var(--ios-radius) !important;
+}
+
+/* ---------- Listas agrupadas estilo Ajustes ---------- */
+.ios-group {
+    background: var(--ios-group-bg);
+    border-radius: var(--ios-radius);
+    overflow: hidden;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    list-style: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.ios-group-title {
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--ios-label-2);
+    margin: 0 0 0.4rem 1rem;
+}
+
+.ios-group > li,
+.ios-group > a,
+.ios-group .ios-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 44px;
+    padding: 0.7rem 1rem;
+    color: #1c1c1e;
+    text-decoration: none;
+    position: relative;
+    background: transparent;
+}
+
+.ios-group > li + li::before,
+.ios-group > a + a::before,
+.ios-group .ios-row + .ios-row::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    right: 0;
+    border-top: 0.5px solid var(--ios-separator);
+}
+
+.ios-group > a::after,
+.ios-group .ios-row[href]::after {
+    content: "\203A";
+    margin-left: auto;
+    color: rgba(60, 60, 67, 0.3);
+    font-size: 1.4rem;
+    line-height: 1;
+}
+
+.ios-group > a:active,
+.ios-group .ios-row[href]:active {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+/* El menú móvil existente se presenta como lista agrupada */
+.mobile-dropdown-menu.active {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: var(--ios-radius-sm);
+    margin: 0.25rem 0 0.5rem;
+    padding-right: 0.75rem;
+}
+
+/* ---------- Ventanas modales: hoja que sube desde abajo en móvil ---------- */
+@media (max-width: 575.98px) {
+    .modal-dialog {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: 0;
+        max-width: none;
+        width: 100%;
+        min-height: auto;
+        display: block;
+    }
+
+    .modal.fade .modal-dialog {
+        transform: translate3d(0, 100%, 0);
+        transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    .modal.show .modal-dialog {
+        transform: none;
+    }
+
+    .modal-content {
+        border: 0;
+        border-radius: var(--ios-radius-lg) var(--ios-radius-lg) 0 0;
+        padding-bottom: var(--ios-safe-bottom);
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .modal-content::before {
+        content: "";
+        display: block;
+        width: 36px;
+        height: 5px;
+        border-radius: 3px;
+        background: rgba(60, 60, 67, 0.3);
+        margin: 8px auto 0;
+    }
+}
+
+.modal-content {
+    border-radius: var(--ios-radius-lg);
+}
+
+/* ---------- Barra inferior fija (Llamar / WhatsApp) ---------- */
+body {
+    padding-bottom: calc(var(--cta-bar-h) + var(--ios-safe-bottom));
+}
+
+.cta-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1040;
+    display: flex;
+    gap: 10px;
+    padding: 10px calc(12px + var(--ios-safe-right)) calc(10px + var(--ios-safe-bottom)) calc(12px + var(--ios-safe-left));
+    background: rgba(18, 18, 18, 0.92);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border-top: 0.5px solid rgba(255, 255, 255, 0.12);
+    font-family: var(--ios-font);
+}
+
+.cta-bar a {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    border-radius: 12px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: filter 0.2s, transform 0.1s;
+}
+
+.cta-bar a:hover,
+.cta-bar a:focus {
+    color: #fff;
+    filter: brightness(1.08);
+}
+
+.cta-bar a:active {
+    transform: scale(0.98);
+}
+
+.cta-bar .cta-call {
+    background: var(--ios-red);
+}
+
+.cta-bar .cta-wa {
+    background: var(--ios-green);
+}
+
+@media (min-width: 992px) {
+    .cta-bar {
+        justify-content: center;
+    }
+
+    .cta-bar a {
+        flex: 0 1 320px;
+    }
+}
+
+/* El botón flotante de WhatsApp sigue en el código: en escritorio sube
+   por encima de la barra y en móvil se oculta para no duplicarla. */
+.whatsapp-float {
+    bottom: calc(var(--cta-bar-h) + var(--ios-safe-bottom) + 20px);
+    right: calc(30px + var(--ios-safe-right));
+}
+
+@media (max-width: 991.98px) {
+    .whatsapp-float {
+        display: none !important;
+    }
+}
+
+/* ---------- Crédito del pie de página ---------- */
+.site-credit {
+    background: #111;
+    color: rgba(255, 255, 255, 0.65);
+    text-align: center;
+    font-size: 0.85rem;
+    padding: 14px calc(16px + var(--ios-safe-right)) 14px calc(16px + var(--ios-safe-left));
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-credit a {
+    color: #D4AF37;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.site-credit a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Ajustes generales de móvil ---------- */
+@media (max-width: 575.98px) {
+    .hero-title {
+        word-break: break-word;
+        overflow-wrap: anywhere;
+    }
+
+    .container {
+        padding-left: max(16px, calc(12px + var(--ios-safe-left)));
+        padding-right: max(16px, calc(12px + var(--ios-safe-right)));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .whatsapp-float {
+        animation: none;
+    }
+}
