@@ -124,7 +124,7 @@ SERVICIOS = [
      "texto": "Divorcio de mutuo acuerdo, custodia, obligación de manutención y régimen de convivencia."},
     {"nombre": "Herencias y sucesiones", "icono": "fa-hand-holding-usd", "url": "/#categorias",
      "texto": "Declaratoria de herederos, declaración sucesoral y partición de bienes."},
-    {"nombre": "Documentos para el exterior", "icono": "fa-plane-departure", "url": "/#info-barinas",
+    {"nombre": "Documentos para el exterior", "icono": "fa-plane-departure", "url": "/informacion-legal/preguntas-frecuentes/#documentos-exterior",
      "texto": "Copias certificadas, legalización y orientación para la apostilla de documentos."},
     {"nombre": "Derecho mercantil", "icono": "fa-building", "url": None,
      "texto": "Registro de firmas personales y compañías, actas de asamblea y cambios en la junta directiva."},

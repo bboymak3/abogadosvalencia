@@ -14,6 +14,8 @@ Sitio estático de **Abogados Valencia** (https://abogadosvalencia.pages.dev), p
 | `/abogados/<municipio>/` | Landing por municipio de Carabobo (14) |
 | `/abogados/<municipio>/<parroquia>/` | Landing por parroquia de Carabobo (38) |
 | `/saren-en-linea/` | Servicio destacado: trámites, recaudos, paso a paso y FAQ |
+| `/informacion-legal/preguntas-frecuentes/` | Qué es un abogado, preguntas frecuentes, documentos para el exterior y guía de áreas y trámites |
+| `/api/ubicacion` | Función de Cloudflare Pages (`functions/api/ubicacion.js`): país y estado del visitante |
 | `404.html` | Página de error con el mismo estilo |
 
 Archivos del sitio:
@@ -21,6 +23,8 @@ Archivos del sitio:
 - `assets/css/ios.css`: capa de estilo iOS (se carga después de `styles.css`, solo refina).
 - `assets/css/landings.css`: componentes de las páginas nuevas y de los bloques plegados.
 - `assets/icons/`: favicon SVG/PNG, apple-touch-icon e iconos PWA (192, 512 y maskable).
+- `assets/js/ubicacion.js` (generado): en la portada muestra un acceso a la página del estado desde el que se conecta el visitante. Usa `/api/ubicacion` (geolocalización por IP de Cloudflare, `request.cf`). No redirige ni guarda datos; si el estado no tiene página o la consulta falla, no muestra nada.
+- `tools/fragmentos/`: contenido trasladado desde la portada (qué es un abogado, documentos para el exterior y directorio de áreas), del que se genera la página de preguntas frecuentes.
 - `manifest.webmanifest`, `sitemap.xml`, `robots.txt`, `_headers` y `_redirects` (Cloudflare Pages).
 
 ## Herramientas (`tools/`)
@@ -41,7 +45,8 @@ Los dos generadores son deterministas: volver a ejecutarlos no cambia nada si lo
 
 ## SEO y datos estructurados
 
-- **Portada**: Organization, WebSite, LegalService (areaServed, horario y catálogo de servicios), Service y FAQPage.
+- **Portada** (neutral, para toda Venezuela): Organization, WebSite, LegalService (areaServed: Venezuela y los estados con página, horario y catálogo de servicios), Service y FAQPage.
+- **Preguntas frecuentes**: WebPage, BreadcrumbList y FAQPage.
 - **Páginas de estado**: WebPage, LegalService (estado y sus municipios), Service, BreadcrumbList y FAQPage con las preguntas visibles de la página. Llevan `geo.region` con el código ISO 3166-2 del estado.
 - **Landings de Carabobo**: WebPage, LegalService, Service, BreadcrumbList, FAQPage y HowTo.
 - **Todas las páginas**: `canonical`, Open Graph, Twitter Card y `theme-color`. Todas las URL están en `sitemap.xml`, enlazado desde `robots.txt`.

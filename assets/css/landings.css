@@ -525,3 +525,51 @@
     text-align: center;
     margin-top: 1rem;
 }
+
+/* ---------- Portada: acceso al estado del visitante ---------- */
+.home-ubicacion {
+    background: #fff;
+}
+
+.ubicacion-card {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    background: #111;
+    color: #fff;
+    border-radius: 16px;
+    padding: 0.9rem 1.1rem;
+    text-decoration: none;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+}
+
+.ubicacion-card:hover {
+    color: #fff;
+    filter: brightness(1.1);
+}
+
+.ubicacion-card > i {
+    color: #D4AF37;
+    font-size: 1.4rem;
+}
+
+.ubicacion-card small {
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+}
+
+.ubicacion-card strong {
+    font-size: 1.1rem;
+}
+
+.ubicacion-ir {
+    margin-left: auto;
+    background: #D4AF37;
+    color: #000;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 999px;
+    padding: 0.35rem 0.8rem;
+    white-space: nowrap;
+}
