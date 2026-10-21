@@ -484,7 +484,7 @@ def aplicar_capa_global():
         doc = poner_bloque(doc, "menu-movil", MENU_MOVIL, r"[ \t]*(<!-- WhatsApp Móvil -->\s*)?<div class=\"mobile-whatsapp\">", sangria="        ")
         if es_portada:
             saren, municipios = secciones_portada()
-            doc = poner_bloque(doc, "portada-saren", saren, r"[ \t]*<!-- SECCIÓN INTEGRADA 1: GUÍA LEGAL", sangria="    ")
+            doc = poner_bloque(doc, "portada-saren", saren, r"[ \t]*<!-- Services Section -->", sangria="    ")
             doc = poner_bloque(doc, "portada-zonas", municipios, r"[ \t]*<!-- About Section -->", sangria="    ")
             doc = poner_bloque(doc, "portada-guia", bloque_guia_portada(), r"[ \t]*<!-- Footer -->", sangria="    ")
         if slug_estado:
@@ -875,22 +875,45 @@ def landing_saren():
 GUIA_URL = "/informacion-legal/preguntas-frecuentes/"
 
 
-def guia_items():
-    """(id, título) de cada categoría de tools/fragmentos/guia-legal.html."""
-    frag = leer(os.path.join(RAIZ, "tools", "fragmentos", "guia-legal.html"))
-    return frag, re.findall(r'<details class="guia-item" id="([^"]+)">\s*<summary>(.*?)</summary>', frag, re.S)
+def leer_fragmento(nombre):
+    frag = leer(os.path.join(RAIZ, "tools", "fragmentos", nombre))
+    return re.sub(r"<!--.*?-->\s*", "", frag, count=1, flags=re.S).strip()
+
+
+def detalles(frag, faq=False):
+    """Bloques <details class="guia-item"> del fragmento: (id, título, html)."""
+    res = []
+    for m in re.finditer(r'<details class="guia-item" id="([^"]+)"( data-faq)?>\s*<summary>(.*?)</summary>.*?</details>', frag, re.S):
+        if bool(m.group(2)) == faq:
+            res.append((m.group(1), m.group(3), m.group(0)))
+    return res
+
+
+def guia_partes():
+    abogado = leer_fragmento("que-es-un-abogado.html")
+    directorio = leer_fragmento("guia-legal.html")
+    intro = re.search(r'<p class="guia-intro" data-titulo="([^"]+)">(.*?)</p>', abogado, re.S)
+    nota = re.search(r'<p class="guia-nota">.*?</p>', abogado, re.S).group(0)
+    return {
+        "abogado_titulo": intro.group(1), "abogado_intro": intro.group(2), "abogado_nota": nota,
+        "abogado": detalles(abogado), "faq": detalles(abogado, faq=True),
+        "directorio": detalles(directorio),
+        "directorio_nota": re.search(r'<p class="guia-nota">.*?</p>', directorio, re.S).group(0),
+    }
 
 
 def bloque_guia_portada():
     """Acceso compacto (plegado) a la guía legal, justo antes del pie de la portada."""
-    _, items = guia_items()
+    g = guia_partes()
+    items = ([(i, t) for i, t, _ in g["abogado"]] + [("preguntas-abogado", "❓ Preguntas frecuentes sobre abogados")] +
+             [(i, t) for i, t, _ in g["directorio"]])
     lis = "\n".join('                    <li><a href="%s#%s">%s</a></li>' % (GUIA_URL, i, t) for i, t in items)
     return ('    <section class="pb-4 home-municipios" id="guia-legal">\n'
             '        <div class="container">\n'
             '            <details class="mun-plegable">\n'
-            '                <summary><span><i class="fas fa-book me-2"></i>Guía legal: áreas y trámites</span><span class="mun-contador">%d</span></summary>\n'
+            '                <summary><span><i class="fas fa-book me-2"></i>Guía legal y preguntas frecuentes</span><span class="mun-contador">%d</span></summary>\n'
             '                <ul class="mun-lista">\n%s\n                </ul>\n'
-            '                <p class="mun-pie"><a href="%s">Ver la guía y las preguntas frecuentes</a></p>\n'
+            '                <p class="mun-pie"><a href="%s">Ver la guía completa</a></p>\n'
             '            </details>\n'
             '        </div>\n'
             '    </section>' % (len(items), lis, GUIA_URL))
@@ -898,18 +921,23 @@ def bloque_guia_portada():
 
 def pagina_guia_legal():
     ruta = GUIA_URL
-    titulo = "Preguntas Frecuentes y Guía Legal: Áreas y Trámites | %s" % SITIO["nombre"]
-    desc = ("Guía legal de Abogados Valencia: derecho civil y familiar, mercantil, agrario y penal, documentos legales, "
-            "trámites SAREN y notarías, y licencia de conducir (INTT).")
-    frag, items = guia_items()
-    frag = re.sub(r"<!--.*?-->\s*", "", frag, count=1, flags=re.S)
+    titulo = "Qué es un Abogado, Preguntas Frecuentes y Guía Legal | %s" % SITIO["nombre"]
+    desc = ("Qué es un abogado y qué casos resuelve, preguntas frecuentes (visado, secreto profesional) y guía de áreas: "
+            "civil, familia, mercantil, agrario, penal, SAREN, notarías e INTT.")
+    g = guia_partes()
     migas = [("Inicio", "/"), ("Preguntas frecuentes y guía legal", ruta)]
-    indice = "\n".join('                    <a class="ios-row" href="#%s"><span>%s</span></a>' % (i, t) for i, t in items)
+    fila = lambda i, t: '                    <a class="ios-row" href="#%s"><span>%s</span></a>' % (i, t)
+    indice = "\n".join([fila(i, t) for i, t, _ in g["abogado"]] + [fila("preguntas-abogado", "❓ Preguntas frecuentes sobre abogados")] +
+                       [fila(i, t) for i, t, _ in g["directorio"]])
+    bloques = lambda lista: "\n".join(h for _, _, h in lista)
+    faq_pares = [(html.unescape(re.sub(r"<[^>]+>", "", t)).strip(),
+                  html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", re.search(r'<div class="guia-cuerpo">(.*)</div>', h, re.S).group(1)))).strip())
+                 for _, t, h in g["faq"]]
     cuerpo = "\n\n".join([
         html_migas(migas),
         '        <header class="lp-hero">\n            <div class="container">\n'
         '                <h1>Preguntas frecuentes y guía legal</h1>\n'
-        '                <p class="lp-lead">Áreas del derecho y trámites que gestionamos, con lo que incluye cada uno y cómo podemos ayudarte.</p>\n'
+        '                <p class="lp-lead">Qué hace un abogado, las dudas más comunes y las áreas y trámites que gestionamos.</p>\n'
         '                <div class="lp-botones">\n'
         '                    <a href="%s" class="btn btn-success btn-lg" target="_blank" rel="noopener"><i class="fab fa-whatsapp me-2"></i>Consultar por WhatsApp</a>\n'
         '                    <a href="/#preguntas-frecuentes" class="btn btn-outline-light btn-lg">Preguntas de la portada</a>\n'
@@ -918,8 +946,17 @@ def pagina_guia_legal():
         '        <section class="lp-seccion">\n            <div class="container lp-estrecho">\n'
         '                <p class="ios-group-title">Contenido</p>\n'
         '                <div class="ios-group">\n%s\n                </div>\n'
+        '                <h2 class="lp-h2 text-start mt-4" id="abogado">%s</h2>\n'
+        '                <p>%s</p>\n'
         '                <div class="guia">\n%s\n                </div>\n'
-        '            </div>\n        </section>' % (indice, frag.strip()),
+        '                <h2 class="lp-h2 text-start mt-5" id="preguntas-abogado">Preguntas frecuentes sobre abogados</h2>\n'
+        '                <div class="guia">\n%s\n                </div>\n'
+        '                <h2 class="lp-h2 text-start mt-5" id="areas-y-tramites">Áreas del derecho y trámites</h2>\n'
+        '                <div class="guia">\n%s\n                </div>\n'
+        '                %s\n'
+        '                %s\n'
+        '            </div>\n        </section>' % (indice, g["abogado_titulo"], g["abogado_intro"], bloques(g["abogado"]),
+                                                    bloques(g["faq"]), bloques(g["directorio"]), g["directorio_nota"], g["abogado_nota"]),
         html_cta_final(ESTADO),
         '        <script>\n'
         '        // Abre la categoría enlazada desde la portada (#derecho-penal, etc.)\n'
@@ -936,6 +973,7 @@ def pagina_guia_legal():
          "description": desc, "inLanguage": "es-VE", "isPartOf": {"@id": WEB_ID}},
         organizacion(),
         migas_ld(migas),
+        faq_ld(faq_pares),
     ]
     escribir(os.path.join(RAIZ, ruta.strip("/"), "index.html"),
              pagina(titulo, desc, ruta, cuerpo, grafo, "Hola, vengo de la guía legal de la página web y tengo una duda"))
