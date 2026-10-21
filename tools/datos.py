@@ -316,3 +316,39 @@ ESTADOS_MUNICIPIOS = {
         ("Pedro Gual", "Cúpira"), ("Plaza", "Guarenas"), ("Simón Bolívar", "San Francisco de Yare"),
         ("Sucre", "Petare"), ("Urdaneta", "Cúa"), ("Zamora", "Guatire")]),
 }
+
+# ---------------------------------------------------------------------------
+# Datos de las páginas de estado (/estados/<slug>/): capital, código ISO
+# 3166-2 y ciudades principales (capitales de municipio de las listas de arriba).
+# Las usa tools/adaptar_estados.py para que cada página tenga su propio texto.
+# ---------------------------------------------------------------------------
+ESTADOS_INFO = {
+    "amazonas": {"capital": "Puerto Ayacucho", "iso": "VE-Z",
+                 "ciudades": ["Puerto Ayacucho", "San Fernando de Atabapo", "La Esmeralda", "Isla Ratón", "Maroa", "San Carlos de Río Negro"]},
+    "anzoategui": {"capital": "Barcelona", "iso": "VE-B",
+                   "ciudades": ["Barcelona", "Puerto La Cruz", "Lechería", "El Tigre", "Anaco", "Cantaura"]},
+    "apure": {"capital": "San Fernando de Apure", "iso": "VE-C",
+              "ciudades": ["San Fernando de Apure", "Guasdualito", "Achaguas", "Biruaca", "Elorza", "Bruzual"]},
+    "aragua": {"capital": "Maracay", "iso": "VE-D",
+               "ciudades": ["Maracay", "Turmero", "La Victoria", "Cagua", "Villa de Cura", "Palo Negro"]},
+    "barinas": {"capital": "Barinas", "iso": "VE-E",
+                "ciudades": ["Barinas", "Barinitas", "Socopó", "Sabaneta", "Santa Bárbara", "Ciudad Bolivia"]},
+    "bolivar": {"capital": "Ciudad Bolívar", "iso": "VE-F",
+                "ciudades": ["Ciudad Bolívar", "Ciudad Guayana", "Upata", "Caicara del Orinoco", "Guasipati", "Tumeremo"]},
+    "carabobo": {"capital": "Valencia", "iso": "VE-G",
+                 "ciudades": ["Valencia", "Naguanagua", "San Diego", "Puerto Cabello", "Guacara", "Tocuyito"]},
+    "cojedes": {"capital": "San Carlos", "iso": "VE-H",
+                "ciudades": ["San Carlos", "Tinaquillo", "El Baúl", "Macapo", "El Pao", "Las Vegas"]},
+    "delta-amacuro": {"capital": "Tucupita", "iso": "VE-Y",
+                      "ciudades": ["Tucupita", "Pedernales", "Curiapo", "Sierra Imataca"]},
+    "falcon": {"capital": "Coro", "iso": "VE-I",
+               "ciudades": ["Coro", "Punto Fijo", "Tucacas", "Puerto Cumarebo", "Chichiriviche", "Churuguara"]},
+    "guarico": {"capital": "San Juan de los Morros", "iso": "VE-J",
+                "ciudades": ["San Juan de los Morros", "Calabozo", "Valle de la Pascua", "Zaraza", "Altagracia de Orituco", "Tucupido"]},
+    "lara": {"capital": "Barquisimeto", "iso": "VE-K",
+             "ciudades": ["Barquisimeto", "Cabudare", "Carora", "El Tocuyo", "Quíbor", "Duaca"]},
+    "merida": {"capital": "Mérida", "iso": "VE-L",
+               "ciudades": ["Mérida", "El Vigía", "Ejido", "Tovar", "Lagunillas", "Bailadores"]},
+    "miranda": {"capital": "Los Teques", "iso": "VE-M",
+                "ciudades": ["Los Teques", "Guarenas", "Guatire", "Petare", "Charallave", "Ocumare del Tuy"]},
+}
