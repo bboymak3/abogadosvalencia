@@ -415,6 +415,12 @@
         <priority>0.80</priority>
     </url>
     <url>
+        <loc>https://abogadosvalencia.pages.dev/informacion-legal/preguntas-frecuentes/</loc>
+        <lastmod>2026-10-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+    </url>
+    <url>
         <loc>https://abogadosvalencia.pages.dev/servicios/contratos/</loc>
         <lastmod>2026-10-21</lastmod>
         <changefreq>weekly</changefreq>
