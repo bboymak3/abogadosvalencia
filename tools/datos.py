@@ -39,6 +39,16 @@ SITIO = {
     "credito_prefijo_enlace": "Diseño por",
     "credito_enlace_texto": "makeseo.app",
     "credito_enlace_url": "https://makeseo.app",
+    # Perfil de Empresa en Google (botón flotante y ventana en todas las páginas)
+    "perfil_google_url": "https://maps.app.goo.gl/jhPNSiKzgENGFtFC7",
+    "perfil_google_lugar": "Barinas, Venezuela",
+    "perfil_google_texto": (
+        "Abogados Valencia ⚖️ es su aliado en trámites de notaría y registro en Barinas. "
+        "Nos especializamos en Derecho Civil y Familia: divorcios, protección ante el Tribunal Tercero de "
+        "Menores de Barinas, redacción de documentos, poderes, ventas de vehículos y gestiones ante el "
+        "Registro Civil, mercantil e inmobiliario. También asesoramos en actas, sucesiones y herencias, con "
+        "seguridad jurídica y atención profesional. Consulte horario, ubicación y opiniones en nuestro perfil de Google."
+    ),
 }
 
 # ---------------------------------------------------------------------------

@@ -380,6 +380,78 @@ body {
     }
 }
 
+/* ---------- Perfil de Google: botón flotante y ventana ---------- */
+.perfil-google-float {
+    position: fixed;
+    right: calc(34px + var(--ios-safe-right));
+    bottom: calc(var(--cta-bar-h) + var(--ios-safe-bottom) + 94px);
+    z-index: 1035;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s;
+}
+
+.perfil-google-float i,
+.perfil-google .modal-title i {
+    background: conic-gradient(from -45deg, #ea4335 0 25%, #4285f4 0 50%, #34a853 0 75%, #fbbc05 0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.perfil-google-float:hover {
+    transform: scale(1.08);
+}
+
+@media (max-width: 991.98px) {
+    /* En móvil el WhatsApp flotante se oculta: el botón queda sobre la barra */
+    .perfil-google-float {
+        right: calc(16px + var(--ios-safe-right));
+        bottom: calc(var(--cta-bar-h) + var(--ios-safe-bottom) + 16px);
+    }
+}
+
+.perfil-google .modal-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0;
+    color: #111;
+}
+
+.perfil-google-lugar {
+    font-size: 0.8rem;
+    color: rgba(60, 60, 67, 0.6);
+    margin-bottom: 0.5rem;
+}
+
+.perfil-google-texto {
+    font-size: 0.95rem;
+    color: #333;
+    margin: 0;
+}
+
+.perfil-google-ir {
+    width: 100%;
+    background: #1a73e8;
+    border-color: #1a73e8;
+    color: #fff;
+    font-weight: 600;
+}
+
+.perfil-google-ir:hover,
+.perfil-google-ir:focus {
+    background: #1765cc;
+    color: #fff;
+}
+
 /* ---------- Crédito del pie de página ---------- */
 .site-credit {
     background: #111;
