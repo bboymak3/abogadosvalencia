@@ -183,11 +183,11 @@ def credito():
 
 MENU_DESKTOP = (
     '                <a href="/saren-en-linea/" class="nav-link">SAREN en línea</a>\n'
-    '                <a href="/abogados/" class="nav-link">Municipios</a>'
+    '                <a href="/abogados/" class="nav-link">Municipios de Carabobo</a>'
 )
 MENU_MOVIL = (
     '        <a href="/saren-en-linea/" class="mobile-nav-link">SAREN en línea</a>\n'
-    '        <a href="/abogados/" class="mobile-nav-link">Municipios</a>'
+    '        <a href="/abogados/" class="mobile-nav-link">Municipios de Carabobo</a>'
 )
 
 
@@ -1037,7 +1037,7 @@ def pagina_404():
               '                <p class="lp-lead">La dirección que buscas no existe o cambió. Puedes volver al inicio o escribirnos directamente.</p>\n'
               '                <div class="lp-botones justify-content-center">\n'
               '                    <a href="/" class="btn btn-primary btn-lg"><i class="fas fa-home me-2"></i>Ir al inicio</a>\n'
-              '                    <a href="/abogados/" class="btn btn-outline-light btn-lg">Municipios</a>\n'
+              '                    <a href="/abogados/" class="btn btn-outline-light btn-lg">Municipios de Carabobo</a>\n'
               '                    <a href="/saren-en-linea/" class="btn btn-outline-light btn-lg">SAREN en línea</a>\n'
               '                </div>\n'
               '            </div>\n        </header>')
