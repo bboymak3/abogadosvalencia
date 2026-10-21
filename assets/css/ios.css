@@ -419,6 +419,11 @@ body {
     }
 }
 
+/* Con el menú móvil abierto, el botón no tapa sus enlaces */
+.mobile-menu.active ~ .perfil-google-float {
+    display: none;
+}
+
 .perfil-google .modal-title {
     font-size: 1.15rem;
     font-weight: 700;

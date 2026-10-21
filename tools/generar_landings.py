@@ -209,11 +209,13 @@ def credito():
 
 MENU_DESKTOP = (
     '                <a href="/saren-en-linea/" class="nav-link">SAREN en línea</a>\n'
-    '                <a href="/abogados/" class="nav-link">Municipios de Carabobo</a>'
+    '                <a href="/abogados/" class="nav-link">Municipios de Carabobo</a>\n'
+    '                <a href="/preguntas-y-respuestas/" class="nav-link">Preguntas y respuestas</a>'
 )
 MENU_MOVIL = (
     '        <a href="/saren-en-linea/" class="mobile-nav-link">SAREN en línea</a>\n'
-    '        <a href="/abogados/" class="mobile-nav-link">Municipios de Carabobo</a>'
+    '        <a href="/abogados/" class="mobile-nav-link">Municipios de Carabobo</a>\n'
+    '        <a href="/preguntas-y-respuestas/" class="mobile-nav-link">Preguntas y respuestas</a>'
 )
 
 
