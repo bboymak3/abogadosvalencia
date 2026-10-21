@@ -329,27 +329,14 @@ def faq_portada(doc):
 
 
 def secciones_portada():
-    items = "\n".join(
-        '                    <li><a href="%s">%s<small>%s</small></a></li>' % (url_mun(m), e(m["nombre"]), e(m["capital"]))
-        for m in MUNICIPIOS)
-    municipios = (
-        '    <section class="py-4 home-municipios" id="municipios">\n'
-        '        <div class="container">\n'
-        '            <details class="mun-plegable">\n'
-        '                <summary><span><i class="fas fa-map-marker-alt me-2"></i>Atendemos en los siguientes municipios de %s</span><span class="mun-contador">%d</span></summary>\n'
-        '                <ul class="mun-lista">\n%s\n                </ul>\n'
-        '                <p class="mun-pie"><a href="/abogados/">Ver todos los municipios y parroquias</a></p>\n'
-        '            </details>\n'
-        '        </div>\n'
-        '    </section>' % (e(ESTADO), len(MUNICIPIOS), items))
     estados = list(ESTADOS_MUNICIPIOS.items()) + [(slugify(ESTADO), (ESTADO, MUNICIPIOS))]
     estados.sort(key=lambda x: slugify(x[1][0]))
     items_est = "\n".join(
         '                    <li><a href="/estados/%s/">%s<small>%d municipios</small></a></li>'
         % (slug, e(nombre), len(MUNICIPIOS) if slug == slugify(ESTADO) else len(lista))
         for slug, (nombre, lista) in estados)
-    municipios += (
-        '\n\n    <section class="pb-4 home-municipios" id="estados-atendidos">\n'
+    municipios = (
+        '    <section class="py-4 home-municipios" id="estados-atendidos">\n'
         '        <div class="container">\n'
         '            <details class="mun-plegable">\n'
         '                <summary><span><i class="fas fa-map me-2"></i>Atendemos en los siguientes estados de Venezuela</span><span class="mun-contador">%d</span></summary>\n'
@@ -380,15 +367,66 @@ def secciones_portada():
     return saren, municipios
 
 
+def bloque_ubicacion():
+    """Hueco que assets/js/ubicacion.js rellena con la página del estado del visitante."""
+    return ('    <section class="py-3 home-ubicacion" id="tu-estado" hidden>\n'
+            '        <div class="container">\n'
+            '            <a class="ubicacion-card" href="#">\n'
+            '                <i class="fas fa-location-dot"></i>\n'
+            '                <span><small>Te conectas desde</small><strong class="ubicacion-estado"></strong></span>\n'
+            '                <span class="ubicacion-ir">Ver tu estado</span>\n'
+            '            </a>\n'
+            '        </div>\n'
+            '    </section>\n'
+            '    <script src="/assets/js/ubicacion.js" defer></script>')
+
+
+def ubicacion_js():
+    """Genera assets/js/ubicacion.js con los estados que tienen página."""
+    mapa = {}
+    for slug in sorted(ESTADOS_INFO):
+        nombre = ESTADO if slug == slugify(ESTADO) else ESTADOS_MUNICIPIOS[slug][0]
+        mapa[ESTADOS_INFO[slug]["iso"].split("-")[1]] = {"slug": slug, "nombre": nombre}
+    escribir(os.path.join(RAIZ, "assets", "js", "ubicacion.js"), """// Generado por tools/generar_landings.py
+// Muestra en la portada un acceso a la página del estado desde el que se
+// conecta el visitante. La ubicación la da Cloudflare (functions/api/ubicacion.js).
+// No redirige: si no hay datos o el estado no tiene página, no se muestra nada.
+(function () {
+    var ESTADOS = %s;
+    var NOMBRES = {};
+    Object.keys(ESTADOS).forEach(function (k) { NOMBRES[normalizar(ESTADOS[k].nombre)] = ESTADOS[k]; });
+
+    function normalizar(t) {
+        return (t || "").normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLowerCase().replace(/^estado\\s+/, "").trim();
+    }
+
+    var caja = document.getElementById("tu-estado");
+    if (!caja || !window.fetch) return;
+
+    fetch("/api/ubicacion", { headers: { "Accept": "application/json" } })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) {
+            if (!d || d.pais !== "VE") return;
+            var estado = ESTADOS[(d.codigoRegion || "").toUpperCase()] || NOMBRES[normalizar(d.region)];
+            if (!estado) return;
+            var enlace = caja.querySelector(".ubicacion-card");
+            enlace.href = "/estados/" + estado.slug + "/";
+            caja.querySelector(".ubicacion-estado").textContent = estado.nombre;
+            caja.hidden = false;
+            if (window.gtag) gtag("event", "ubicacion_estado", { estado: estado.slug });
+        })
+        .catch(function () {});
+})();
+""" % json.dumps(mapa, ensure_ascii=False))
+
+
 def jsonld_portada(doc):
-    area = [lugar_estado()] + [
-        {"@type": "City", "name": m["capital"],
-         "containedInPlace": {"@type": "AdministrativeArea", "name": "Municipio %s, %s" % (m["nombre"], ESTADO)}}
-        for m in MUNICIPIOS
-    ]
-    grafo = [organizacion(), sitio_web(), servicio_legal(area),
+    pais = {"@type": "Country", "name": SITIO["pais"]}
+    estados = [{"@type": "AdministrativeArea", "name": "Estado %s" % (ESTADO if k == slugify(ESTADO) else ESTADOS_MUNICIPIOS[k][0]),
+                "containedInPlace": pais} for k in sorted(ESTADOS_INFO)]
+    grafo = [organizacion(), sitio_web(), servicio_legal([pais] + estados),
              {"@type": "Service", "name": DESTACADO, "serviceType": "Gestión de trámites ante registros y notarías",
-              "provider": {"@id": LEGAL_ID}, "areaServed": lugar_estado(), "url": DOM + "/saren-en-linea/"},
+              "provider": {"@id": LEGAL_ID}, "areaServed": pais, "url": DOM + "/saren-en-linea/"},
              faq_ld(faq_portada(doc))]
     return jsonld({"@context": "https://schema.org", "@graph": grafo})
 
@@ -464,7 +502,7 @@ def aplicar_capa_global():
         if slug_estado and slug_estado != slugify(ESTADO) and slug_estado not in ESTADOS_MUNICIPIOS:
             slug_estado = None
         if es_portada:
-            lugar, region = "Valencia, %s, %s" % (ESTADO, SITIO["pais"]), None
+            lugar, region = SITIO["pais"], "VE"
         elif slug_estado:
             nombre_est = ESTADO if slug_estado == slugify(ESTADO) else ESTADOS_MUNICIPIOS[slug_estado][0]
             lugar = "%s, %s, %s" % (ESTADOS_INFO[slug_estado]["capital"], nombre_est, SITIO["pais"])
@@ -485,6 +523,7 @@ def aplicar_capa_global():
         if es_portada:
             saren, municipios = secciones_portada()
             doc = poner_bloque(doc, "portada-saren", saren, r"[ \t]*<!-- Services Section -->", sangria="    ")
+            doc = poner_bloque(doc, "portada-ubicacion", bloque_ubicacion(), r"[ \t]*<!-- AÑADIDO:portada-saren -->", sangria="    ")
             doc = poner_bloque(doc, "portada-zonas", municipios, r"[ \t]*<!-- About Section -->", sangria="    ")
             doc = poner_bloque(doc, "portada-guia", bloque_guia_portada(), r"[ \t]*<!-- Footer -->", sangria="    ")
         if slug_estado:
@@ -884,7 +923,7 @@ def detalles(frag, faq=False):
     """Bloques <details class="guia-item"> del fragmento: (id, título, html)."""
     res = []
     for m in re.finditer(r'<details class="guia-item" id="([^"]+)"( data-faq)?>\s*<summary>(.*?)</summary>.*?</details>', frag, re.S):
-        if bool(m.group(2)) == faq:
+        if faq is None or bool(m.group(2)) == faq:
             res.append((m.group(1), m.group(3), m.group(0)))
     return res
 
@@ -892,12 +931,17 @@ def detalles(frag, faq=False):
 def guia_partes():
     abogado = leer_fragmento("que-es-un-abogado.html")
     directorio = leer_fragmento("guia-legal.html")
+    exterior = leer_fragmento("documentos-exterior.html")
+    ext = re.search(r'<p class="guia-intro" data-titulo="([^"]+)">(.*?)</p>', exterior, re.S)
     intro = re.search(r'<p class="guia-intro" data-titulo="([^"]+)">(.*?)</p>', abogado, re.S)
     nota = re.search(r'<p class="guia-nota">.*?</p>', abogado, re.S).group(0)
     return {
         "abogado_titulo": intro.group(1), "abogado_intro": intro.group(2), "abogado_nota": nota,
         "abogado": detalles(abogado), "faq": detalles(abogado, faq=True),
         "directorio": detalles(directorio),
+        "exterior_titulo": ext.group(1), "exterior_intro": ext.group(2),
+        "exterior": detalles(exterior, faq=None), "exterior_faq": detalles(exterior, faq=True),
+        "exterior_nota": re.search(r'<p class="guia-nota">.*?</p>', exterior, re.S).group(0),
         "directorio_nota": re.search(r'<p class="guia-nota">.*?</p>', directorio, re.S).group(0),
     }
 
@@ -906,7 +950,7 @@ def bloque_guia_portada():
     """Acceso compacto (plegado) a la guía legal, justo antes del pie de la portada."""
     g = guia_partes()
     items = ([(i, t) for i, t, _ in g["abogado"]] + [("preguntas-abogado", "❓ Preguntas frecuentes sobre abogados")] +
-             [(i, t) for i, t, _ in g["directorio"]])
+             [(i, t) for i, t, _ in g["exterior"]] + [(i, t) for i, t, _ in g["directorio"]])
     lis = "\n".join('                    <li><a href="%s#%s">%s</a></li>' % (GUIA_URL, i, t) for i, t in items)
     return ('    <section class="pb-4 home-municipios" id="guia-legal">\n'
             '        <div class="container">\n'
@@ -922,17 +966,17 @@ def bloque_guia_portada():
 def pagina_guia_legal():
     ruta = GUIA_URL
     titulo = "Qué es un Abogado, Preguntas Frecuentes y Guía Legal | %s" % SITIO["nombre"]
-    desc = ("Qué es un abogado y qué casos resuelve, preguntas frecuentes (visado, secreto profesional) y guía de áreas: "
-            "civil, familia, mercantil, agrario, penal, SAREN, notarías e INTT.")
+    desc = ("Qué es un abogado, preguntas frecuentes, copia certificada vs. legalización de documentos para el exterior "
+            "y guía de áreas: civil, familia, mercantil, penal, SAREN y notarías.")
     g = guia_partes()
     migas = [("Inicio", "/"), ("Preguntas frecuentes y guía legal", ruta)]
     fila = lambda i, t: '                    <a class="ios-row" href="#%s"><span>%s</span></a>' % (i, t)
     indice = "\n".join([fila(i, t) for i, t, _ in g["abogado"]] + [fila("preguntas-abogado", "❓ Preguntas frecuentes sobre abogados")] +
-                       [fila(i, t) for i, t, _ in g["directorio"]])
+                       [fila("documentos-exterior", "🌍 " + g["exterior_titulo"])] + [fila(i, t) for i, t, _ in g["directorio"]])
     bloques = lambda lista: "\n".join(h for _, _, h in lista)
     faq_pares = [(html.unescape(re.sub(r"<[^>]+>", "", t)).strip(),
                   html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", re.search(r'<div class="guia-cuerpo">(.*)</div>', h, re.S).group(1)))).strip())
-                 for _, t, h in g["faq"]]
+                 for _, t, h in g["faq"] + g["exterior_faq"]]
     cuerpo = "\n\n".join([
         html_migas(migas),
         '        <header class="lp-hero">\n            <div class="container">\n'
@@ -951,12 +995,17 @@ def pagina_guia_legal():
         '                <div class="guia">\n%s\n                </div>\n'
         '                <h2 class="lp-h2 text-start mt-5" id="preguntas-abogado">Preguntas frecuentes sobre abogados</h2>\n'
         '                <div class="guia">\n%s\n                </div>\n'
+        '                <h2 class="lp-h2 text-start mt-5" id="documentos-exterior">%s</h2>\n'
+        '                <p>%s</p>\n'
+        '                <div class="guia">\n%s\n                </div>\n'
         '                <h2 class="lp-h2 text-start mt-5" id="areas-y-tramites">Áreas del derecho y trámites</h2>\n'
         '                <div class="guia">\n%s\n                </div>\n'
         '                %s\n'
         '                %s\n'
+        '                %s\n'
         '            </div>\n        </section>' % (indice, g["abogado_titulo"], g["abogado_intro"], bloques(g["abogado"]),
-                                                    bloques(g["faq"]), bloques(g["directorio"]), g["directorio_nota"], g["abogado_nota"]),
+                                                    bloques(g["faq"]), g["exterior_titulo"], g["exterior_intro"], bloques(g["exterior"]),
+                                                    bloques(g["directorio"]), g["directorio_nota"], g["abogado_nota"], g["exterior_nota"]),
         html_cta_final(ESTADO),
         '        <script>\n'
         '        // Abre la categoría enlazada desde la portada (#derecho-penal, etc.)\n'
@@ -1127,6 +1176,7 @@ def main():
         for p in m["parroquias"]:
             creadas.append(landing(m, p))
     pagina_404()
+    ubicacion_js()
     manifest()
     headers()
     urls = sitemap()
