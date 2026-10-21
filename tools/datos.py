@@ -26,7 +26,7 @@ SITIO = {
     "pais": "Venezuela",
     "codigo_region": "VE-G",  # ISO 3166-2 del estado Carabobo
     "logo": "/images/logo-abogados-en-venezuela-apure-barinas-valencia-caracas-zulia-lara-servicios-saren-en-linea.jpg",
-    "imagen_og": "/images/logo-abogados-en-venezuela-apure-barinas-valencia-caracas-zulia-lara-servicios-saren-en-linea.jpg",
+    "imagen_og": "/images/abogados-valencia-og.jpg",  # 1200x630 para vistas previas al compartir
     "theme_color": "#000000",
     # Horario publicado en la sección de contacto de la portada
     "horario": [
