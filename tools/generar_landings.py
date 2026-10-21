@@ -33,7 +33,8 @@ from urllib.parse import quote
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from datos import (SITIO, MUNICIPIOS, SERVICIOS, SAREN_TRAMITES,  # noqa: E402
                    SAREN_RECAUDOS, SAREN_PASOS, SAREN_FAQ, INTROS_A, INTROS_B,
-                   INTROS_C, FAQ_LOCAL, PASOS_LANDING, ESTADOS_MUNICIPIOS)
+                   INTROS_C, FAQ_LOCAL, PASOS_LANDING, ESTADOS_MUNICIPIOS,
+                   ESTADOS_INFO)
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOM = SITIO["dominio"].rstrip("/")
@@ -124,7 +125,7 @@ def url_par(m, p):
 # ---------------------------------------------------------------------------
 # Fragmentos comunes
 # ---------------------------------------------------------------------------
-def head_extra(titulo, descripcion, canonical, lugar=None, tipo_og="website"):
+def head_extra(titulo, descripcion, canonical, lugar=None, tipo_og="website", region=None):
     """Metaetiquetas añadidas (PWA, iOS, OG, Twitter, geo) y la capa iOS."""
     img = DOM + SITIO["imagen_og"]
     placename = lugar or "%s, %s" % (ESTADO, SITIO["pais"])
@@ -153,7 +154,7 @@ def head_extra(titulo, descripcion, canonical, lugar=None, tipo_og="website"):
         '<meta name="twitter:title" content="%s">' % e(titulo),
         '<meta name="twitter:description" content="%s">' % e(descripcion),
         '<meta name="twitter:image" content="%s">' % e(img),
-        '<meta name="geo.region" content="%s">' % SITIO["codigo_region"],
+        '<meta name="geo.region" content="%s">' % (region or SITIO["codigo_region"]),
         '<meta name="geo.placename" content="%s">' % e(placename),
         '<link rel="stylesheet" href="/assets/css/ios.css">',
     ]
@@ -392,6 +393,31 @@ def jsonld_portada(doc):
     return jsonld({"@context": "https://schema.org", "@graph": grafo})
 
 
+def jsonld_estado(doc, slug, titulo, descripcion, canonical):
+    """Datos estructurados de una página de estado ya existente."""
+    if slug == slugify(ESTADO):
+        nombre, muns = ESTADO, [(m["nombre"], m["capital"]) for m in MUNICIPIOS]
+    else:
+        nombre, muns = ESTADOS_MUNICIPIOS[slug]
+    estado = {"@type": "AdministrativeArea", "name": "Estado %s" % nombre,
+              "containedInPlace": {"@type": "Country", "name": SITIO["pais"]},
+              "containsPlace": [{"@type": "AdministrativeArea", "name": "Municipio %s" % m} for m, _ in muns]}
+    grafo = [
+        {"@type": "WebPage", "@id": canonical + "#webpage", "url": canonical, "name": titulo,
+         "description": descripcion, "inLanguage": "es-VE", "isPartOf": {"@id": WEB_ID},
+         "breadcrumb": {"@id": canonical + "#breadcrumb"}},
+        organizacion(),
+        servicio_legal(estado),
+        {"@type": "Service", "name": "Trámites legales en %s" % nombre,
+         "serviceType": "Gestión de trámites ante SAREN, Registro Civil y notarías",
+         "provider": {"@id": LEGAL_ID}, "areaServed": {"@type": "AdministrativeArea", "name": "Estado %s" % nombre},
+         "url": canonical},
+        dict(migas_ld([("Inicio", "/"), ("Estado %s" % nombre, "/estados/%s/" % slug)]), **{"@id": canonical + "#breadcrumb"}),
+        faq_ld(faq_portada(doc)),
+    ]
+    return jsonld({"@context": "https://schema.org", "@graph": grafo})
+
+
 def mensaje_pagina(doc):
     t = re.split(r"\s[|–-]\s", titulo_doc(doc))[0].strip()
     return "Hola, vengo de la página web (%s) y necesito asesoría legal" % t
@@ -433,16 +459,25 @@ def aplicar_capa_global():
         titulo = titulo_doc(doc)
         descripcion = meta(doc, "description")
         canonical = canonical_doc(doc)
-        cabecera = head_extra(titulo, descripcion, canonical,
-                              lugar="Valencia, %s, %s" % (ESTADO, SITIO["pais"]) if es_portada else None)
         rel = os.path.relpath(ruta, RAIZ).replace(os.sep, "/")
         slug_estado = rel.split("/")[1] if rel.startswith("estados/") else None
         if slug_estado and slug_estado != slugify(ESTADO) and slug_estado not in ESTADOS_MUNICIPIOS:
             slug_estado = None
+        if es_portada:
+            lugar, region = "Valencia, %s, %s" % (ESTADO, SITIO["pais"]), None
+        elif slug_estado:
+            nombre_est = ESTADO if slug_estado == slugify(ESTADO) else ESTADOS_MUNICIPIOS[slug_estado][0]
+            lugar = "%s, %s, %s" % (ESTADOS_INFO[slug_estado]["capital"], nombre_est, SITIO["pais"])
+            region = ESTADOS_INFO[slug_estado]["iso"]
+        else:
+            lugar, region = None, None
+        cabecera = head_extra(titulo, descripcion, canonical, lugar=lugar, region=region)
         if es_portada or slug_estado:
             cabecera += '\n    <link rel="stylesheet" href="/assets/css/landings.css">'
         if es_portada:
             cabecera += "\n    " + jsonld_portada(doc).replace("\n", "\n    ")
+        if slug_estado:
+            cabecera += "\n    " + jsonld_estado(doc, slug_estado, titulo, descripcion, canonical).replace("\n", "\n    ")
         # Después de la hoja de estilos propia, para que ios.css cargue la última
         doc = poner_bloque(doc, "cabecera", cabecera, r'<link rel="stylesheet" href="styles.css">[ \t]*\n', antes=False, sangria="    ")
         doc = poner_bloque(doc, "menu-escritorio", MENU_DESKTOP, r"[ \t]*<!-- WhatsApp -->", sangria="                ")
