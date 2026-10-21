@@ -297,7 +297,7 @@ def howto_ld(nombre, pasos):
 def paginas_existentes():
     res = []
     for base, dirs, archivos in os.walk(RAIZ):
-        dirs[:] = [d for d in dirs if not d.startswith(".") and d not in ("node_modules", "tools", "abogados", "saren-en-linea", "assets")]
+        dirs[:] = [d for d in dirs if not d.startswith(".") and d not in ("node_modules", "tools", "abogados", "saren-en-linea", "assets", "informacion-legal")]
         if "index.html" in archivos:
             res.append(os.path.join(base, "index.html"))
     return sorted(res)
@@ -486,6 +486,7 @@ def aplicar_capa_global():
             saren, municipios = secciones_portada()
             doc = poner_bloque(doc, "portada-saren", saren, r"[ \t]*<!-- SECCIÓN INTEGRADA 1: GUÍA LEGAL", sangria="    ")
             doc = poner_bloque(doc, "portada-zonas", municipios, r"[ \t]*<!-- About Section -->", sangria="    ")
+            doc = poner_bloque(doc, "portada-guia", bloque_guia_portada(), r"[ \t]*<!-- Footer -->", sangria="    ")
         if slug_estado:
             doc = poner_bloque(doc, "estado-municipios", bloque_estado(slug_estado), r"[ \t]*<!-- Complete Services List -->", sangria="    ")
         pie = cta_bar(mensaje_pagina(original)) + "\n" + credito()
@@ -871,6 +872,76 @@ def landing_saren():
     return ruta
 
 
+GUIA_URL = "/informacion-legal/preguntas-frecuentes/"
+
+
+def guia_items():
+    """(id, título) de cada categoría de tools/fragmentos/guia-legal.html."""
+    frag = leer(os.path.join(RAIZ, "tools", "fragmentos", "guia-legal.html"))
+    return frag, re.findall(r'<details class="guia-item" id="([^"]+)">\s*<summary>(.*?)</summary>', frag, re.S)
+
+
+def bloque_guia_portada():
+    """Acceso compacto (plegado) a la guía legal, justo antes del pie de la portada."""
+    _, items = guia_items()
+    lis = "\n".join('                    <li><a href="%s#%s">%s</a></li>' % (GUIA_URL, i, t) for i, t in items)
+    return ('    <section class="pb-4 home-municipios" id="guia-legal">\n'
+            '        <div class="container">\n'
+            '            <details class="mun-plegable">\n'
+            '                <summary><span><i class="fas fa-book me-2"></i>Guía legal: áreas y trámites</span><span class="mun-contador">%d</span></summary>\n'
+            '                <ul class="mun-lista">\n%s\n                </ul>\n'
+            '                <p class="mun-pie"><a href="%s">Ver la guía y las preguntas frecuentes</a></p>\n'
+            '            </details>\n'
+            '        </div>\n'
+            '    </section>' % (len(items), lis, GUIA_URL))
+
+
+def pagina_guia_legal():
+    ruta = GUIA_URL
+    titulo = "Preguntas Frecuentes y Guía Legal: Áreas y Trámites | %s" % SITIO["nombre"]
+    desc = ("Guía legal de Abogados Valencia: derecho civil y familiar, mercantil, agrario y penal, documentos legales, "
+            "trámites SAREN y notarías, y licencia de conducir (INTT).")
+    frag, items = guia_items()
+    frag = re.sub(r"<!--.*?-->\s*", "", frag, count=1, flags=re.S)
+    migas = [("Inicio", "/"), ("Preguntas frecuentes y guía legal", ruta)]
+    indice = "\n".join('                    <a class="ios-row" href="#%s"><span>%s</span></a>' % (i, t) for i, t in items)
+    cuerpo = "\n\n".join([
+        html_migas(migas),
+        '        <header class="lp-hero">\n            <div class="container">\n'
+        '                <h1>Preguntas frecuentes y guía legal</h1>\n'
+        '                <p class="lp-lead">Áreas del derecho y trámites que gestionamos, con lo que incluye cada uno y cómo podemos ayudarte.</p>\n'
+        '                <div class="lp-botones">\n'
+        '                    <a href="%s" class="btn btn-success btn-lg" target="_blank" rel="noopener"><i class="fab fa-whatsapp me-2"></i>Consultar por WhatsApp</a>\n'
+        '                    <a href="/#preguntas-frecuentes" class="btn btn-outline-light btn-lg">Preguntas de la portada</a>\n'
+        '                </div>\n'
+        '            </div>\n        </header>' % e(wa("Hola, vengo de la guía legal de la página web y tengo una duda")),
+        '        <section class="lp-seccion">\n            <div class="container lp-estrecho">\n'
+        '                <p class="ios-group-title">Contenido</p>\n'
+        '                <div class="ios-group">\n%s\n                </div>\n'
+        '                <div class="guia">\n%s\n                </div>\n'
+        '            </div>\n        </section>' % (indice, frag.strip()),
+        html_cta_final(ESTADO),
+        '        <script>\n'
+        '        // Abre la categoría enlazada desde la portada (#derecho-penal, etc.)\n'
+        '        function abrirGuia() {\n'
+        '            var d = location.hash && document.getElementById(location.hash.slice(1));\n'
+        '            if (d && d.tagName === "DETAILS") { d.open = true; d.scrollIntoView(); }\n'
+        '        }\n'
+        '        window.addEventListener("hashchange", abrirGuia);\n'
+        '        document.addEventListener("DOMContentLoaded", abrirGuia);\n'
+        '        </script>',
+    ])
+    grafo = [
+        {"@type": "WebPage", "@id": DOM + ruta + "#webpage", "url": DOM + ruta, "name": titulo,
+         "description": desc, "inLanguage": "es-VE", "isPartOf": {"@id": WEB_ID}},
+        organizacion(),
+        migas_ld(migas),
+    ]
+    escribir(os.path.join(RAIZ, ruta.strip("/"), "index.html"),
+             pagina(titulo, desc, ruta, cuerpo, grafo, "Hola, vengo de la guía legal de la página web y tengo una duda"))
+    return ruta
+
+
 def pagina_404():
     titulo = "Página no encontrada | %s" % SITIO["nombre"]
     desc = "La página que buscas no existe o cambió de dirección."
@@ -1012,7 +1083,7 @@ def main():
     global MENU, PIE, SNIPPET_WA
     aplicar_capa_global()
     MENU, PIE, SNIPPET_WA = extraer_menu_y_pie()
-    creadas = [indice_abogados(), landing_saren()]
+    creadas = [indice_abogados(), landing_saren(), pagina_guia_legal()]
     for m in MUNICIPIOS:
         creadas.append(landing(m))
         for p in m["parroquias"]:

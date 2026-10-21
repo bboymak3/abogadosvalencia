@@ -454,3 +454,74 @@
     font-weight: 400;
     font-size: 0.75rem;
 }
+
+/* ---------- Guía legal (/informacion-legal/preguntas-frecuentes/) ---------- */
+.guia {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.guia-item {
+    background: #fff;
+    border-radius: 14px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    scroll-margin-top: 110px;
+}
+
+.guia-item > summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 1.1rem;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #111;
+}
+
+.guia-item > summary::-webkit-details-marker {
+    display: none;
+}
+
+.guia-item > summary::after {
+    content: "+";
+    color: #8a6d1f;
+}
+
+.guia-item[open] > summary::after {
+    content: "\2212";
+}
+
+.guia-cuerpo {
+    padding: 0 1.1rem 1rem;
+    font-size: 0.95rem;
+    color: #333;
+    border-top: 0.5px solid rgba(60, 60, 67, 0.18);
+}
+
+.guia-cuerpo > div,
+.guia-cuerpo > p {
+    margin: 0.6rem 0;
+}
+
+.guia-cuerpo h5 {
+    font-size: 1rem;
+    margin: 0.8rem 0 0.4rem;
+    color: #111;
+}
+
+.guia-cuerpo ul {
+    padding-left: 1.2rem;
+    margin-bottom: 0.6rem;
+}
+
+.guia-nota {
+    font-size: 0.85rem;
+    color: #666;
+    text-align: center;
+    margin-top: 1rem;
+}
