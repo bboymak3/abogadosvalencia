@@ -33,7 +33,7 @@ from urllib.parse import quote
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from datos import (SITIO, MUNICIPIOS, SERVICIOS, SAREN_TRAMITES,  # noqa: E402
                    SAREN_RECAUDOS, SAREN_PASOS, SAREN_FAQ, INTROS_A, INTROS_B,
-                   INTROS_C, FAQ_LOCAL, PASOS_LANDING)
+                   INTROS_C, FAQ_LOCAL, PASOS_LANDING, ESTADOS_MUNICIPIOS)
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOM = SITIO["dominio"].rstrip("/")
@@ -341,6 +341,22 @@ def secciones_portada():
         '            </details>\n'
         '        </div>\n'
         '    </section>' % (e(ESTADO), len(MUNICIPIOS), items))
+    estados = list(ESTADOS_MUNICIPIOS.items()) + [(slugify(ESTADO), (ESTADO, MUNICIPIOS))]
+    estados.sort(key=lambda x: slugify(x[1][0]))
+    items_est = "\n".join(
+        '                    <li><a href="/estados/%s/">%s<small>%d municipios</small></a></li>'
+        % (slug, e(nombre), len(MUNICIPIOS) if slug == slugify(ESTADO) else len(lista))
+        for slug, (nombre, lista) in estados)
+    municipios += (
+        '\n\n    <section class="pb-4 home-municipios" id="estados-atendidos">\n'
+        '        <div class="container">\n'
+        '            <details class="mun-plegable">\n'
+        '                <summary><span><i class="fas fa-map me-2"></i>Atendemos en los siguientes estados de Venezuela</span><span class="mun-contador">%d</span></summary>\n'
+        '                <ul class="mun-lista">\n%s\n                </ul>\n'
+        '                <p class="mun-pie">En la página de cada estado encontrarás la lista de sus municipios.</p>\n'
+        '            </details>\n'
+        '        </div>\n'
+        '    </section>' % (len(estados), items_est))
 
     items_saren = "\n".join(
         '                        <li><i class="fas fa-check-circle"></i> %s</li>' % e(t) for t, _ in SAREN_TRAMITES[:6])
@@ -381,6 +397,34 @@ def mensaje_pagina(doc):
     return "Hola, vengo de la página web (%s) y necesito asesoría legal" % t
 
 
+def bloque_estado(slug):
+    """Municipios del estado, plegados, para su página /estados/<slug>/."""
+    if slug == slugify(ESTADO):
+        nombre = ESTADO
+        items = "\n".join(
+            '                    <li><a href="%s">%s<small>%s</small></a></li>' % (url_mun(m), e(m["nombre"]), e(m["capital"]))
+            for m in MUNICIPIOS)
+        total = len(MUNICIPIOS)
+        pie = '<a href="/abogados/">Ver todos los municipios y parroquias de %s</a>' % e(ESTADO)
+    else:
+        nombre, lista = ESTADOS_MUNICIPIOS[slug]
+        items = "\n".join(
+            '                    <li><span class="mun-chip">%s<small>%s</small></span></li>' % (e(m), e(c)) for m, c in lista)
+        total = len(lista)
+        pie = '<a href="%s" target="_blank" rel="noopener"><i class="fab fa-whatsapp me-1"></i>Consultar por WhatsApp en mi municipio</a>' % e(
+            wa("Hola, vengo de la página web y necesito un abogado en mi municipio del estado %s" % nombre))
+    return (
+        '    <section class="py-4 home-municipios" id="municipios-%s">\n'
+        '        <div class="container">\n'
+        '            <details class="mun-plegable">\n'
+        '                <summary><span><i class="fas fa-map-marker-alt me-2"></i>Atendemos en los siguientes municipios del estado %s</span><span class="mun-contador">%d</span></summary>\n'
+        '                <ul class="mun-lista">\n%s\n                </ul>\n'
+        '                <p class="mun-pie">%s</p>\n'
+        '            </details>\n'
+        '        </div>\n'
+        '    </section>' % (slug, e(nombre), total, items, pie))
+
+
 def aplicar_capa_global():
     for ruta in paginas_existentes():
         doc = leer(ruta)
@@ -391,8 +435,13 @@ def aplicar_capa_global():
         canonical = canonical_doc(doc)
         cabecera = head_extra(titulo, descripcion, canonical,
                               lugar="Valencia, %s, %s" % (ESTADO, SITIO["pais"]) if es_portada else None)
-        if es_portada:
+        rel = os.path.relpath(ruta, RAIZ).replace(os.sep, "/")
+        slug_estado = rel.split("/")[1] if rel.startswith("estados/") else None
+        if slug_estado and slug_estado != slugify(ESTADO) and slug_estado not in ESTADOS_MUNICIPIOS:
+            slug_estado = None
+        if es_portada or slug_estado:
             cabecera += '\n    <link rel="stylesheet" href="/assets/css/landings.css">'
+        if es_portada:
             cabecera += "\n    " + jsonld_portada(doc).replace("\n", "\n    ")
         # Después de la hoja de estilos propia, para que ios.css cargue la última
         doc = poner_bloque(doc, "cabecera", cabecera, r'<link rel="stylesheet" href="styles.css">[ \t]*\n', antes=False, sangria="    ")
@@ -402,6 +451,8 @@ def aplicar_capa_global():
             saren, municipios = secciones_portada()
             doc = poner_bloque(doc, "portada-saren", saren, r"[ \t]*<!-- SECCIÓN INTEGRADA 1: GUÍA LEGAL", sangria="    ")
             doc = poner_bloque(doc, "portada-zonas", municipios, r"[ \t]*<!-- About Section -->", sangria="    ")
+        if slug_estado:
+            doc = poner_bloque(doc, "estado-municipios", bloque_estado(slug_estado), r"[ \t]*<!-- Complete Services List -->", sangria="    ")
         pie = cta_bar(mensaje_pagina(original)) + "\n" + credito()
         ancla = r"[ \t]*<!-- WA_PAGE_ID_SNIPPET -->" if "<!-- WA_PAGE_ID_SNIPPET -->" in doc else r"[ \t]*</body>"
         doc = poner_bloque(doc, "barra-inferior", pie, ancla, sangria="    ")

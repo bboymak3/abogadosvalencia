@@ -229,3 +229,90 @@ PASOS_LANDING = [
     ("Presupuesto claro", "Conoces los honorarios y los aranceles oficiales antes de empezar."),
     ("Gestión y seguimiento", "Preparamos el trámite y te informamos de cada avance."),
 ]
+
+# ---------------------------------------------------------------------------
+# Municipios oficiales (y su capital) de los estados que ya tienen página en
+# /estados/<slug>/. Se muestran plegados en cada página de estado.
+# Carabobo usa MUNICIPIOS (arriba) y enlaza a sus landings.
+# ---------------------------------------------------------------------------
+ESTADOS_MUNICIPIOS = {
+    "amazonas": ("Amazonas", [
+        ("Alto Orinoco", "La Esmeralda"), ("Atabapo", "San Fernando de Atabapo"), ("Atures", "Puerto Ayacucho"),
+        ("Autana", "Isla Ratón"), ("Manapiare", "San Juan de Manapiare"), ("Maroa", "Maroa"),
+        ("Río Negro", "San Carlos de Río Negro")]),
+    "anzoategui": ("Anzoátegui", [
+        ("Anaco", "Anaco"), ("Aragua", "Aragua de Barcelona"), ("Diego Bautista Urbaneja", "Lechería"),
+        ("Fernando de Peñalver", "Puerto Píritu"), ("Francisco del Carmen Carvajal", "Valle de Guanape"),
+        ("Francisco de Miranda", "Pariaguán"), ("Guanta", "Guanta"), ("Independencia", "Soledad"),
+        ("José Gregorio Monagas", "Mapire"), ("Juan Antonio Sotillo", "Puerto La Cruz"),
+        ("Juan Manuel Cajigal", "Onoto"), ("Libertad", "San Mateo"), ("Manuel Ezequiel Bruzual", "Clarines"),
+        ("Pedro María Freites", "Cantaura"), ("Píritu", "Píritu"), ("San José de Guanipa", "El Tigrito"),
+        ("San Juan de Capistrano", "Boca de Uchire"), ("Santa Ana", "Santa Ana"), ("Simón Bolívar", "Barcelona"),
+        ("Simón Rodríguez", "El Tigre"), ("Sir Arthur McGregor", "El Chaparro")]),
+    "apure": ("Apure", [
+        ("Achaguas", "Achaguas"), ("Biruaca", "Biruaca"), ("Muñoz", "Bruzual"), ("Páez", "Guasdualito"),
+        ("Pedro Camejo", "San Juan de Payara"), ("Rómulo Gallegos", "Elorza"), ("San Fernando", "San Fernando de Apure")]),
+    "aragua": ("Aragua", [
+        ("Bolívar", "San Mateo"), ("Camatagua", "Camatagua"), ("Francisco Linares Alcántara", "Santa Rita"),
+        ("Girardot", "Maracay"), ("José Ángel Lamas", "Santa Cruz"), ("José Félix Ribas", "La Victoria"),
+        ("José Rafael Revenga", "El Consejo"), ("Libertador", "Palo Negro"), ("Mario Briceño Iragorry", "El Limón"),
+        ("Ocumare de la Costa de Oro", "Ocumare de la Costa"), ("San Casimiro", "San Casimiro"),
+        ("San Sebastián", "San Sebastián"), ("Santiago Mariño", "Turmero"), ("Santos Michelena", "Las Tejerías"),
+        ("Sucre", "Cagua"), ("Tovar", "Colonia Tovar"), ("Urdaneta", "Barbacoas"), ("Zamora", "Villa de Cura")]),
+    "barinas": ("Barinas", [
+        ("Alberto Arvelo Torrealba", "Sabaneta"), ("Andrés Eloy Blanco", "El Cantón"),
+        ("Antonio José de Sucre", "Socopó"), ("Arismendi", "Arismendi"), ("Barinas", "Barinas"),
+        ("Bolívar", "Barinitas"), ("Cruz Paredes", "Barrancas"), ("Ezequiel Zamora", "Santa Bárbara"),
+        ("Obispos", "Obispos"), ("Pedraza", "Ciudad Bolivia"), ("Rojas", "Libertad"), ("Sosa", "Ciudad de Nutrias")]),
+    "bolivar": ("Bolívar", [
+        ("Angostura", "Ciudad Piar"), ("Angostura del Orinoco", "Ciudad Bolívar"), ("Caroní", "Ciudad Guayana"),
+        ("Cedeño", "Caicara del Orinoco"), ("El Callao", "El Callao"), ("Gran Sabana", "Santa Elena de Uairén"),
+        ("Padre Pedro Chien", "El Palmar"), ("Piar", "Upata"), ("Roscio", "Guasipati"), ("Sifontes", "Tumeremo"),
+        ("Sucre", "Maripa")]),
+    "cojedes": ("Cojedes", [
+        ("Anzoátegui", "Cojedes"), ("Ezequiel Zamora", "San Carlos"), ("Girardot", "El Baúl"),
+        ("Lima Blanco", "Macapo"), ("Pao de San Juan Bautista", "El Pao"), ("Ricaurte", "Libertad"),
+        ("Rómulo Gallegos", "Las Vegas"), ("Tinaco", "Tinaco"), ("Tinaquillo", "Tinaquillo")]),
+    "delta-amacuro": ("Delta Amacuro", [
+        ("Antonio Díaz", "Curiapo"), ("Casacoima", "Sierra Imataca"), ("Pedernales", "Pedernales"),
+        ("Tucupita", "Tucupita")]),
+    "falcon": ("Falcón", [
+        ("Acosta", "San Juan de los Cayos"), ("Bolívar", "San Luis"), ("Buchivacoa", "Capatárida"),
+        ("Cacique Manaure", "Yaracal"), ("Carirubana", "Punto Fijo"), ("Colina", "La Vela de Coro"),
+        ("Dabajuro", "Dabajuro"), ("Democracia", "Pedregal"), ("Falcón", "Pueblo Nuevo"),
+        ("Federación", "Churuguara"), ("Jacura", "Jacura"), ("José Laurencio Silva", "Tucacas"),
+        ("Los Taques", "Santa Cruz de Los Taques"), ("Mauroa", "Mene de Mauroa"), ("Miranda", "Santa Ana de Coro"),
+        ("Monseñor Iturriza", "Chichiriviche"), ("Palmasola", "Palmasola"), ("Petit", "Cabure"),
+        ("Píritu", "Píritu"), ("San Francisco", "Mirimire"), ("Sucre", "La Cruz de Taratara"),
+        ("Tocópero", "Tocópero"), ("Unión", "Santa Cruz de Bucaral"), ("Urumaco", "Urumaco"),
+        ("Zamora", "Puerto Cumarebo")]),
+    "guarico": ("Guárico", [
+        ("Camaguán", "Camaguán"), ("Chaguaramas", "Chaguaramas"), ("El Socorro", "El Socorro"),
+        ("Francisco de Miranda", "Calabozo"), ("José Félix Ribas", "Tucupido"),
+        ("José Tadeo Monagas", "Altagracia de Orituco"), ("Juan Germán Roscio", "San Juan de los Morros"),
+        ("Julián Mellado", "El Sombrero"), ("Las Mercedes", "Las Mercedes del Llano"),
+        ("Leonardo Infante", "Valle de la Pascua"), ("Ortiz", "Ortiz"), ("Pedro Zaraza", "Zaraza"),
+        ("San Gerónimo de Guayabal", "Guayabal"), ("San José de Guaribe", "San José de Guaribe"),
+        ("Santa María de Ipire", "Santa María de Ipire")]),
+    "lara": ("Lara", [
+        ("Andrés Eloy Blanco", "Sanare"), ("Crespo", "Duaca"), ("Iribarren", "Barquisimeto"),
+        ("Jiménez", "Quíbor"), ("Morán", "El Tocuyo"), ("Palavecino", "Cabudare"), ("Simón Planas", "Sarare"),
+        ("Torres", "Carora"), ("Urdaneta", "Siquisique")]),
+    "merida": ("Mérida", [
+        ("Alberto Adriani", "El Vigía"), ("Andrés Bello", "La Azulita"), ("Antonio Pinto Salinas", "Santa Cruz de Mora"),
+        ("Aricagua", "Aricagua"), ("Arzobispo Chacón", "Canaguá"), ("Campo Elías", "Ejido"),
+        ("Caracciolo Parra Olmedo", "Tucaní"), ("Cardenal Quintero", "Santo Domingo"), ("Guaraque", "Guaraque"),
+        ("Julio César Salas", "Arapuey"), ("Justo Briceño", "Torondoy"), ("Libertador", "Mérida"),
+        ("Miranda", "Timotes"), ("Obispo Ramos de Lora", "Santa Elena de Arenales"),
+        ("Padre Noguera", "Santa María de Caparo"), ("Pueblo Llano", "Pueblo Llano"), ("Rangel", "Mucuchíes"),
+        ("Rivas Dávila", "Bailadores"), ("Santos Marquina", "Tabay"), ("Sucre", "Lagunillas"),
+        ("Tovar", "Tovar"), ("Tulio Febres Cordero", "Nueva Bolivia"), ("Zea", "Zea")]),
+    "miranda": ("Miranda", [
+        ("Acevedo", "Caucagua"), ("Andrés Bello", "San José de Barlovento"), ("Baruta", "Baruta"),
+        ("Brión", "Higuerote"), ("Buroz", "Mamporal"), ("Carrizal", "Carrizal"), ("Chacao", "Chacao"),
+        ("Cristóbal Rojas", "Charallave"), ("El Hatillo", "El Hatillo"), ("Guaicaipuro", "Los Teques"),
+        ("Independencia", "Santa Teresa del Tuy"), ("Lander", "Ocumare del Tuy"),
+        ("Los Salias", "San Antonio de los Altos"), ("Páez", "Río Chico"), ("Paz Castillo", "Santa Lucía"),
+        ("Pedro Gual", "Cúpira"), ("Plaza", "Guarenas"), ("Simón Bolívar", "San Francisco de Yare"),
+        ("Sucre", "Petare"), ("Urdaneta", "Cúa"), ("Zamora", "Guatire")]),
+}

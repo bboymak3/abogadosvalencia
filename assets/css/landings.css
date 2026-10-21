@@ -436,3 +436,21 @@
 .lp-seccion a:not(.btn):not(.ios-row) {
     color: #8a6d1f;
 }
+
+.mun-lista .mun-chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    background: #f2f2f7;
+    color: #111;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.mun-lista .mun-chip small {
+    color: rgba(60, 60, 67, 0.6);
+    font-weight: 400;
+    font-size: 0.75rem;
+}
