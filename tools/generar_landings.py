@@ -170,6 +170,32 @@ def cta_bar(msg):
     )
 
 
+def perfil_google():
+    """Botón flotante del Perfil de Empresa en Google y su ventana (modal de Bootstrap).
+    Sin Bootstrap, el botón funciona como enlace directo al perfil."""
+    url = e(SITIO["perfil_google_url"])
+    return (
+        '    <a href="%s" class="perfil-google-float" data-bs-toggle="modal" data-bs-target="#perfilGoogle" '
+        'aria-label="Ver perfil de Google" title="Perfil de Google"><i class="fab fa-google"></i></a>\n'
+        '    <div class="modal fade" id="perfilGoogle" tabindex="-1" aria-labelledby="perfilGoogleTitulo" aria-hidden="true">\n'
+        '        <div class="modal-dialog modal-dialog-centered">\n'
+        '            <div class="modal-content perfil-google">\n'
+        '                <div class="modal-header border-0 pb-0">\n'
+        '                    <p class="modal-title" id="perfilGoogleTitulo"><i class="fab fa-google me-2"></i>%s</p>\n'
+        '                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>\n'
+        '                </div>\n'
+        '                <div class="modal-body">\n'
+        '                    <p class="perfil-google-lugar"><i class="fas fa-map-marker-alt me-1"></i>Perfil de Empresa en Google · %s</p>\n'
+        '                    <p class="perfil-google-texto">%s</p>\n'
+        '                </div>\n'
+        '                <div class="modal-footer border-0 pt-0">\n'
+        '                    <a href="%s" class="btn perfil-google-ir" target="_blank" rel="noopener"><i class="fab fa-google me-2"></i>Ir a perfil de Google</a>\n'
+        '                </div>\n'
+        '            </div>\n'
+        '        </div>\n'
+        '    </div>' % (url, e(SITIO["nombre"]), e(SITIO["perfil_google_lugar"]), e(SITIO["perfil_google_texto"]), url))
+
+
 def credito():
     return (
         '    <div class="site-credit">\n'
@@ -528,7 +554,7 @@ def aplicar_capa_global():
             doc = poner_bloque(doc, "portada-guia", bloque_guia_portada(), r"[ \t]*<!-- Footer -->", sangria="    ")
         if slug_estado:
             doc = poner_bloque(doc, "estado-municipios", bloque_estado(slug_estado), r"[ \t]*<!-- Complete Services List -->", sangria="    ")
-        pie = cta_bar(mensaje_pagina(original)) + "\n" + credito()
+        pie = cta_bar(mensaje_pagina(original)) + "\n" + credito() + "\n" + perfil_google()
         ancla = r"[ \t]*<!-- WA_PAGE_ID_SNIPPET -->" if "<!-- WA_PAGE_ID_SNIPPET -->" in doc else r"[ \t]*</body>"
         doc = poner_bloque(doc, "barra-inferior", pie, ancla, sangria="    ")
         if doc != original:
@@ -592,6 +618,7 @@ def pagina(titulo, descripcion, ruta_url, cuerpo, grafo, msg_wa, lugar=None, h1_
 
 {barra}
 {credito}
+{perfil}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -603,7 +630,7 @@ def pagina(titulo, descripcion, ruta_url, cuerpo, grafo, msg_wa, lugar=None, h1_
 """.format(ga=ga, canonical=e(canonical), desc=e(descripcion), titulo=e(titulo),
            extra=head_extra(titulo, descripcion, canonical, lugar=lugar),
            ld=jsonld({"@context": "https://schema.org", "@graph": grafo}).replace("\n", "\n    "),
-           menu=MENU, cuerpo=cuerpo, pie=PIE, barra=cta_bar(msg_wa), credito=credito(), snippet=SNIPPET_WA)
+           menu=MENU, cuerpo=cuerpo, pie=PIE, barra=cta_bar(msg_wa), credito=credito(), perfil=perfil_google(), snippet=SNIPPET_WA)
 
 
 def html_migas(migas):

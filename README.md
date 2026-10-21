@@ -54,4 +54,5 @@ Los dos generadores son deterministas: volver a ejecutarlos no cambia nada si lo
 ## Contacto en la web
 
 - Teléfono / WhatsApp: +58 424-5112587
+- Perfil de Empresa en Google: https://maps.app.goo.gl/jhPNSiKzgENGFtFC7 (botón flotante con ventana en todas las páginas; el enlace y el texto se editan en `tools/datos.py`)
 - Pie de página: «Página web desarrollada por Grupo 360 Soluciones · Diseño por [makeseo.app](https://makeseo.app)»
