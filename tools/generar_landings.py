@@ -34,7 +34,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from datos import (SITIO, MUNICIPIOS, SERVICIOS, SAREN_TRAMITES,  # noqa: E402
                    SAREN_RECAUDOS, SAREN_PASOS, SAREN_FAQ, INTROS_A, INTROS_B,
                    INTROS_C, FAQ_LOCAL, PASOS_LANDING, ESTADOS_MUNICIPIOS,
-                   ESTADOS_INFO)
+                   ESTADOS_INFO, PREGUNTAS_RESPUESTAS)
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOM = SITIO["dominio"].rstrip("/")
@@ -323,7 +323,7 @@ def howto_ld(nombre, pasos):
 def paginas_existentes():
     res = []
     for base, dirs, archivos in os.walk(RAIZ):
-        dirs[:] = [d for d in dirs if not d.startswith(".") and d not in ("node_modules", "tools", "abogados", "saren-en-linea", "assets", "informacion-legal")]
+        dirs[:] = [d for d in dirs if not d.startswith(".") and d not in ("node_modules", "tools", "abogados", "saren-en-linea", "assets", "informacion-legal", "preguntas-y-respuestas")]
         if "index.html" in archivos:
             res.append(os.path.join(base, "index.html"))
     return sorted(res)
@@ -984,7 +984,7 @@ def bloque_guia_portada():
             '            <details class="mun-plegable">\n'
             '                <summary><span><i class="fas fa-book me-2"></i>Guía legal y preguntas frecuentes</span><span class="mun-contador">%d</span></summary>\n'
             '                <ul class="mun-lista">\n%s\n                </ul>\n'
-            '                <p class="mun-pie"><a href="%s">Ver la guía completa</a></p>\n'
+            '                <p class="mun-pie"><a href="%s">Ver la guía completa</a> · <a href="/preguntas-y-respuestas/">30 preguntas y respuestas</a></p>\n'
             '            </details>\n'
             '        </div>\n'
             '    </section>' % (len(items), lis, GUIA_URL))
@@ -1011,7 +1011,7 @@ def pagina_guia_legal():
         '                <p class="lp-lead">Qué hace un abogado, las dudas más comunes y las áreas y trámites que gestionamos.</p>\n'
         '                <div class="lp-botones">\n'
         '                    <a href="%s" class="btn btn-success btn-lg" target="_blank" rel="noopener"><i class="fab fa-whatsapp me-2"></i>Consultar por WhatsApp</a>\n'
-        '                    <a href="/#preguntas-frecuentes" class="btn btn-outline-light btn-lg">Preguntas de la portada</a>\n'
+        '                    <a href="/preguntas-y-respuestas/" class="btn btn-outline-light btn-lg">30 preguntas y respuestas</a>\n'
         '                </div>\n'
         '            </div>\n        </header>' % e(wa("Hola, vengo de la guía legal de la página web y tengo una duda")),
         '        <section class="lp-seccion">\n            <div class="container lp-estrecho">\n'
@@ -1053,6 +1053,94 @@ def pagina_guia_legal():
     ]
     escribir(os.path.join(RAIZ, ruta.strip("/"), "index.html"),
              pagina(titulo, desc, ruta, cuerpo, grafo, "Hola, vengo de la guía legal de la página web y tengo una duda"))
+    return ruta
+
+
+PREGUNTAS_URL = "/preguntas-y-respuestas/"
+
+
+def pagina_preguntas_respuestas():
+    ruta = PREGUNTAS_URL
+    total = sum(len(lista) for _, _, lista in PREGUNTAS_RESPUESTAS)
+    titulo = "%d Preguntas y Respuestas Legales en Venezuela | %s" % (total, SITIO["nombre"])
+    desc = ("Respuestas claras a %d dudas legales frecuentes en Venezuela: SAREN, notarías, Registro Civil, apostilla, "
+            "divorcio, herencias, inmuebles, prestaciones sociales y más." % total)
+    migas = [("Inicio", "/"), ("Preguntas y respuestas", ruta)]
+    chips = "\n".join('                    <li><a href="#%s"><i class="fas %s me-1"></i>%s<small>%d</small></a></li>'
+                       % (slugify(tema), icono, e(tema), len(lista)) for tema, icono, lista in PREGUNTAS_RESPUESTAS)
+    bloques, pares, n = [], [], 0
+    for tema, icono, lista in PREGUNTAS_RESPUESTAS:
+        items = []
+        for q, r in lista:
+            n += 1
+            pares.append((q, r))
+            items.append('                    <details class="guia-item pr-item" id="pregunta-%d"><summary>%s</summary>'
+                         '<div class="guia-cuerpo"><p>%s</p></div></details>' % (n, e(q), e(r)))
+        bloques.append('                <section class="pr-tema" id="%s">\n'
+                       '                <h2 class="lp-h2 text-start mt-5"><i class="fas %s me-2"></i>%s</h2>\n'
+                       '                <div class="guia">\n%s\n                </div>\n'
+                       '                </section>' % (slugify(tema), icono, e(tema), "\n".join(items)))
+    cuerpo = "\n\n".join([
+        html_migas(migas),
+        '        <header class="lp-hero">\n            <div class="container">\n'
+        '                <span class="lp-etiqueta"><i class="fas fa-circle-question me-1"></i> %d preguntas respondidas</span>\n'
+        '                <h1>Preguntas y respuestas legales</h1>\n'
+        '                <p class="lp-lead">Las dudas más comunes sobre trámites y casos legales en Venezuela, respondidas de forma clara. '
+        'Si tu caso no aparece, escríbenos.</p>\n'
+        '                <div class="lp-botones">\n'
+        '                    <a href="%s" class="btn btn-success btn-lg" target="_blank" rel="noopener"><i class="fab fa-whatsapp me-2"></i>Hacer mi pregunta</a>\n'
+        '                    <a href="%s" class="btn btn-outline-light btn-lg">Guía legal</a>\n'
+        '                </div>\n'
+        '            </div>\n        </header>' % (total, e(wa("Hola, vengo de la página de preguntas y respuestas y tengo una duda")), GUIA_URL),
+        '        <section class="lp-seccion">\n            <div class="container lp-estrecho">\n'
+        '                <label class="visually-hidden" for="pr-buscar">Buscar una pregunta</label>\n'
+        '                <input type="search" id="pr-buscar" class="form-control form-control-lg pr-buscar" placeholder="Buscar: divorcio, apostilla, herencia…" autocomplete="off">\n'
+        '                <p class="pr-sin-resultados" id="pr-sin-resultados" hidden>No encontramos esa pregunta. '
+        '<a href="%s" target="_blank" rel="noopener">Escríbenos por WhatsApp</a> y te respondemos.</p>\n'
+        '                <ul class="mun-lista pr-temas">\n%s\n                </ul>\n'
+        '%s\n'
+        '                <p class="guia-nota">Estas respuestas son orientativas y generales. Cada caso se revisa por separado. '
+        'Somos abogados y gestores independientes; no somos una oficina oficial del Estado.</p>\n'
+        '            </div>\n        </section>' % (e(wa("Hola, no encontré mi pregunta en la página web y tengo una duda")), chips, "\n".join(bloques)),
+        html_cta_final("Venezuela"),
+        '        <script>\n'
+        '        (function () {\n'
+        '            var campo = document.getElementById("pr-buscar");\n'
+        '            var vacio = document.getElementById("pr-sin-resultados");\n'
+        '            var temas = document.querySelectorAll(".pr-tema");\n'
+        '            function normalizar(t) { return t.normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLowerCase(); }\n'
+        '            campo.addEventListener("input", function () {\n'
+        '                var q = normalizar(campo.value.trim()), hay = 0;\n'
+        '                temas.forEach(function (tema) {\n'
+        '                    var visibles = 0, enTema = !!q && normalizar(tema.querySelector("h2").textContent).indexOf(q) !== -1;\n'
+        '                    tema.querySelectorAll(".pr-item").forEach(function (d) {\n'
+        '                        var ok = !q || enTema || normalizar(d.textContent).indexOf(q) !== -1;\n'
+        '                        d.hidden = !ok; if (ok) visibles++;\n'
+        '                        d.open = !!q && ok;\n'
+        '                    });\n'
+        '                    tema.hidden = visibles === 0; hay += visibles;\n'
+        '                });\n'
+        '                vacio.hidden = hay > 0;\n'
+        '                document.querySelector(".pr-temas").hidden = !!q;\n'
+        '            });\n'
+        '            function abrir() {\n'
+        '                var d = location.hash && document.getElementById(location.hash.slice(1));\n'
+        '                if (d && d.tagName === "DETAILS") { d.open = true; d.scrollIntoView(); }\n'
+        '            }\n'
+        '            window.addEventListener("hashchange", abrir);\n'
+        '            abrir();\n'
+        '        })();\n'
+        '        </script>',
+    ])
+    grafo = [
+        {"@type": "WebPage", "@id": DOM + ruta + "#webpage", "url": DOM + ruta, "name": titulo,
+         "description": desc, "inLanguage": "es-VE", "isPartOf": {"@id": WEB_ID}},
+        organizacion(),
+        migas_ld(migas),
+        faq_ld(pares),
+    ]
+    escribir(os.path.join(RAIZ, ruta.strip("/"), "index.html"),
+             pagina(titulo, desc, ruta, cuerpo, grafo, "Hola, vengo de la página de preguntas y respuestas y tengo una duda"))
     return ruta
 
 
@@ -1197,7 +1285,7 @@ def main():
     global MENU, PIE, SNIPPET_WA
     aplicar_capa_global()
     MENU, PIE, SNIPPET_WA = extraer_menu_y_pie()
-    creadas = [indice_abogados(), landing_saren(), pagina_guia_legal()]
+    creadas = [indice_abogados(), landing_saren(), pagina_guia_legal(), pagina_preguntas_respuestas()]
     for m in MUNICIPIOS:
         creadas.append(landing(m))
         for p in m["parroquias"]:

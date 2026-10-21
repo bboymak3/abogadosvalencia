@@ -573,3 +573,27 @@
     padding: 0.35rem 0.8rem;
     white-space: nowrap;
 }
+
+/* ---------- Preguntas y respuestas (/preguntas-y-respuestas/) ---------- */
+.pr-buscar {
+    border-radius: 14px;
+    margin-bottom: 1rem;
+}
+
+.pr-temas {
+    padding: 0 0 0.5rem;
+}
+
+.pr-temas small {
+    margin-left: 0.35rem;
+}
+
+.pr-sin-resultados {
+    background: #fff8e1;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+}
+
+.pr-tema {
+    scroll-margin-top: 110px;
+}

@@ -362,3 +362,115 @@ ESTADOS_INFO = {
     "miranda": {"capital": "Los Teques", "iso": "VE-M",
                 "ciudades": ["Los Teques", "Guarenas", "Guatire", "Petare", "Charallave", "Ocumare del Tuy"]},
 }
+
+# ---------------------------------------------------------------------------
+# Preguntas y respuestas (/preguntas-y-respuestas/): (tema, icono, [(pregunta, respuesta)])
+# Respuestas generales y orientativas: cada caso se revisa por separado.
+# ---------------------------------------------------------------------------
+PREGUNTAS_RESPUESTAS = [
+    ("SAREN, registros y notarías", "fa-landmark", [
+        ("¿Qué es el SAREN?",
+         "Es el Servicio Autónomo de Registros y Notarías, el organismo del Estado venezolano del que dependen los registros "
+         "(civil, mercantil e inmobiliario) y las notarías. Nosotros somos abogados y gestores independientes: no somos el SAREN."),
+        ("¿Qué diferencia hay entre una notaría y un registro?",
+         "La notaría da fe de que las partes firmaron un documento (autenticación), por ejemplo un poder o una compraventa de "
+         "vehículo. El registro inscribe actos que deben ser públicos frente a terceros, como la compraventa de un inmueble "
+         "o la constitución de una empresa."),
+        ("¿Qué significa que un documento esté visado?",
+         "Que un abogado inscrito en el Inpreabogado lo redactó o revisó y lo firma. Las notarías y los registros exigen el "
+         "visado en la mayoría de los documentos que se presentan."),
+        ("¿Qué necesito para autenticar un documento en una notaría?",
+         "Por lo general, el documento redactado y visado por un abogado, la cédula de identidad vigente de quienes firman, "
+         "el pago de los aranceles y, según el caso, el RIF o documentos adicionales. Te confirmamos los recaudos exactos al revisar tu caso."),
+        ("¿Se pueden hacer los trámites del SAREN en línea?",
+         "Muchos pasos sí: el registro en la plataforma, la carga de datos, la solicitud de citas y algunas legalizaciones "
+         "electrónicas. Otros actos exigen que los otorgantes firmen en persona. Te indicamos qué parte se puede adelantar a distancia."),
+        ("¿Cuánto cuesta un trámite ante el SAREN?",
+         "Depende del tipo de trámite y de las tasas vigentes. Los aranceles oficiales se pagan aparte de nuestros honorarios, "
+         "y te informamos ambos montos antes de empezar."),
+    ]),
+    ("Registro Civil y documentos", "fa-id-card", [
+        ("¿Cómo obtengo una copia certificada de mi partida de nacimiento?",
+         "Se solicita al Registro Civil del lugar donde se registró el nacimiento o por los canales que habilite el SAREN. "
+         "Con tus datos (nombres, fecha y lugar de registro) podemos gestionarla por ti."),
+        ("¿Qué diferencia hay entre una copia certificada y un documento legalizado?",
+         "La copia certificada da fe de que la copia es igual al original y sirve para trámites dentro de Venezuela. "
+         "La legalización o apostilla autentica la firma del funcionario para que el documento sea válido en el exterior."),
+        ("¿Qué es la apostilla?",
+         "Es una certificación que permite usar un documento público venezolano en otro país que forme parte del Convenio de "
+         "La Haya sobre la apostilla. En Venezuela la emite el Ministerio del Poder Popular para Relaciones Exteriores."),
+        ("¿Puedo corregir un error en mi acta de nacimiento?",
+         "Sí. Según el tipo de error, la corrección se hace por vía administrativa ante el Registro Civil o por vía judicial. "
+         "Revisamos el acta y te decimos cuál procede."),
+        ("¿Cómo solicito un acta de matrimonio o de defunción?",
+         "Igual que la partida de nacimiento: ante el Registro Civil donde se inscribió el acto o por los canales del SAREN. "
+         "Necesitamos los nombres, la fecha y el lugar del registro."),
+        ("¿Qué documentos necesito para usar mis papeles en el exterior?",
+         "Normalmente, la copia certificada del documento y su legalización o apostilla. Algunos países piden además traducción "
+         "oficial. Te indicamos los pasos según el país de destino."),
+    ]),
+    ("Familia y divorcio", "fa-user-friends", [
+        ("¿Cómo funciona el divorcio de mutuo acuerdo?",
+         "Ambos cónyuges presentan juntos la solicitud ante el tribunal, con un acuerdo sobre la liquidación de los bienes y, "
+         "si hay hijos menores, sobre su crianza, manutención y convivencia. Es la vía más rápida y menos conflictiva."),
+        ("¿Puedo divorciarme si mi pareja no está de acuerdo?",
+         "Sí. Existen causales de divorcio previstas en la ley, y la jurisprudencia del Tribunal Supremo de Justicia reconoce "
+         "el divorcio por la sola voluntad de uno de los cónyuges. Revisamos tu caso para elegir la vía adecuada."),
+        ("¿Qué es el divorcio por el artículo 185-A del Código Civil?",
+         "Es el divorcio que se puede pedir cuando los cónyuges llevan más de cinco años separados de hecho. Se tramita ante "
+         "el tribunal con la declaración de esa separación."),
+        ("¿Qué pasa con los hijos menores en un divorcio?",
+         "Hay que establecer la responsabilidad de crianza (custodia), la obligación de manutención y el régimen de "
+         "convivencia familiar. Si hay hijos menores, el caso se tramita ante el Tribunal de Protección de Niños, Niñas y Adolescentes."),
+        ("¿Cómo se reclama la obligación de manutención?",
+         "Se solicita ante el Tribunal de Protección de Niños, Niñas y Adolescentes, que fija el monto según las necesidades del "
+         "niño y la capacidad económica de quien debe pagar. Te ayudamos a preparar la solicitud y las pruebas."),
+    ]),
+    ("Herencias y sucesiones", "fa-hand-holding-usd", [
+        ("¿Qué es la declaración sucesoral?",
+         "Es la declaración que los herederos presentan ante el SENIAT sobre los bienes y deudas de la persona fallecida. "
+         "Es necesaria para poder vender, traspasar o registrar a su nombre los bienes heredados."),
+        ("¿Hay un plazo para presentar la declaración sucesoral?",
+         "Sí. La Ley de Impuesto sobre Sucesiones establece un plazo de 180 días desde el fallecimiento. Si se presenta fuera "
+         "de plazo puede haber multas, así que conviene empezar cuanto antes."),
+        ("¿Qué es la declaración de únicos y universales herederos?",
+         "Es una decisión del tribunal que reconoce quiénes son los herederos de una persona. Se solicita con las partidas que "
+         "prueban el parentesco y suele pedirse en bancos, registros y otros trámites."),
+        ("¿Qué pasa si no hay testamento?",
+         "Se aplica la sucesión intestada: la ley establece el orden de los herederos (hijos, cónyuge, padres, etc.). Te ayudamos "
+         "a identificar a los herederos y a hacer la partición de los bienes."),
+    ]),
+    ("Inmuebles y vehículos", "fa-home", [
+        ("¿Qué necesito para vender un inmueble?",
+         "Entre otros, el documento de propiedad registrado, las solvencias que exija el registro, la cédula y el RIF de las partes, "
+         "y el documento de compraventa redactado y visado por un abogado. Revisamos la tradición legal antes de firmar."),
+        ("¿Qué es un título supletorio?",
+         "Es una decisión judicial que acredita que una persona construyó unas bienhechurías (mejoras o construcciones). "
+         "Se tramita ante un tribunal civil con testigos y documentos de soporte."),
+        ("¿Cómo se hace la compraventa de un vehículo?",
+         "El documento de compraventa se autentica en una notaría con la firma del vendedor y del comprador. Después se "
+         "tramita el cambio de titularidad ante el INTT."),
+    ]),
+    ("Trabajo y empresas", "fa-briefcase", [
+        ("¿Qué son las prestaciones sociales?",
+         "Es el pago que corresponde al trabajador por el tiempo de servicio cuando termina la relación laboral, según la "
+         "LOTTT. Además pueden corresponder vacaciones y utilidades fraccionadas."),
+        ("¿Cuánto tiempo tengo para reclamar mis prestaciones sociales?",
+         "La LOTTT establece un plazo de diez años desde que termina la relación de trabajo. Aun así, conviene reclamar cuanto "
+         "antes para conservar las pruebas."),
+        ("¿Cómo registro una firma personal o una compañía?",
+         "Se presenta ante el Registro Mercantil el documento constitutivo redactado y visado por un abogado, con los recaudos "
+         "y pagos que exija el registro. Te ayudamos a elegir la figura adecuada para tu negocio."),
+    ]),
+    ("Sobre nuestro servicio", "fa-balance-scale", [
+        ("¿Ustedes son una oficina del Estado?",
+         "No. Somos abogados y gestores independientes. Te asesoramos y gestionamos tus trámites ante los organismos públicos, "
+         "pero no somos el SAREN ni ninguna otra oficina oficial."),
+        ("¿Atienden si vivo fuera de Venezuela?",
+         "Sí. Muchos trámites pueden adelantarse a distancia o mediante un poder. Te explicamos qué se puede hacer desde el "
+         "exterior y qué requiere la presencia de alguien en Venezuela."),
+        ("¿Cómo empiezo y cuánto cuestan sus servicios?",
+         "Escríbenos por WhatsApp con una breve descripción de tu caso. Revisamos la información y te damos un presupuesto "
+         "claro, con honorarios y tasas oficiales por separado, antes de empezar."),
+    ]),
+]
