@@ -14,6 +14,7 @@ Sitio estático de **Abogados Valencia** (https://abogadosvalencia.pages.dev), p
 | `/abogados/<municipio>/` | Landing por municipio de Carabobo (14) |
 | `/abogados/<municipio>/<parroquia>/` | Landing por parroquia de Carabobo (38) |
 | `/saren-en-linea/` | Servicio destacado: trámites, recaudos, paso a paso y FAQ |
+| `/preguntas-y-respuestas/` | 30 preguntas y respuestas legales por tema, con buscador y FAQPage (datos en `PREGUNTAS_RESPUESTAS` de `tools/datos.py`) |
 | `/informacion-legal/preguntas-frecuentes/` | Qué es un abogado, preguntas frecuentes, documentos para el exterior y guía de áreas y trámites |
 | `/api/ubicacion` | Función de Cloudflare Pages (`functions/api/ubicacion.js`): país y estado del visitante |
 | `404.html` | Página de error con el mismo estilo |
